@@ -223,7 +223,10 @@ def run_eval(query_id: str, query: str, use_llm: bool, verbose: bool = False) ->
     summary = case.summary()
     bundle = case.context_bundle or {}
     chunks = case.retrieved or []
-    answer = case.draft or ""
+
+    # 取纯答案（不含 meta footer），模板路径取 answer 字段，LLM 路径也取原始答案
+    raw_answer = (case.gen_result or {}).get("answer", "") if hasattr(case, 'gen_result') and case.gen_result else ""
+    answer = (raw_answer or case.draft or "").strip()
 
     # 评测指标
     citation = evaluate_citation(answer, bundle.get("id_map", {}))
@@ -298,8 +301,13 @@ def main():
     use_llm = args.llm and not args.no_llm
     print(f"\n📊 RAG 生成端评测 | LLM={'开' if use_llm else '关（模板路径）'} | 最多 {args.max_rows} 条\n")
 
+    # 加载真实评测集
+    eval_path = ROOT / "data" / "eval_queries.json"
+    with open(eval_path, encoding="utf-8") as f:
+        eval_data = json.load(f)
+    queries = eval_data.get("queries", [])[:args.max_rows]
+
     results = []
-    queries = TEST_QUERIES[:args.max_rows]
 
     for q in queries:
         r = run_eval(q["id"], q["query"], use_llm, verbose=args.verbose)
