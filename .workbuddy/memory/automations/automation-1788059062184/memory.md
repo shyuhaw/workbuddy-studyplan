@@ -61,3 +61,23 @@
 先读 `output/eval_generation.json` 的幻觉归因（检索错 vs 生成编），二选一：
 检索错 → Rerank 精排；生成编 → 生成端约束（low temperature / 结构化输出 / 拒答阈值）。
 另需先读 `.workbuddy/memory/2026-09-03.md`（若麦当今晚写了）拿实测数字。
+
+---
+
+### 2026-09-03（Day 5）· 执行完成
+
+- 产出：`src/context_builder.py` ✅ + `src/generator.py` ✅ + `src/eval_generation.py` ✅
+- RAG 首次真正闭合：检索 → 组装 → 生成 → 评测
+- **20条评测结果**：
+  | 指标 | 数值 |
+  |---|---|
+  | 引用准确率 | 100% |
+  | 数字可溯源率 | 100% |
+  | 实体可溯源率 | 59.8% |
+  | 忠实度（LLM judge）| 85.7% |
+  | 幻觉率 | 40.1% |
+  | 单次成本 | ¥0.0008 |
+  | 总成本（20条）| ¥0.015 |
+- 幻觉主因是元叙述（"依据现有记录无法确认"），非真正编造
+- 实体可溯源率 59.8% 是短板 → 明天做 Rerank 精排
+- 修复了 6 个真实 bug（extract_numbers 字段错、_CHUNK_CACHE 缺失、workflow transit 重复等）

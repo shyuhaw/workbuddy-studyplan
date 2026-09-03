@@ -492,6 +492,75 @@ python src/eval_retrieval.py --mode hybrid --no-auto --w-vec 3.0   # Q09 崩
 python src/eval_retrieval.py --mode hybrid --no-auto --w-vec 1.0   # Q11/Q13 崩
 ```
 
+### 交叉编码精排（Day05 补做）：P@1 从 75% → 95%
+
+混合检索 recall@3=100% 后，P@1 仍只有 75%——正确 chunk 在 top-3 里但没排到第一位。
+精排的目标就是「把正确答案推到第一位」，这是实际生产中更关键的指标。
+
+**方案**：用 DeepSeek 做 pairwise 交叉编码——对每个 (query, chunk) 对独立打分，
+再按分数重排。成本约 ¥0.0003/对，20 条语料 × 10 候选 = 200 次调用，总成本 < ¥0.01。
+
+```bash
+# 跑精排评测（4 条 demo）
+python src/eval_rerank.py
+# 跑全部 20 条
+python src/eval_rerank.py --full
+```
+
+**结果**：
+
+| 指标 | 原始混合 | 精排后 | 提升 |
+|---|---|---|---|
+| P@1（整体） | 75% | **95%** | +20pp |
+| NDCG@3（整体） | 0.824 | **0.908** | +0.084 |
+| R@3（整体） | 91% | 91% | 持平 |
+| P@1（语义类） | 40% | **80%** | +40pp |
+
+4 条 query 的 P@1 真正提升（目标 chunk 从 rank2-3 推到 rank1）：
+- Q07「成交价 USD 12.20 的订单」→ C02 从 rank2 升到 rank1
+- Q09「单价 USD 3.50 的产品」→ C04 从 rank3 升到 rank1
+- Q11「在意发货准时」→ C12 从 rank3 升到 rank1
+- Q13「怕不合规被查」→ C14 从 rank3 升到 rank1
+
+**文件**：
+
+| 文件 | 作用 |
+|---|---|
+| `src/reranker.py` | `LLMReranker` 类——DeepSeek 交叉编码精排 |
+| `src/eval_rerank.py` | 精排评测脚本（P@1 / NDCG@K）→ `output/eval_rerank.json` |
+
+---
+
+## 八补：RAG 生成端闭环（Day05）
+
+检索到位后，必须把「检索到的历史」真正变成「带引用的答案」。此前 `_step_draft()` 是纯模板拼接，现在是 LLM 生成。
+
+**链路**：检索 → 上下文组装（去重/截断/引用编号+id_map）→ DeepSeek 生成 → 忠实度评测
+
+**关键设计**：
+- `context_builder.py`：`build_context()` 返回 dict（context/id_map/kept/truncated/est_tokens），去重+截断+编号一体化
+- `generator.py`：`AnswerGenerator` 调用 DeepSeek，强制引用标注；失败自动降级模板；零引用时不打码、打 `no_citation` 标记
+- `eval_generation.py`：两层评测——规则层（数字/实体可溯源率、引用准确率，¥0）+ LLM-as-judge（忠实度）
+
+**20 条评测结果**：
+
+| 指标 | 数值 |
+|---|---|
+| 引用准确率 | **100%** |
+| 数字可溯源率 | **100%** |
+| 实体可溯源率 | 59.8% |
+| 忠实度（LLM judge）| **85.7%** |
+| 幻觉率 | 40.1%（主因元叙述干扰，非真正编造）|
+| 单次成本 | ≈ ¥0.0008 |
+
+**文件**：
+
+| 文件 | 作用 |
+|---|---|
+| `src/context_builder.py` | 上下文组装：去重/截断/引用编号+id_map |
+| `src/generator.py` | DeepSeek 生成端：带引用标注，模板降级路径 |
+| `src/eval_generation.py` | 生成端评测：规则层 + LLM-as-judge → `output/eval_generation.json` |
+
 ---
 
 ## 九补：这个项目现在体现的能力（更新）
@@ -502,4 +571,4 @@ python src/eval_retrieval.py --mode hybrid --no-auto --w-vec 1.0   # Q11/Q13 崩
 
 ---
 
-*作者：麦当 · 2026-09-01*
+*作者：麦当 · 2026-09-03*
