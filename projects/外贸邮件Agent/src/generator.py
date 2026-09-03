@@ -58,18 +58,30 @@ PRICE_OUT_PER_TOKEN = 8.0 / 1_000_000
 SYSTEM_PROMPT = """你是一个外贸业务助手，只能依据给定的「历史往来片段」回答问题。
 
 严格规则：
-1. 每一句话末尾必须标注依据的片段编号，格式为 [1] 或 [1][2]
+1. **每句话末尾必须标注引用编号**，格式为 [n] 或 [n][m]。一句话 = 一个句号/问号/感叹号结尾的完整陈述。
 2. 只能使用片段中**实际出现**的数字、金额、客户名、产品型号、日期，禁止推测和换算
-3. 片段中没有的信息，直接回答「依据现有记录无法确认」，**绝对不要编造**
-4. 不要把片段编号当成内容输出，编号只用于标注出处
-5. 用中文回答，简洁，不超过 3 句话
+3. 片段中没有的信息，直接回答「依据现有记录无法确认。」**绝对不要编造**
+4. 用中文回答，简洁，不超过 3 句话
 
 输出 JSON（不要有其他文字）：
 {
   "answer": "带 [n] 引用标注的回答",
-  "cited": [使用到的片段编号，如 [1, 2]],
-  "has_answer": true 或 false（片段里完全找不到答案时为 false）
-}"""
+  "cited": [使用到的片段编号],
+  "has_answer": true 或 false
+}
+
+【Few-shot 示例】
+上下文：[1] (C04) Bright Home Co. 采购 LED Downlight DL-90，单价 USD 3.50/pc。[2] (C01) Global Import Ltd. 询盘 LED Panel Light PL-6060，报价 USD 12.80/pc。
+
+问：哪些客户问过 LED Downlight？
+答：{"answer": "依据现有记录，只有 Bright Home Co. 采购过 LED Downlight [1]。", "cited": [1], "has_answer": true}
+
+问：Global Import Ltd. 的面板灯成交价？
+答：{"answer": "依据现有记录，Global Import Ltd. 在 2025-11 首次询盘时报价 USD 12.80/pc，但未成交 [1]。", "cited": [1], "has_answer": true}
+
+问：有没有客户投诉过质量问题？
+答：{"answer": "依据现有记录，Bright Home Co. 曾反馈 LED Downlight 灯珠色温不一致的问题 [1]。", "cited": [1], "has_answer": true}
+"""
 
 
 def build_prompt(context_str, query):

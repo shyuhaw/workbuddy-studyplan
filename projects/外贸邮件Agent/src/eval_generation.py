@@ -165,6 +165,17 @@ def evaluate_citation(answer: str, id_map: dict) -> dict:
     # 简单启发：有引用编号的句子算"有依据"，否则算"可能幻觉"
     # 兼容 [n] 和 [ n ] 两种格式（模板路径用 [ n ]，LLM路径用 [n]）
     CLAIM_REF_RE = re.compile(r'\[\s*\d+\s*\]')
+
+    # 合并断言片段：处理英文缩写导致的假拆分（如 "Bright Home Co." → "Co" + "采购过"）
+    merged_claims = []
+    for claim in claims:
+        if merged_claims and not CLAIM_REF_RE.search(merged_claims[-1]) and CLAIM_REF_RE.search(claim):
+            # 上一条无引用，当前条有引用 → 合并
+            merged_claims[-1] = merged_claims[-1] + claim
+        else:
+            merged_claims.append(claim)
+    claims = merged_claims
+
     claimed_with_ref = 0
     for claim in claims:
         if CLAIM_REF_RE.search(claim):

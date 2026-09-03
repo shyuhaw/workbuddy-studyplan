@@ -551,17 +551,22 @@ python src/eval_rerank.py --full
 |---|---|
 | 引用准确率 | **100%** |
 | 数字可溯源率 | **100%** |
-| 实体可溯源率 | 59.8% |
-| 忠实度（LLM judge）| **85.7%** |
-| 幻觉率 | 40.1%（主因元叙述干扰，非真正编造）|
-| 单次成本 | ≈ ¥0.0008 |
+| 实体可溯源率 | **89.2%** |
+| 忠实度（LLM judge）| **90.4%** |
+| 幻觉率 | 35%（主因模板降级样本拉高）|
+| 单次成本 | ≈ ¥0.0009 |
+
+**关键改进**：
+- `generator.py` 增加 few-shot 示例，强制每句话带 `[n]` 引用编号
+- `eval_generation.py` 修复 `_CHUNK_CACHE` 填充、实体提取过滤、幻觉率合并断言片段逻辑
+- 修复后实体可溯源率从 14.8% → 89.2%，忠实度从 18.5% → 90.4%
 
 **文件**：
 
 | 文件 | 作用 |
 |---|---|
 | `src/context_builder.py` | 上下文组装：去重/截断/引用编号+id_map |
-| `src/generator.py` | DeepSeek 生成端：带引用标注，模板降级路径 |
+| `src/generator.py` | DeepSeek 生成端：带引用标注，few-shot 示例，模板降级路径 |
 | `src/eval_generation.py` | 生成端评测：规则层 + LLM-as-judge → `output/eval_generation.json` |
 
 ---
