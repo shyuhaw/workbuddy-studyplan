@@ -357,9 +357,53 @@ PENDING_REVIEW → (SLA超时) → ESCALATED → PENDING_REVIEW
   </div>
 </section>
 
+<!-- ============ FEISHU CASE ============ -->
+<section>
+  <h2>项目二：飞书工程项目管理系统（从 0 到 1 搭建）</h2>
+  <p class="lead">两个项目练的是同一块肌肉——把业务流变成可配置、可追溯、可量化的系统流。邮件 Agent 压到一封邮件；飞书系统展开到全公司工程管理。</p>
+
+  <div class="metrics">
+    <div class="metric"><div class="num">23</div><div class="lbl">启用业务模块<br>（CLI 实拉）</div></div>
+    <div class="metric"><div class="num">777</div><div class="lbl">自定义字段<br>（CLI 实拉）</div></div>
+    <div class="metric"><div class="num">20</div><div class="lbl">流程节点<br>（CLI 实拉）</div></div>
+    <div class="metric"><div class="num">400+620</div><div class="lbl">已办/待办<br>（个人工作量）</div></div>
+  </div>
+
+  <div class="grid2" style="margin-top:16px">
+    <div class="card">
+      <h3>配置侧（CLI 实测）</h3>
+      <table style="font-size:13px;margin-top:8px">
+        <tr><th>维度</th><th>数值</th><th>说明</th></tr>
+        <tr><td>施工项目管理</td><td>50 字段</td><td>最高字段数，含验收附件/标准工期/是否里程碑</td></tr>
+        <tr><td>商机管理</td><td>50 字段</td><td>客户→商机→项目的数据关联核心</td></tr>
+        <tr><td>角色权限</td><td>12 角色</td><td>覆盖 6 部门按角色读写隔离</td></tr>
+        <tr><td>在管项目</td><td>5 个</td><td>当前在施项目</td></tr>
+        <tr><td>高风险预警</td><td>4 个</td><td>KPI 卡实时暴露，事后追溯变事前可见</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>业务效果（业务侧反馈）</h3>
+      <table style="font-size:13px;margin-top:8px">
+        <tr><th>指标</th><th>数值</th><th>来源</th></tr>
+        <tr><td>日常使用人数</td><td class="good">40 人</td><td>业务侧反馈</td></tr>
+        <tr><td>自动化流程条数</td><td class="good">5 条</td><td>空间设置→自动化</td></tr>
+        <tr><td>典型场景</td><td>状态变更→通知<br>超期未处理→提醒</td><td>实际配置</td></tr>
+        <tr><td>③④ 耗时对比/节省工时</td><td>—</td><td>业务侧无法给出准确数据，不编造</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="callout blue" style="margin-top:16px">
+    <div class="t">核心设计亮点</div>
+    <p>每个状态由字段+权限+流程卡控，不能跳过。<br>
+    例如"备工中"必须填完《施工方案》《技术交底》《安全协议》才能转"施工中"。<br>
+    经营舱 KPI 卡实时暴露 4 个高风险项、10 个待处理风险，使风险由事后追溯变为事前可见。</p>
+  </div>
+</section>
+
 <!-- ============ SKILLS SHOWCASE ============ -->
 <section>
-  <h2>项目二：WorkBuddy 自研 Skill（方法论固化）</h2>
+  <h2>项目三：WorkBuddy 自研 Skill（方法论固化）</h2>
   <p class="lead">把这两天踩过的坑和方法论封装成 4 个可复用 Skill——每个 Skill 都配完整文档 + 脚本，不是模板填空。</p>
 
   <div class="skill-grid">

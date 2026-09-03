@@ -1,6 +1,6 @@
 {
   "meta": {
-    "llm": true,
+    "llm": false,
     "total": 20,
     "timestamp": "auto"
   },
@@ -8,481 +8,443 @@
     {
       "query_id": "Q01",
       "query": "哪些客户问过 LED Downlight？",
-      "gen_mode": "llm",
-      "answer": "依据现有记录，Bright Home Co. 在 2025-09 采购过 LED Downlight DL-90 12W [1]。其他客户未提及 LED Downlight。",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：哪些客户问过 LED Downlight？\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
       "cited_ids": [
-        "C04"
+        "C04",
+        "C01",
+        "C17"
       ],
       "chunks_count": 3,
       "citation_precision": 1.0,
-      "hallucination_rate": 0.667,
+      "hallucination_rate": 1.0,
       "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.5,
-      "faithfulness": 1.0,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.25,
       "invalid_citations": [],
-      "valid_citations": [
-        "C04"
-      ],
-      "answer_numbers": [
-        "2025"
-      ],
-      "gen_cost_yuan": 0.000706
+      "valid_citations": [],
+      "answer_numbers": [],
+      "gen_cost_yuan": 0
     },
     {
       "query_id": "Q02",
       "query": "LED Panel Light PL-6060 的报价历史",
-      "gen_mode": "llm",
-      "answer": "依据现有记录，LED Panel Light PL-6060 的报价历史如下：2025-11 首次询盘时报价 USD 12.80/pc FOB Ningbo [1]；2026-03 返单成交价为 USD 12.20/pc [2]。",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：LED Panel Light PL-6060 的报价历史\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
       "cited_ids": [
         "C01",
-        "C02"
+        "C02",
+        "C20"
       ],
       "chunks_count": 3,
       "citation_precision": 1.0,
-      "hallucination_rate": 0.5,
+      "hallucination_rate": 1.0,
       "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.333,
-      "faithfulness": 0.667,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.25,
       "invalid_citations": [],
-      "valid_citations": [
-        "C01",
-        "C02"
-      ],
+      "valid_citations": [],
       "answer_numbers": [
-        "2025",
-        "2026",
-        "6060",
-        "USD 12.20/pc",
-        "USD 12.80/pc"
+        "6060"
       ],
-      "gen_cost_yuan": 0.000839
+      "gen_cost_yuan": 0
     },
     {
       "query_id": "Q03",
       "query": "谁采购过 Solar Street Light？",
-      "gen_mode": "llm",
-      "answer": "依据现有记录，Nordic Trading 在 2026-01 询问过 Solar Street Light 100W 集成款 [1]。",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：谁采购过 Solar Street Light？\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
       "cited_ids": [
-        "C07"
+        "C07",
+        "C11",
+        "C09"
       ],
       "chunks_count": 3,
       "citation_precision": 1.0,
-      "hallucination_rate": 0.0,
+      "hallucination_rate": 1.0,
       "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.6,
-      "faithfulness": 1.0,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.25,
       "invalid_citations": [],
-      "valid_citations": [
-        "C07"
-      ],
-      "answer_numbers": [
-        "100",
-        "2026"
-      ],
-      "gen_cost_yuan": 0.000622
+      "valid_citations": [],
+      "answer_numbers": [],
+      "gen_cost_yuan": 0
     },
     {
       "query_id": "Q04",
       "query": "LED Grow Light 满光谱植物灯的客户",
-      "gen_mode": "llm",
-      "answer": "依据现有记录，LED Grow Light 满光谱植物灯的客户是 Amazon Seller Leo [1]。",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：LED Grow Light 满光谱植物灯的客户\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
       "cited_ids": [
-        "C15"
+        "C15",
+        "C17",
+        "C11"
       ],
       "chunks_count": 3,
       "citation_precision": 1.0,
-      "hallucination_rate": 0.0,
+      "hallucination_rate": 1.0,
       "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.5,
-      "faithfulness": 1.0,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.25,
       "invalid_citations": [],
-      "valid_citations": [
-        "C15"
-      ],
+      "valid_citations": [],
       "answer_numbers": [],
-      "gen_cost_yuan": 0.000613
+      "gen_cost_yuan": 0
     },
     {
       "query_id": "Q05",
       "query": "LED Bulb A60 9W 的报价",
-      "gen_mode": "llm",
-      "answer": "LED Bulb A60 9W 的报价为 USD 0.62/pc，MOQ 5000 pcs，要求 E27 螺口，包装为彩色零售卡 [1]。",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：LED Bulb A60 9W 的报价\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
       "cited_ids": [
-        "C13"
+        "C13",
+        "C01",
+        "C04"
       ],
       "chunks_count": 3,
       "citation_precision": 1.0,
-      "hallucination_rate": 0.5,
+      "hallucination_rate": 1.0,
       "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.667,
-      "faithfulness": 1.0,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.25,
       "invalid_citations": [],
-      "valid_citations": [
-        "C13"
-      ],
-      "answer_numbers": [
-        "5000",
-        "USD 0.62/pc"
-      ],
-      "gen_cost_yuan": 0.000659
+      "valid_citations": [],
+      "answer_numbers": [],
+      "gen_cost_yuan": 0
     },
     {
       "query_id": "Q06",
       "query": "报过 USD 12.80 的是哪家？",
-      "gen_mode": "llm",
-      "answer": "报过 USD 12.80 的是 Global Import Ltd. [1]",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：报过 USD 12.80 的是哪家？\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
       "cited_ids": [
-        "C01"
+        "C01",
+        "C04",
+        "C18"
       ],
       "chunks_count": 3,
       "citation_precision": 1.0,
       "hallucination_rate": 1.0,
       "num_traceable_rate": 1.0,
       "entity_traceable_rate": 1.0,
-      "faithfulness": 1.0,
+      "faithfulness": 0.25,
       "invalid_citations": [],
-      "valid_citations": [
-        "C01"
-      ],
+      "valid_citations": [],
       "answer_numbers": [
         "USD 12.80"
       ],
-      "gen_cost_yuan": 0.000532
+      "gen_cost_yuan": 0
     },
     {
       "query_id": "Q07",
       "query": "成交价 USD 12.20 的订单",
-      "gen_mode": "llm",
-      "answer": "成交价 USD 12.20 的订单是 Global Import Ltd. 于 2026-03 返单的 LED Panel Light PL-6060 40W，数量 5000 pcs，交期 30 天，付款方式 T/T 30% 预付款 70% 见提单副本 [2]。",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：成交价 USD 12.20 的订单\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
       "cited_ids": [
-        "C02"
+        "C01",
+        "C02",
+        "C07"
       ],
       "chunks_count": 3,
       "citation_precision": 1.0,
-      "hallucination_rate": 0.5,
+      "hallucination_rate": 1.0,
       "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.75,
-      "faithfulness": 1.0,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.25,
       "invalid_citations": [],
-      "valid_citations": [
-        "C02"
-      ],
+      "valid_citations": [],
       "answer_numbers": [
-        "2026",
-        "5000",
-        "6060",
         "USD 12.20"
       ],
-      "gen_cost_yuan": 0.000867
+      "gen_cost_yuan": 0
     },
     {
       "query_id": "Q08",
       "query": "索赔 USD 1,200 的是哪起？",
-      "gen_mode": "llm",
-      "answer": "依据现有记录，索赔 USD 1,200 的是 Nordic Trading 的 LED Tube 光衰问题 [1]。",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：索赔 USD 1,200 的是哪起？\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
       "cited_ids": [
-        "C08"
+        "C08",
+        "C12",
+        "C04"
       ],
       "chunks_count": 3,
       "citation_precision": 1.0,
-      "hallucination_rate": 0.0,
+      "hallucination_rate": 1.0,
       "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.5,
-      "faithfulness": 1.0,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.25,
       "invalid_citations": [],
-      "valid_citations": [
-        "C08"
-      ],
+      "valid_citations": [],
       "answer_numbers": [
         "USD 1,200"
       ],
-      "gen_cost_yuan": 0.000624
+      "gen_cost_yuan": 0
     },
     {
       "query_id": "Q09",
       "query": "单价 USD 3.50 的产品是什么？",
-      "gen_mode": "llm",
-      "answer": "单价 USD 3.50 的产品是 LED Downlight DL-90 12W，由 Bright Home Co. 采购 [3]。",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：单价 USD 3.50 的产品是什么？\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
       "cited_ids": [
+        "C16",
+        "C15",
         "C04"
       ],
       "chunks_count": 3,
       "citation_precision": 1.0,
       "hallucination_rate": 1.0,
       "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.667,
-      "faithfulness": 1.0,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.2,
       "invalid_citations": [],
-      "valid_citations": [
-        "C04"
-      ],
+      "valid_citations": [],
       "answer_numbers": [
         "USD 3.50"
       ],
-      "gen_cost_yuan": 0.000604
+      "gen_cost_yuan": 0
     },
     {
       "query_id": "Q10",
       "query": "有没有客户投诉过质量问题？",
-      "gen_mode": "llm",
-      "answer": "有。Bright Home Co. 曾反映 DL-90 12W 约 5% 灯珠色温不一致，已补发更换并扣减尾款 [1]；Nordic Trading 曾因 LED Tube 光衰严重索赔 USD 1,200，最终以补偿 200 pcs 现货了结 [2]。",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：有没有客户投诉过质量问题？\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
       "cited_ids": [
         "C04",
-        "C08"
+        "C08",
+        "C06"
       ],
       "chunks_count": 3,
       "citation_precision": 1.0,
-      "hallucination_rate": 0.5,
+      "hallucination_rate": 1.0,
       "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.778,
-      "faithfulness": 1.0,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.0,
       "invalid_citations": [],
-      "valid_citations": [
-        "C04",
-        "C08"
-      ],
-      "answer_numbers": [
-        "200",
-        "USD 1,200"
-      ],
-      "gen_cost_yuan": 0.000911
+      "valid_citations": [],
+      "answer_numbers": [],
+      "gen_cost_yuan": 0
     },
     {
       "query_id": "Q11",
       "query": "哪些客户很在意发货准时？",
-      "gen_mode": "llm",
-      "answer": "Sunrise Wholesale 对面板灯交期要求严格，超 35 天需提前书面说明 [3]。",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：哪些客户很在意发货准时？\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
       "cited_ids": [
+        "C10",
+        "C15",
         "C12"
       ],
       "chunks_count": 3,
       "citation_precision": 1.0,
-      "hallucination_rate": 0.0,
+      "hallucination_rate": 1.0,
       "num_traceable_rate": 1.0,
       "entity_traceable_rate": 1.0,
-      "faithfulness": 1.0,
+      "faithfulness": 0.0,
       "invalid_citations": [],
-      "valid_citations": [
-        "C12"
-      ],
+      "valid_citations": [],
       "answer_numbers": [],
-      "gen_cost_yuan": 0.000629
+      "gen_cost_yuan": 0
     },
     {
       "query_id": "Q12",
       "query": "哪些客户可以谈更长的回款时间？",
-      "gen_mode": "llm",
-      "answer": "依据现有记录，Sunrise Wholesale 的账期可放宽至 60 天 [1]。其他客户是否可谈更长回款时间，依据现有记录无法确认。",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：哪些客户可以谈更长的回款时间？\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
       "cited_ids": [
-        "C10"
+        "C10",
+        "C14",
+        "C12"
       ],
       "chunks_count": 3,
       "citation_precision": 1.0,
-      "hallucination_rate": 0.5,
+      "hallucination_rate": 1.0,
       "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.2,
-      "faithfulness": 0.5,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.0,
       "invalid_citations": [],
-      "valid_citations": [
-        "C10"
-      ],
+      "valid_citations": [],
       "answer_numbers": [],
-      "gen_cost_yuan": 0.000781
+      "gen_cost_yuan": 0
     },
     {
       "query_id": "Q13",
       "query": "哪些客户最怕不合规被查？",
-      "gen_mode": "llm",
-      "answer": "依据现有记录，Pacific Retail Group 对认证要求极高（ERP/CE/ROHS 齐全），不接受无认证供货，最怕不合规被查 [3]。杭州华筑装饰工程有限公司要求含消防验收配合 [1]，但未明确提及合规风险。Bright Home Co. 主要关注显指、色温等产品参数 [2]，未涉及合规问题。",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：哪些客户最怕不合规被查？\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
       "cited_ids": [
-        "C14",
         "C20",
-        "C06"
+        "C06",
+        "C14"
       ],
       "chunks_count": 3,
       "citation_precision": 1.0,
-      "hallucination_rate": 0.25,
+      "hallucination_rate": 1.0,
       "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.364,
-      "faithfulness": 0.5,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.0,
       "invalid_citations": [],
-      "valid_citations": [
-        "C14",
-        "C20",
-        "C06"
-      ],
+      "valid_citations": [],
       "answer_numbers": [],
-      "gen_cost_yuan": 0.001217
+      "gen_cost_yuan": 0
     },
     {
       "query_id": "Q14",
       "query": "哪个客户出现过产品一致性翻车？",
-      "gen_mode": "llm",
-      "answer": "Bright Home Co. 出现过灯珠色温不一致的问题 [2]。",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：哪个客户出现过产品一致性翻车？\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
       "cited_ids": [
-        "C04"
+        "C08",
+        "C04",
+        "C16"
       ],
       "chunks_count": 3,
       "citation_precision": 1.0,
-      "hallucination_rate": 0.5,
+      "hallucination_rate": 1.0,
       "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.5,
-      "faithfulness": 0.5,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.0,
       "invalid_citations": [],
-      "valid_citations": [
-        "C04"
-      ],
+      "valid_citations": [],
       "answer_numbers": [],
-      "gen_cost_yuan": 0.000571
+      "gen_cost_yuan": 0
     },
     {
       "query_id": "Q15",
       "query": "Global Import Ltd. 的面板灯成交价",
-      "gen_mode": "llm",
-      "answer": "Global Import Ltd. 在 2026-03 返单中成交价为 USD 12.20/pc [2]。",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Global Import Ltd. 的面板灯成交价\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
       "cited_ids": [
+        "C01",
+        "C02",
+        "C03"
+      ],
+      "chunks_count": 3,
+      "citation_precision": 1.0,
+      "hallucination_rate": 1.0,
+      "num_traceable_rate": 1.0,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.25,
+      "invalid_citations": [],
+      "valid_citations": [],
+      "answer_numbers": [],
+      "gen_cost_yuan": 0
+    },
+    {
+      "query_id": "Q16",
+      "query": "Bright Home 的 Downlight 质量索赔",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Bright Home 的 Downlight 质量索赔\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+      "cited_ids": [
+        "C04",
+        "C06",
+        "C18"
+      ],
+      "chunks_count": 3,
+      "citation_precision": 1.0,
+      "hallucination_rate": 1.0,
+      "num_traceable_rate": 1.0,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.25,
+      "invalid_citations": [],
+      "valid_citations": [],
+      "answer_numbers": [],
+      "gen_cost_yuan": 0
+    },
+    {
+      "query_id": "Q17",
+      "query": "Sunrise Wholesale 的面板灯交期条款",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Sunrise Wholesale 的面板灯交期条款\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+      "cited_ids": [
+        "C12",
+        "C10",
+        "C11"
+      ],
+      "chunks_count": 3,
+      "citation_precision": 1.0,
+      "hallucination_rate": 1.0,
+      "num_traceable_rate": 1.0,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.25,
+      "invalid_citations": [],
+      "valid_citations": [],
+      "answer_numbers": [],
+      "gen_cost_yuan": 0
+    },
+    {
+      "query_id": "Q18",
+      "query": "Nordic Trading 的太阳能路灯价格谈判",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Nordic Trading 的太阳能路灯价格谈判\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+      "cited_ids": [
+        "C07",
+        "C09",
+        "C08"
+      ],
+      "chunks_count": 3,
+      "citation_precision": 1.0,
+      "hallucination_rate": 1.0,
+      "num_traceable_rate": 1.0,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.25,
+      "invalid_citations": [],
+      "valid_citations": [],
+      "answer_numbers": [],
+      "gen_cost_yuan": 0
+    },
+    {
+      "query_id": "Q19",
+      "query": "Amazon Seller Leo 的植物灯复购周期",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Amazon Seller Leo 的植物灯复购周期\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+      "cited_ids": [
+        "C15",
+        "C16",
         "C02"
       ],
       "chunks_count": 3,
       "citation_precision": 1.0,
       "hallucination_rate": 1.0,
       "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.5,
-      "faithfulness": 0.667,
-      "invalid_citations": [],
-      "valid_citations": [
-        "C02"
-      ],
-      "answer_numbers": [
-        "2026",
-        "USD 12.20/pc"
-      ],
-      "gen_cost_yuan": 0.000592
-    },
-    {
-      "query_id": "Q16",
-      "query": "Bright Home 的 Downlight 质量索赔",
-      "gen_mode": "llm",
-      "answer": "依据现有记录无法确认 Bright Home 的 Downlight 质量索赔。片段中仅提到 2025-09 出现过约 5% 灯珠色温不一致的问题，已补发更换并扣减尾款 [1]，但未提及索赔金额或具体索赔流程。",
-      "cited_ids": [
-        "C04"
-      ],
-      "chunks_count": 3,
-      "citation_precision": 1.0,
-      "hallucination_rate": 0.5,
-      "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.5,
-      "faithfulness": 0.5,
-      "invalid_citations": [],
-      "valid_citations": [
-        "C04"
-      ],
-      "answer_numbers": [
-        "2025"
-      ],
-      "gen_cost_yuan": 0.000988
-    },
-    {
-      "query_id": "Q17",
-      "query": "Sunrise Wholesale 的面板灯交期条款",
-      "gen_mode": "llm",
-      "answer": "Sunrise Wholesale 对面板灯交期要求严格，超 35 天需提前书面说明，历史逾期仅 1 次且已赔付 3% 违约金 [1]。",
-      "cited_ids": [
-        "C12"
-      ],
-      "chunks_count": 3,
-      "citation_precision": 1.0,
-      "hallucination_rate": 0.0,
-      "num_traceable_rate": 1.0,
       "entity_traceable_rate": 1.0,
-      "faithfulness": 1.0,
+      "faithfulness": 0.25,
       "invalid_citations": [],
-      "valid_citations": [
-        "C12"
-      ],
+      "valid_citations": [],
       "answer_numbers": [],
-      "gen_cost_yuan": 0.000743
-    },
-    {
-      "query_id": "Q18",
-      "query": "Nordic Trading 的太阳能路灯价格谈判",
-      "gen_mode": "llm",
-      "answer": "依据现有记录，Nordic Trading 曾就 Solar Street Light 100W 集成款询价，目标价 USD 45.00/pc，但我方成本 USD 52.00 无法接单，建议降级为 60W 型号报价 USD 38.00/pc 达成意向 [1]。此外，Nordic Trading 主做北欧市政项目，偏好 IP65 防水太阳能路灯，重视 CE 与 RoHS 认证，单次订单量大但议价能力强 [2]。",
-      "cited_ids": [
-        "C07",
-        "C09"
-      ],
-      "chunks_count": 3,
-      "citation_precision": 1.0,
-      "hallucination_rate": 0.6,
-      "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.769,
-      "faithfulness": 0.8,
-      "invalid_citations": [],
-      "valid_citations": [
-        "C07",
-        "C09"
-      ],
-      "answer_numbers": [
-        "100",
-        "USD 38.00/pc",
-        "USD 45.00/pc",
-        "USD 52.00"
-      ],
-      "gen_cost_yuan": 0.001285
-    },
-    {
-      "query_id": "Q19",
-      "query": "Amazon Seller Leo 的植物灯复购周期",
-      "gen_mode": "llm",
-      "answer": "依据现有记录，Amazon Seller Leo 的植物灯复购周期约为 45 天 [2]。",
-      "cited_ids": [
-        "C16"
-      ],
-      "chunks_count": 3,
-      "citation_precision": 1.0,
-      "hallucination_rate": 0.0,
-      "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.333,
-      "faithfulness": 1.0,
-      "invalid_citations": [],
-      "valid_citations": [
-        "C16"
-      ],
-      "answer_numbers": [],
-      "gen_cost_yuan": 0.000615
+      "gen_cost_yuan": 0
     },
     {
       "query_id": "Q20",
       "query": "Pacific Retail Group 的灯泡包装要求",
-      "gen_mode": "llm",
-      "answer": "Pacific Retail Group 的灯泡包装要求为彩色零售卡 [1]。",
+      "gen_mode": "template_fallback",
+      "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Pacific Retail Group 的灯泡包装要求\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
       "cited_ids": [
-        "C13"
+        "C13",
+        "C14",
+        "C03"
       ],
       "chunks_count": 3,
       "citation_precision": 1.0,
-      "hallucination_rate": 0.0,
+      "hallucination_rate": 1.0,
       "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.5,
-      "faithfulness": 1.0,
+      "entity_traceable_rate": 1.0,
+      "faithfulness": 0.25,
       "invalid_citations": [],
-      "valid_citations": [
-        "C13"
-      ],
+      "valid_citations": [],
       "answer_numbers": [],
-      "gen_cost_yuan": 0.000566
+      "gen_cost_yuan": 0
     }
   ],
   "aggregate": {
     "总条目": 20,
     "平均引用准确率": 1.0,
-    "平均幻觉率": 0.401,
+    "平均幻觉率": 1.0,
     "平均数字可溯源率": 1.0,
-    "平均实体可溯源率": 0.598,
-    "平均忠实度": 0.857,
-    "总生成成本(元)": 0.015,
-    "LLM 生成条目": 20,
-    "模板降级条目": 0
+    "平均实体可溯源率": 1.0,
+    "平均忠实度": 0.185,
+    "总生成成本(元)": 0,
+    "LLM 生成条目": 0,
+    "模板降级条目": 20
   }
 }

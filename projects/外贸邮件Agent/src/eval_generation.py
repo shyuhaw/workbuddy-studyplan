@@ -92,12 +92,42 @@ EXPECTED_NUMBERS = {
 # ---------------------------------------------------------------------------
 
 def _tokenize_entities(text: str) -> list[str]:
-    """提取中英文实体（客户名/产品名/公司名）。"""
-    # 英文大写开头 + 后续词
-    en = re.findall(r'[A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)+', text)
-    # 中文实体（连续中文字符，长度 ≥ 3）
-    zh = re.findall(r'[\u4e00-\u9fff]{3,}', text)
-    return list(dict.fromkeys(en + zh))
+    """提取中英文实体（客户名/产品名/公司名），排除元叙述模板词。"""
+    # 先去掉模板前缀行，只保留"实质内容"部分
+    # 模板行特征：【xxx】开头、问题：xxx、相关历史片段：、（无相关历史记录）、请人工核对
+    lines = text.split('\n')
+    content_lines = []
+    for line in lines:
+        stripped = line.strip()
+        if not stripped:
+            continue
+        # 跳过模板特征行
+        if stripped.startswith('【') and '】' in stripped:
+            continue
+        if stripped.startswith(('问题：', '相关历史片段：', '（请人工核对')):
+            continue
+        if stripped == '（无相关历史记录）':
+            continue
+        content_lines.append(stripped)
+    clean_text = ' '.join(content_lines)
+
+    # 英文实体（客户名/产品名）
+    en = re.findall(r'[A-Z][a-zA-Z]+(?:\s+[A-Z][a-zA-Z]+)+', clean_text)
+    # 中文实体：连续中文字符片段
+    zh_phrases = re.findall(r'[\u4e00-\u9fff]{3,}', clean_text)
+    # 过滤：含常见动词/副词/功能词的片段不是实体
+    STOP_CHARS = set('的是否可否会过到被从不也又更最较很所以但而或且与及同于对于根据在')
+    META_PREFIXES = ['依据现有记录', '依据', '无法确认', '未在记录中', '其他客户', '未提及', '未记录']
+    filtered = []
+    for p in zh_phrases:
+        if any(c in p for c in STOP_CHARS):
+            continue
+        if any(p.startswith(m) for m in META_PREFIXES):
+            continue
+        if p.endswith('的') or p.startswith('的'):
+            continue
+        filtered.append(p)
+    return list(dict.fromkeys(en + filtered))
 
 
 def _extract_numbers(text: str) -> set[str]:
