@@ -45,6 +45,20 @@ def recall_at_k(retrieved_ids_per_query, expects_per_query, k):
     return hit / len(expects_per_query) if expects_per_query else 0.0
 
 
+def mrr_at_k(retrieved_ids_per_query, expects_per_query, k):
+    """Mean Reciprocal Rank @k：每个 query 取最高相关 chunk 的排名倒数均值。
+    若 top-k 内无相关 chunk，则该 query 贡献 0。"""
+    rr_sum = 0.0
+    count = len(expects_per_query)
+    for retrieved, expects in zip(retrieved_ids_per_query, expects_per_query):
+        top_k = retrieved[:k]
+        for rank, rid in enumerate(top_k, start=1):
+            if rid in expects:
+                rr_sum += 1.0 / rank
+                break
+    return rr_sum / count if count else 0.0
+
+
 def main(mode="bm25", enable_rewrite=True, w_vec=1.0, w_bm25=1.0,
          auto_weight=True):
     retr, _ = (build_hybrid(enable_rewrite=enable_rewrite, w_vec=w_vec, w_bm25=w_bm25,
@@ -77,6 +91,9 @@ def main(mode="bm25", enable_rewrite=True, w_vec=1.0, w_bm25=1.0,
     ks = [1, 3, 5]
     overall = {f"recall@{k}": round(recall_at_k(retrieved_all, expects_all, k), 3) for k in ks}
     semantic = {f"recall@{k}": round(recall_at_k(retrieved_sem, expects_sem, k), 3) for k in ks}
+    # 新增 MRR 指标
+    overall_mrr = {f"mrr@{k}": round(mrr_at_k(retrieved_all, expects_all, k), 3) for k in ks}
+    semantic_mrr = {f"mrr@{k}": round(mrr_at_k(retrieved_sem, expects_sem, k), 3) for k in ks}
 
     title = ("RAG 检索评测 · 混合检索（BM25+向量 RRF）"
              if mode == "hybrid" else "RAG 检索评测 · BM25 baseline")
@@ -90,12 +107,12 @@ def main(mode="bm25", enable_rewrite=True, w_vec=1.0, w_bm25=1.0,
     print(title)
     print("=" * 82)
     print(f"语料 chunk 数: {len(load_corpus())}  | 评测 query 数: {len(queries)}")
-    print("\n【整体召回】")
+    print("\n【整体指标】")
     for k in ks:
-        print(f"  recall@{k:<2} = {overall[f'recall@{k}']:.1%}")
+        print(f"  recall@{k:<2} = {overall[f'recall@{k}']:.1%} | mrr@{k:<2} = {overall_mrr[f'mrr@{k}']:.3f}")
     print("\n【仅语义类（BM25 预计失败，诚实展示天花板）】")
     for k in ks:
-        print(f"  recall@{k:<2} = {semantic[f'recall@{k}']:.1%}  "
+        print(f"  recall@{k:<2} = {semantic[f'recall@{k}']:.1%} | mrr@{k:<2} = {semantic_mrr[f'mrr@{k}']:.3f}  "
               f"({sum(1 for q in queries if q.get('expected_fail'))} 条)")
     print("\n【逐条明细】")
     for r in rows:
@@ -108,6 +125,7 @@ def main(mode="bm25", enable_rewrite=True, w_vec=1.0, w_bm25=1.0,
     result = {"mode": mode, "enable_rewrite": enable_rewrite,
               "auto_weight": auto_weight, "w_vec": w_vec, "w_bm25": w_bm25,
               "overall": overall, "semantic_only": semantic,
+              "overall_mrr": overall_mrr, "semantic_mrr": semantic_mrr,
               "details": rows, "corpus_size": len(load_corpus()),
               "query_count": len(queries)}
     os.makedirs(os.path.dirname(OUT_PATH), exist_ok=True)
