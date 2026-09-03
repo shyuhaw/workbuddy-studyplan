@@ -34,10 +34,14 @@ sys.path.insert(0, str(ROOT / "src"))
 from llm_fallback import FallbackManager
 from workflow import WorkflowCase
 from vector_retriever import build_hybrid
-from context_builder import extract_citations, map_citations
+from context_builder import extract_citations, map_citations, _CHUNK_CACHE
 
 # 共享 retriever：build_hybrid 返回 (HybridRetriever, all_chunks)，评测全程复用同一实例
 _RETRIEVER, _CHUNKS_REF = build_hybrid()
+
+# 填充 chunk 缓存，使模板降级路径也能引用原文
+for _c in _CHUNKS_REF:
+    _CHUNK_CACHE[_c["id"]] = _c["text"]
 
 
 # ---------------------------------------------------------------------------
