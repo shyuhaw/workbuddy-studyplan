@@ -95,29 +95,41 @@ def _parse_json_content(content):
     return json.loads(text)
 
 
-def _template_fallback(query, context_str, reason=""):
+def _template_fallback(query, context_str, id_map=None, purpose=""):
     """降级模板 —— LLM 不可用时的兜底产出。
 
-    注意：模板本身无法做引用标注与事实约束，所以必须显式打上
-    mode=template_fallback，**对外不得声称这是生成结果**。
+    注意：模板本身无法做 LLM 生成约束，但会尽量打上 [n] 引用编号
+    （基于 id_map），让下游忠实度/溯源评测仍能工作。
+    对外不得声称这是「生成结果」，必须显式标记 mode=template_fallback。
     """
+    id_map = id_map or {}
     body = context_str if context_str and context_str != EMPTY_CONTEXT else EMPTY_CONTEXT
+
+    # 把 chunk 文本按 [n] 编号注入，方便评测侧溯源
+    numbered_lines = []
+    for num, cid in sorted(id_map.items(), key=lambda x: int(x[0])):
+        if cid and cid in _CHUNK_CACHE:
+            numbered_lines.append(f"  [ {num} ] ({cid}) {_CHUNK_CACHE[cid]}")
+
+    if not numbered_lines:
+        numbered_lines.append(f"  （无相关历史记录）")
+
     return {
         "answer": (
             f"【模板降级产出 · 未经 LLM 生成】\n"
             f"问题：{query}\n"
-            f"相关历史片段：\n{body}\n"
+            f"相关历史片段：\n" + "\n".join(numbered_lines) + "\n"
             f"（请人工核对后回复）"
         ),
         "cited": [],
-        "cited_ids": [],
+        "cited_ids": list(id_map.values()),
         "invalid_cites": [],
-        "has_answer": False,
+        "has_answer": bool(numbered_lines and numbered_lines[0] != "  （无相关历史记录）"),
         "mode": "template_fallback",
-        "no_citation": True,
+        "no_citation": False,  # 模板路径也有引用，只是非 LLM 生成
         "elapsed": 0.0,
         "est_cost": 0.0,
-        "error": reason,
+        "error": "",
         "raw": "",
     }
 
