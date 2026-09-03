@@ -95,3 +95,19 @@
 - 生成：context_builder → generator(LLM+引用标注) → eval_generation(忠实度85.7%)
 - 评测指标全集：recall@K / P@1 / NDCG@K / 引用准确率 / 数字可溯源率 / 实体可溯源率 / 忠实度 / 幻觉率
 - 全部数字可复现，成本可控（¥0.015/20条生成 + ¥0.01/20条精排）
+
+---
+
+## 2026-09-03 Day5 欠账补做完成（10:10）
+
+- Rerank 精排：src/reranker.py + src/eval_rerank.py
+- P@1 75%→95%，NDCG@3 0.824→0.908，R@3 保持 91%
+- README 更新，dist 指标同步
+- Git: a5613d8
+
+### 2026-09-03 14:30 dist串联环节数字修正
+
+- dist/index.html + 作品集.html：5→7，7个环节完整描述
+- Git: 08998b8
+
+**RAG 完整链路已闭合**：检索(三重递进) → 组装(引用编号) → 生成(LLM+降级) → 评测(忠实度/幻觉/P@1/NDCG)
