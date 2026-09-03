@@ -4,7 +4,7 @@
     "candidate_pool": 10,
     "output_top_k": 5,
     "reranker_calls": 200,
-    "timestamp": "2026-09-03 10:15:41"
+    "timestamp": "2026-09-03 14:59:14"
   },
   "overall": {
     "total_queries": 20,
