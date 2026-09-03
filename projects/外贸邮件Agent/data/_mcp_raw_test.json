@@ -1,0 +1,18 @@
+{
+  "data": {
+    "data": {
+      "message_id": "msg_iKIv1h_68-UGv46Ab1nILpAb54PUMur2zvpA03lyBnGM6A",
+      "dir": { "dir_id": 1, "dir_name": "inbox" },
+      "from": { "email": "admin@agent.qq.com", "name": "Agent Mail 团队" },
+      "to": [{ "email": "imwd4546@agent.qq.com", "name": "imwd4546" }],
+      "subject": "Agent Mail 接入成功",
+      "body": "<!doctype html>\n<html lang=\"zh-CN\">\n<head>\n  <meta charset=\"UTF-8\"  />\n  <title>\"WorkBuddy\" 已绑定你的 Agent Mail</title>\n  <style>.qmbox #web { display: none !important; }\n.qmbox #app { display: block !important; }\n@media screen and (min-width: 640px) {.qmbox #web { display: block !important; }\n.qmbox #app { display: none !important; }\n}\n.qmbox a { text-decoration: none; }\n</style>\n</head>\n<body style=\"margin: 0; padding: 0; background: #FAF9F5;\">\n<div id=\"web\" style=\"display: none;\">\n  <table role=\"presentation\" width=\"100%\" border=\"0\">\n    <tr>\n      <td align=\"center\" style=\"padding: 80px 20px 56px 20px;\">\n        <div style=\"font-size: 18px; font-weight: 600;\">Agent Mail 接入成功</div>\n        <div style=\"margin-top: 8px;\">已为 WorkBuddy 接入 Agent Mail，现在可以在 WorkBuddy 中收发邮件了。</div>\n        <table role=\"presentation\" width=\"100%\" border=\"0\" style=\"margin-top: 32px;\">\n          <tr>\n            <td width=\"120\" style=\"padding: 17px 20px;\">邮箱地址</td>\n            <td style=\"padding: 17px 20px 17px 0;\">imwd4546@agent.qq.com</td>\n          </tr>\n          <tr>\n            <td width=\"120\" style=\"padding: 17px 20px;\">已接入 Agent</td>\n            <td style=\"padding: 17px 20px 17px 0;\">WorkBuddy</td>\n          </tr>\n        </table>\n        <div style=\"margin-top: 32px;\"><span>若非本人操作，可 </span><a href=\"https://agent.qq.com/page/revoke\">解除绑定</a></div>\n        <div style=\"margin-top: 32px; font-weight: 600;\">接下来怎么用？</div>\n        <div style=\"margin-top: 8px;\">无需记忆任何命令，直接在 WorkBuddy 中用自然语言说出你的邮件需求即可。</div>\n        <div style=\"margin-top: 16px;\">发一封广州本周天气邮件</div>\n        <div style=\"margin-top: 20px;\">\n          <a href=\"https://help.agent.qq.com/detail/0/1092\">查看 Agent Mail 快速入门</a>\n          <span>|</span>\n          <a href=\"https://agent.qq.com/page/feedback\">问题和建议反馈</a>\n        </div>\n      </td>\n    </tr>\n  </table>\n</div>\n<div id=\"app\" style=\"display: block;\">\n  <table role=\"presentation\" width=\"100%\" border=\"0\">\n    <tr>\n      <td align=\"center\" style=\"padding: 60px 12px 20px 12px;\">\n        <div style=\"font-size: 17px; font-weight: 600;\">Agent Mail 接入成功</div>\n        <div style=\"margin-top: 8px;\">已为 WorkBuddy 接入 Agent Mail，现在可以在 WorkBuddy 中收发邮件了。</div>\n        <div style=\"margin-top: 24px;\">邮箱地址&nbsp;&nbsp;imwd4546@agent.qq.com</div>\n        <div style=\"margin-top: 12px;\">已接入 Agent&nbsp;&nbsp;WorkBuddy</div>\n        <div style=\"margin-top: 24px;\">若非本人操作，可 <a href=\"https://agent.qq.com/page/revoke\">解除绑定</a></div>\n        <div style=\"margin-top: 24px; font-weight: 600;\">接下来怎么用？</div>\n        <div style=\"margin-top: 8px;\">无需记忆任何命令，直接在 WorkBuddy 中用自然语言说出你的邮件需求即可。</div>\n      </td>\n    </tr>\n  </table>\n</div>\n</body>\n</html>\n",
+      "body_format": "HTML",
+      "is_read": false,
+      "has_attachments": false,
+      "attachment_count": 0,
+      "created_at": "2026-08-31T00:57:29Z"
+    }
+  },
+  "rsp_headers": {}
+}

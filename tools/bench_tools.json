@@ -1,0 +1,116 @@
+{
+  "date": "2026-09-02",
+  "method": "AI 侧真实 wall-clock 测量（含解释器启动）；人工侧透明模型（保守下界）",
+  "human_assumptions": {
+    "pdf_per_file_min": 3.0,
+    "excel_per_file_min": 2.0,
+    "screenshot_min": 1.5
+  },
+  "rows": [
+    {
+      "item": "PDF 文字提取（有文字层）",
+      "volume": "4 份 / 共 9 页",
+      "agent_sec": 0.626,
+      "human_sec": 180.0,
+      "notes": "1/4 份有文字层（3 份为纯 CAD 图纸，无文字层，需 OCR，不计入提效）",
+      "extractable": 1,
+      "no_text": 3,
+      "total_chars": 522,
+      "files": [
+        {
+          "file": "1(1) 平面布置图 (1).pdf",
+          "pages": 1,
+          "chars": 0,
+          "head": ""
+        },
+        {
+          "file": "富笠木工.pdf",
+          "pages": 6,
+          "chars": 0,
+          "head": ""
+        },
+        {
+          "file": "柱子.pdf",
+          "pages": 1,
+          "chars": 0,
+          "head": ""
+        },
+        {
+          "file": "贝尔一层大厅柱子详图 布局1 (1).pdf",
+          "pages": 1,
+          "chars": 522,
+          "head": "PROJECT NAME   项目编号 日期 工程名称 审核人 制图人 项目负责人 JOB NO       图号 备注栏 REFERENCE COLUMN  "
+        }
+      ],
+      "speedup_x": 287.5
+    },
+    {
+      "item": "CAD 图纸批量提取",
+      "volume": "6 份 / 共 6 页",
+      "agent_sec": 0.017,
+      "human_sec": 0.0,
+      "notes": "0/6 份有文字层（6 份为纯 CAD 图纸，无文字层，需 OCR，不计入提效）",
+      "extractable": 0,
+      "no_text": 6,
+      "total_chars": 0,
+      "files": [
+        {
+          "file": "工艺做法 Model (1).pdf",
+          "pages": 1,
+          "chars": 0,
+          "head": ""
+        },
+        {
+          "file": "工艺做法 Model 2.pdf",
+          "pages": 1,
+          "chars": 0,
+          "head": ""
+        },
+        {
+          "file": "工艺做法 Model 3.pdf",
+          "pages": 1,
+          "chars": 0,
+          "head": ""
+        },
+        {
+          "file": "工艺做法 Model4.pdf",
+          "pages": 1,
+          "chars": 0,
+          "head": ""
+        },
+        {
+          "file": "平面布置图(2)(1).dwg-2022-11-18-15-18-46-614.pdf",
+          "pages": 1,
+          "chars": 0,
+          "head": ""
+        },
+        {
+          "file": "平面布置图(2)(1).dwg-2022-11-18-15-22-17-433.pdf",
+          "pages": 1,
+          "chars": 0,
+          "head": ""
+        }
+      ],
+      "speedup_x": 0.0
+    },
+    {
+      "item": "Excel 结构探查",
+      "volume": "Agent处理结果.xlsx（2 个 Sheet）",
+      "agent_sec": 0.626,
+      "human_sec": 120.0,
+      "notes": "含 Python 解释器启动 + openpyxl 加载",
+      "exit_code": 0,
+      "speedup_x": 191.7
+    },
+    {
+      "item": "网页抓取 + 截图",
+      "volume": "https://www.workbuddy.cn",
+      "agent_sec": 4.302,
+      "human_sec": 90.0,
+      "notes": "成功，产物 163.2 KB",
+      "exit_code": 0,
+      "stderr_tail": "",
+      "speedup_x": 20.9
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "name": "RAG 检索评测集",
+    "purpose": "钉死 BM25 baseline 数字，为「明天加向量检索」提供对比基线",
+    "metric": "recall@k（top-k 中至少命中一个预期 chunk 即算对）",
+    "categories": {
+      "product_spec": "产品/规格检索（中英关键词重合，BM25 应命中）",
+      "number_amount": "数字/金额检索（价格数量是强信号，BM25 应命中）",
+      "semantic": "语义检索（query 不含 chunk 关键词，BM25 预计失败，诚实标注）",
+      "mixed": "客户+产品组合检索（多信号叠加）"
+    },
+    "expected_fail_note": "semantic 类为预先判断 BM25 会失败的样本，用于量化「纯关键词检索的召回天花板」，明天向量检索必须在此类上拉开差距。"
+  },
+  "queries": [
+    {"id": "Q01", "type": "product_spec", "query": "哪些客户问过 LED Downlight？", "expects": ["C04", "C06"]},
+    {"id": "Q02", "type": "product_spec", "query": "LED Panel Light PL-6060 的报价历史", "expects": ["C01", "C02", "C03"]},
+    {"id": "Q03", "type": "product_spec", "query": "谁采购过 Solar Street Light？", "expects": ["C07", "C09"]},
+    {"id": "Q04", "type": "product_spec", "query": "LED Grow Light 满光谱植物灯的客户", "expects": ["C15", "C16"]},
+    {"id": "Q05", "type": "product_spec", "query": "LED Bulb A60 9W 的报价", "expects": ["C13"]},
+    {"id": "Q06", "type": "number_amount", "query": "报过 USD 12.80 的是哪家？", "expects": ["C01"]},
+    {"id": "Q07", "type": "number_amount", "query": "成交价 USD 12.20 的订单", "expects": ["C02"]},
+    {"id": "Q08", "type": "number_amount", "query": "索赔 USD 1,200 的是哪起？", "expects": ["C08"]},
+    {"id": "Q09", "type": "number_amount", "query": "单价 USD 3.50 的产品是什么？", "expects": ["C04"]},
+    {"id": "Q10", "type": "semantic", "query": "有没有客户投诉过质量问题？", "expects": ["C04", "C08"], "expected_fail": true},
+    {"id": "Q11", "type": "semantic", "query": "哪些客户很在意发货准时？", "expects": ["C12"], "expected_fail": true},
+    {"id": "Q12", "type": "semantic", "query": "哪些客户可以谈更长的回款时间？", "expects": ["C10"], "expected_fail": true},
+    {"id": "Q13", "type": "semantic", "query": "哪些客户最怕不合规被查？", "expects": ["C14", "C09"], "expected_fail": true},
+    {"id": "Q14", "type": "semantic", "query": "哪个客户出现过产品一致性翻车？", "expects": ["C04"], "expected_fail": true},
+    {"id": "Q15", "type": "mixed", "query": "Global Import Ltd. 的面板灯成交价", "expects": ["C02", "C01", "C03"]},
+    {"id": "Q16", "type": "mixed", "query": "Bright Home 的 Downlight 质量索赔", "expects": ["C04", "C06"]},
+    {"id": "Q17", "type": "mixed", "query": "Sunrise Wholesale 的面板灯交期条款", "expects": ["C10", "C12"]},
+    {"id": "Q18", "type": "mixed", "query": "Nordic Trading 的太阳能路灯价格谈判", "expects": ["C07", "C09"]},
+    {"id": "Q19", "type": "mixed", "query": "Amazon Seller Leo 的植物灯复购周期", "expects": ["C15", "C16"]},
+    {"id": "Q20", "type": "mixed", "query": "Pacific Retail Group 的灯泡包装要求", "expects": ["C13", "C14"]}
+  ]
+}

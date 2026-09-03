@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>外贸邮件智能处理 Agent · 交互演示</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --border:#30363d;
+    --txt:#e6edf3; --muted:#8b949e; --accent:#58a6ff; --accent2:#3fb950;
+    --warn:#d29922; --danger:#f85149; --pill:#21262d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;
+       background:var(--bg);color:var(--txt);line-height:1.6}
+  header{padding:22px 28px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,#11161f,#0d1117)}
+  header h1{margin:0;font-size:20px;letter-spacing:.3px}
+  header p{margin:6px 0 0;color:var(--muted);font-size:13px}
+  .wrap{display:grid;grid-template-columns:minmax(360px,42%) 1fr;gap:20px;padding:20px 28px;align-items:start}
+  @media(max-width:900px){.wrap{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px}
+  .card h2{font-size:14px;margin:0 0 12px;color:var(--accent);display:flex;align-items:center;gap:8px}
+  textarea{width:100%;min-height:260px;background:var(--panel2);border:1px solid var(--border);
+           border-radius:8px;color:var(--txt);padding:12px;font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;
+           font-size:13px;resize:vertical;line-height:1.55}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  select,button{font-size:13px;border-radius:8px;border:1px solid var(--border);padding:9px 14px;
+                background:var(--panel2);color:var(--txt);cursor:pointer}
+  button.primary{background:var(--accent);color:#06122a;border:none;font-weight:600}
+  button.primary:hover{filter:brightness(1.1)}
+  button.ghost{background:transparent}
+  .meta{margin-top:10px;font-size:12px;color:var(--muted)}
+  .steps{display:flex;flex-direction:column;gap:14px}
+  .step{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px 16px;
+        opacity:0;transform:translateY(8px);animation:fade .35s forwards}
+  @keyframes fade{to{opacity:1;transform:none}}
+  .step .h{display:flex;align-items:center;gap:10px;font-weight:600;font-size:14px;margin-bottom:8px}
+  .step .num{width:24px;height:24px;border-radius:50%;background:var(--accent);color:#06122a;
+             display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex:none}
+  .badge{font-size:11px;padding:2px 9px;border-radius:20px;background:var(--pill);border:1px solid var(--border);color:var(--muted)}
+  .badge.rule{color:var(--accent2)}
+  .badge.llm{color:var(--warn)}
+  .kv{display:grid;grid-template-columns:90px 1fr;gap:6px 12px;font-size:13px}
+  .kv .k{color:var(--muted)}
+  .kv .v{font-weight:500}
+  .v.empty{color:var(--danger);font-weight:400}
+  .reason{font-size:12.5px;color:var(--muted);margin:3px 0 0 0;padding-left:14px;position:relative}
+  .reason:before{content:"›";position:absolute;left:2px;color:var(--accent)}
+  .rag-hit{border-left:3px solid var(--accent);background:var(--panel2);padding:8px 10px;border-radius:6px;margin-top:8px;font-size:12.5px}
+  .rag-hit .id{color:var(--accent);font-weight:600;margin-right:6px}
+  .rag-hit .sc{float:right;color:var(--muted);font-size:11px}
+  .draft{white-space:pre-wrap;font-family:ui-monospace,Consolas,monospace;font-size:12.5px;
+         background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:12px;color:#c9d1d9}
+  .empty-state{color:var(--muted);text-align:center;padding:60px 20px;font-size:14px}
+  .pri-高{color:var(--danger);font-weight:700}
+  .pri-中{color:var(--warn);font-weight:700}
+  .pri-低{color:var(--accent2);font-weight:700}
+  .pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .pill{background:var(--pill);border:1px solid var(--border);border-radius:20px;padding:3px 11px;font-size:12px}
+  .pill.risk{border-color:var(--danger);color:#ffb4ae}
+  .pill.act{border-color:var(--accent);color:#aacbff}
+  .spinner{display:inline-block;width:14px;height:14px;border:2px solid var(--muted);border-top-color:var(--accent);
+           border-radius:50%;animation:spin .7s linear infinite;vertical-align:-2px;margin-right:6px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .err{color:var(--danger);font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <h1>📧 外贸邮件智能处理 Agent · 交互演示</h1>
+  <p>粘贴一封客户邮件 → 实时看全链路：① 分类 → ② 提取 → ③ 决策 → ④ RAG 历史检索 → ⑤ 起草回复</p>
+</header>
+
+<div class="wrap">
+  <!-- 左：输入 -->
+  <div class="card">
+    <h2>① 输入邮件</h2>
+    <textarea id="email" placeholder="可直接粘贴邮件原文（建议带 Subject: / From: 行）&#10;&#10;示例：&#10;From: buyer@acme.com&#10;Subject: Inquiry for LED Panel Light&#10;&#10;We need 3000pcs LED Panel Light PL-6060...target price USD 12.50/pc, quotation before 2026-09-15."></textarea>
+    <div class="toolbar">
+      <select id="samples"><option value="">载入示例邮件…</option></select>
+      <button class="primary" id="run">▶ 运行全链路</button>
+      <button class="ghost" id="clear">清空</button>
+    </div>
+    <div class="meta" id="meta"></div>
+  </div>
+
+  <!-- 右：结果 -->
+  <div>
+    <div class="steps" id="steps">
+      <div class="empty-state" id="empty">👈 在左侧粘贴或载入一封邮件，点「运行全链路」查看结果</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const FIELD_CN = {customer:"客户", product:"产品", quantity:"数量", price:"价格", deadline:"截止日"};
+
+async function loadSamples(){
+  try{
+    const r = await fetch('/api/samples'); const j = await r.json();
+    const sel = $('#samples');
+    (j.samples||[]).forEach(s=>{
+      const o=document.createElement('option');
+      o.value=s.id;
+      o.textContent=`${s.id} · ${s.subject||'(无主题)'}  [${s.category}]`;
+      o._data=s; sel.appendChild(o);
+    });
+  }catch(e){ console.warn('samples load failed',e); }
+}
+$('#samples').addEventListener('change',e=>{
+  const o=e.target.selectedOptions[0]; if(!o||!o._data) return;
+  const d=o._data;
+  $('#email').value = `From: ${d.from}\nSubject: ${d.subject}\n\n${d.body}`;
+});
+$('#clear').onclick=()=>{ $('#email').value=''; };
+
+$('#run').onclick = async ()=>{
+  const email = $('#email').value.trim();
+  if(!email){ alert('请先粘贴或载入一封邮件'); return; }
+  $('#empty')?.remove();
+  const box=$('#steps'); box.innerHTML='<div class="step" style="opacity:1;transform:none"><span class="spinner"></span>正在运行全链路（分类→提取→决策→RAG→起草）…</div>';
+  $('#meta').textContent='';
+  try{
+    const r=await fetch('/api/run',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email})});
+    const j=await r.json();
+    if(j.error){ box.innerHTML=`<div class="err">出错：${j.error}</div>`; return; }
+    render(j);
+    $('#meta').textContent=`耗时 ${j.elapsed}s · 真实 LLM 调用 ${j.llm_calls} 次 · 检索器 ${j.rag?'(混合 BM25+向量)':''}`;
+  }catch(e){ box.innerHTML=`<div class="err">请求失败：${e}</div>`; }
+};
+
+function step(n,title,badge,html){
+  return `<div class="step"><div class="h"><span class="num">${n}</span>${title} ${badge||''}</div>${html}</div>`;
+}
+function valCell(v){ return v? `<span class="v">${esc(v)}</span>` : `<span class="v empty">未提供 / 未识别</span>`; }
+function esc(s){ return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+function render(j){
+  const c=j.classification, ex=j.extraction, d=j.decision, rag=j.rag;
+  let h='';
+
+  // ① 分类
+  const cbadge = c.need_llm ? '<span class="badge llm">需 LLM 兜底</span>'
+                            : (c.source==='规则层'?'<span class="badge rule">规则层</span>':'');
+  h+=step(1,'分类结果',cbadge,`
+    <div class="kv">
+      <div class="k">预测分类</div><div class="v"><b style="font-size:15px">${c.category_cn}</b></div>
+      <div class="k">规则层预判</div><div class="v">${c.rule_category_cn}（置信度 ${c.confidence}）</div>
+      <div class="k">最终来源</div><div class="v">${c.source}</div>
+    </div>`);
+
+  // ② 提取
+  let fld='';
+  for(const k of ['customer','product','quantity','price','deadline']){
+    const v=ex.fields[k]?.value||'';
+    fld+=`<div class="k">${FIELD_CN[k]}</div>${valCell(v)}`;
+  }
+  h+=step(2,'关键信息提取',`<span class="badge rule">规则层+LLM</span>`,`<div class="kv">${fld}</div>`);
+
+  // ③ 决策
+  const prBadge=`<span class="badge" style="border-color:var(--border)">优先级 <span class="pri-${d.priority}">${d.priority}</span></span>`;
+  let reasons=(d.reasons||[]).map(r=>`<p class="reason">${esc(r)}</p>`).join('');
+  let pills='';
+  (d.actions||[]).forEach(a=>pills+=`<span class="pill act">👉 ${esc(a)}</span>`);
+  (d.risks||[]).forEach(r=>pills+=`<span class="pill risk">⚠ ${esc(r)}</span>`);
+  if(!d.risks||!d.risks.length) pills+=`<span class="pill">✓ 无显性风险</span>`;
+  h+=step(3,'决策建议',prBadge,`
+    <div>${reasons}</div>
+    <div class="pill-row">${pills}</div>`);
+
+  // ④ RAG
+  let hits=(rag.hits||[]).map(hh=>`
+    <div class="rag-hit"><span class="sc">融合分 ${hh.score}</span>
+      <span class="id">${esc(hh.id)}</span>${esc(hh.customer||'')}
+      <div style="color:var(--muted);margin-top:3px">${esc(hh.text)}</div>
+    </div>`).join('');
+  if(!hits) hits='<div class="rag-hit">无相关历史记录</div>';
+  h+=step(4,'RAG 检索历史',`<span class="badge rule">BM25+向量</span>`,`
+    <div class="kv"><div class="k">检索式</div><div class="v">${esc(rag.query||'')}</div></div>
+    ${hits}`);
+
+  // ⑤ 起草
+  h+=step(5,'起草回复','',`<div class="draft">${esc(j.draft||'')}</div>`);
+
+  $('#steps').innerHTML=h;
+}
+loadSamples();
+</script>
+</body>
+</html>

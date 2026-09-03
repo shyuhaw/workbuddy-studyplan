@@ -1,0 +1,13 @@
+{
+  "n_emails": 20,
+  "rules_only_sec": 0.0059,
+  "rules_only_per_email_ms": 0.29,
+  "full_agent_sec": 25.442,
+  "full_agent_per_email_sec": 1.272,
+  "llm_time_sec_est": 25.436,
+  "llm_calls": 26,
+  "cls_calls": 8,
+  "ext_calls": 18,
+  "provider": "deepseek",
+  "is_mock": false
+}

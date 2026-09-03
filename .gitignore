@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# 调试临时文件
+.cli_tmp/
+*.log
+
+# 构建缓存
+node_modules/
+.DS_Store
+Thumbs.db
+
+# 本地临时产物
+.workbuddy/tmp_*.json

@@ -1,0 +1,136 @@
+{
+  "_meta": {
+    "name": "客户历史档案语料（RAG 知识库）",
+    "purpose": "为询盘响应工作流提供「查历史报价 / 客户往来」检索上下文",
+    "note": "以下为演示用合成语料（非真实客户数据），结构与真实外贸客户档案一致：自然语言陈述句 + 价格/数量/交期数字。",
+    "chunk_count": 21
+  },
+  "chunks": [
+    {
+      "id": "C01",
+      "customer": "Global Import Ltd.",
+      "product": "LED Panel Light PL-6060 40W",
+      "text": "Global Import Ltd. 于 2025-11 首次询盘 LED Panel Light PL-6060 40W 600x600mm，数量 3000 pcs，我方报价 USD 12.80/pc FOB Ningbo，客户反馈目标价 USD 11.50 偏低，最终未成交。"
+    },
+    {
+      "id": "C02",
+      "customer": "Global Import Ltd.",
+      "product": "LED Panel Light PL-6060 40W",
+      "text": "Global Import Ltd. 2026-03 返单 LED Panel Light PL-6060 40W，数量 5000 pcs，成交价 USD 12.20/pc，交期 30 天，付款方式 T/T 30% 预付款 70% 见提单副本，专属跟单员对接。"
+    },
+    {
+      "id": "C03",
+      "customer": "Global Import Ltd.",
+      "product": "LED Panel Light PL-6060 40W",
+      "text": "Global Import Ltd. 偏好 600x600mm 规格的面板灯，年采购量约 2 万 pcs，对光效要求 100lm/W 以上，包装要求中性白盒加外箱唛头。"
+    },
+    {
+      "id": "C04",
+      "customer": "Bright Home Co.",
+      "product": "LED Downlight DL-90 12W",
+      "text": "Bright Home Co. 2025-09 采购 LED Downlight DL-90 12W，最小起订量 MOQ 1000 pcs，单价 USD 3.50/pc，出现过约 5% 灯珠色温不一致的问题，已补发更换并扣减尾款。"
+    },
+    {
+      "id": "C05",
+      "customer": "Bright Home Co.",
+      "product": "LED Strip Light",
+      "text": "Bright Home Co. 询盘 LED Strip Light 2835 120LED/m 中性白，报价 USD 2.10/m，最小起订 500m，交期 25 天，可贴 3M 背胶定制长度。"
+    },
+    {
+      "id": "C06",
+      "customer": "Bright Home Co.",
+      "product": "LED Downlight DL-90 12W",
+      "text": "Bright Home Co. 对 DL-90 系列要求显指 CRI>90，色温固定 4000K，不接受混批，来料抽检不良率需低于 1%。"
+    },
+    {
+      "id": "C07",
+      "customer": "Nordic Trading",
+      "product": "Solar Street Light 100W",
+      "text": "Nordic Trading 2026-01 询问 Solar Street Light 100W 集成款，目标价 USD 45.00/pc，我方成本 USD 52.00 无法接单，建议降级为 60W 型号报价 USD 38.00/pc 达成意向。"
+    },
+    {
+      "id": "C08",
+      "customer": "Nordic Trading",
+      "product": "LED Tube",
+      "text": "Nordic Trading 2025-12 有一批 LED Tube 出现光衰严重，客户提起索赔 USD 1,200，最终以补偿 200 pcs 现货了结，已纳入质量黑名单观察期。"
+    },
+    {
+      "id": "C09",
+      "customer": "Nordic Trading",
+      "product": "Solar Street Light",
+      "text": "Nordic Trading 主做北欧市政项目，偏好 IP65 防水太阳能路灯，重视 CE 与 RoHS 认证，单次订单量大但议价能力强。"
+    },
+    {
+      "id": "C10",
+      "customer": "Sunrise Wholesale",
+      "product": "LED Panel Light",
+      "text": "Sunrise Wholesale 是长期稳定客户，LED Panel Light 月均采购 8000 pcs，协议价 USD 11.90/pc，优先级高，由资深跟单员专属维护，账期可放宽至 60 天。"
+    },
+    {
+      "id": "C11",
+      "customer": "Sunrise Wholesale",
+      "product": "LED Flood Light",
+      "text": "Sunrise Wholesale 采购 LED Flood Light 100W 户外投光灯，单价 USD 6.80/pc，MOQ 500 pcs，外壳要求压铸铝黑色，配支架。"
+    },
+    {
+      "id": "C12",
+      "customer": "Sunrise Wholesale",
+      "product": "LED Panel Light",
+      "text": "Sunrise Wholesale 对面板灯交期要求严格，超 35 天需提前书面说明，历史逾期仅 1 次且已赔付 3% 违约金。"
+    },
+    {
+      "id": "C13",
+      "customer": "Pacific Retail Group",
+      "product": "LED Bulb A60 9W",
+      "text": "Pacific Retail Group 询盘 LED Bulb A60 9W 全塑灯丝泡，报价 USD 0.62/pc，MOQ 5000 pcs，要求 E27 螺口，包装为彩色零售卡。"
+    },
+    {
+      "id": "C14",
+      "customer": "Pacific Retail Group",
+      "product": "LED Bulb",
+      "text": "Pacific Retail Group 走商超渠道，对认证要求极高（ERP/CE/ROHS 齐全），不接受无认证供货，单价敏感但量大稳定。"
+    },
+    {
+      "id": "C15",
+      "customer": "Amazon Seller Leo",
+      "product": "LED Grow Light",
+      "text": "Amazon Seller Leo 采购 LED Grow Light 满光谱植物灯，单价 USD 18.50/pc，MOQ 300 pcs，要求可调光 0-100% 带定时，走 Amazon FBA 自发货混装。"
+    },
+    {
+      "id": "C16",
+      "customer": "Amazon Seller Leo",
+      "product": "LED Grow Light",
+      "text": "Amazon Seller Leo 重视产品图片与说明书本地化（英文），对包装彩盒有设计规范，复购周期约 45 天。"
+    },
+    {
+      "id": "C17",
+      "customer": "Global Import Ltd.",
+      "product": "LED High Bay Light",
+      "text": "Global Import Ltd. 2026-05 试单 LED High Bay Light 150W 工厂灯，数量 200 pcs，报价 USD 22.00/pc，反馈亮度满意，计划下季度批量 1000 pcs。"
+    },
+    {
+      "id": "C18",
+      "customer": "Bright Home Co.",
+      "product": "LED Mirror Light",
+      "text": "Bright Home Co. 2026-02 新增 LED Mirror Light 化妆镜灯询盘，带触摸调光，目标价 USD 9.80/pc，我方成本 USD 8.60 可接，样品已寄出待确认。"
+    },
+    {
+      "id": "C19",
+      "customer": "Bauhaus Material GmbH",
+      "product": "Aluminum Profile AP-2024",
+      "text": "Bauhaus Material GmbH 是德国新客户，2026-06 首次询盘 Aluminum Profile AP-2024 工业铝型材，数量 2000 meters，我方报价 EUR 9.20/meter FOB Shanghai，样品确认中，目标价期望压到 EUR 8.50 左右。"
+    },
+    {
+      "id": "C20",
+      "customer": "杭州华筑装饰工程有限公司",
+      "product": "LED Panel Light",
+      "text": "杭州华筑装饰工程有限公司 为国内工装客户，2026-07 采购 LED Panel Light 600x600mm 工程批量 1000 pcs，项目价 USD 10.80/pc，含消防验收配合，账期 30 天。"
+    },
+    {
+      "id": "C21",
+      "customer": "Ausbuild Pty Ltd",
+      "product": "LED Flood Light",
+      "text": "Ausbuild Pty Ltd 是澳大利亚建筑商，2026-05 询盘 LED Flood Light 200W 工地投光灯，数量 300 pcs，单价 AUD 14.50/pc，要求 SAA 认证与 2 年质保。"
+    }
+  ]
+}

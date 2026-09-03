@@ -1,0 +1,190 @@
+{
+  "assumptions": {
+    "english_wpm": 200,
+    "chinese_cpm": 350,
+    "extract_sec_per_email": 60,
+    "crm_entry_sec": 30,
+    "emails_per_day": 30,
+    "working_days_per_month": 22
+  },
+  "per_email": [
+    {
+      "id": "E01",
+      "en_words": 44,
+      "zh_chars": 0,
+      "human_read_sec": 13.2,
+      "human_total_sec": 103.2,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E02",
+      "en_words": 42,
+      "zh_chars": 0,
+      "human_read_sec": 12.6,
+      "human_total_sec": 102.6,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E03",
+      "en_words": 1,
+      "zh_chars": 65,
+      "human_read_sec": 11.4,
+      "human_total_sec": 101.4,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E04",
+      "en_words": 48,
+      "zh_chars": 0,
+      "human_read_sec": 14.4,
+      "human_total_sec": 104.4,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E05",
+      "en_words": 44,
+      "zh_chars": 0,
+      "human_read_sec": 13.2,
+      "human_total_sec": 103.2,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E06",
+      "en_words": 61,
+      "zh_chars": 0,
+      "human_read_sec": 18.3,
+      "human_total_sec": 108.3,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E07",
+      "en_words": 40,
+      "zh_chars": 0,
+      "human_read_sec": 12.0,
+      "human_total_sec": 102.0,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E08",
+      "en_words": 1,
+      "zh_chars": 63,
+      "human_read_sec": 11.1,
+      "human_total_sec": 101.1,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E09",
+      "en_words": 56,
+      "zh_chars": 0,
+      "human_read_sec": 16.8,
+      "human_total_sec": 106.8,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E10",
+      "en_words": 60,
+      "zh_chars": 0,
+      "human_read_sec": 18.0,
+      "human_total_sec": 108.0,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E11",
+      "en_words": 40,
+      "zh_chars": 0,
+      "human_read_sec": 12.0,
+      "human_total_sec": 102.0,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E12",
+      "en_words": 41,
+      "zh_chars": 0,
+      "human_read_sec": 12.3,
+      "human_total_sec": 102.3,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E13",
+      "en_words": 57,
+      "zh_chars": 0,
+      "human_read_sec": 17.1,
+      "human_total_sec": 107.1,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E14",
+      "en_words": 48,
+      "zh_chars": 0,
+      "human_read_sec": 14.4,
+      "human_total_sec": 104.4,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E15",
+      "en_words": 32,
+      "zh_chars": 0,
+      "human_read_sec": 9.6,
+      "human_total_sec": 99.6,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E16",
+      "en_words": 32,
+      "zh_chars": 0,
+      "human_read_sec": 9.6,
+      "human_total_sec": 99.6,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E17",
+      "en_words": 33,
+      "zh_chars": 0,
+      "human_read_sec": 9.9,
+      "human_total_sec": 99.9,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E18",
+      "en_words": 43,
+      "zh_chars": 0,
+      "human_read_sec": 12.9,
+      "human_total_sec": 102.9,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E19",
+      "en_words": 34,
+      "zh_chars": 0,
+      "human_read_sec": 10.2,
+      "human_total_sec": 100.2,
+      "agent_sec": 1.272
+    },
+    {
+      "id": "E20",
+      "en_words": 30,
+      "zh_chars": 0,
+      "human_read_sec": 9.0,
+      "human_total_sec": 99.0,
+      "agent_sec": 1.272
+    }
+  ],
+  "human_total_sec": 2058.0,
+  "human_avg_sec": 102.9,
+  "human_avg_min": 1.72,
+  "agent_total_sec": 25.442,
+  "agent_avg_sec": 1.272,
+  "speedup_x": 80.9,
+  "business": {
+    "emails_per_day": 30,
+    "human_day_min": 51.5,
+    "agent_day_sec": 38.2,
+    "saved_day_min": 50.8,
+    "saved_week_hr": 4.2,
+    "saved_month_hr": 18.6,
+    "cost_per_email_rmb": 0.002,
+    "cost_per_month_rmb": 1.3,
+    "saved_month_hr_equivalent_rmb_assume_25per_hr": 466.0
+  },
+  "note": "人工侧为透明模型（基于真实邮件长度+公开吞吐假设），是保守下界；真实业务员含上下文切换/回查历史/中断，实际更慢，故节省量只多不少。"
+}

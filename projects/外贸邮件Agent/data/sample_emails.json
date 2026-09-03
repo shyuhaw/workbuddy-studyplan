@@ -1,0 +1,114 @@
+[
+  {
+    "id": "E001",
+    "from": "john.smith@globalsourcing.com",
+    "subject": "Inquiry about LED Panel Light - 600x600 40W",
+    "body": "Dear Sir/Madam,\n\nWe are interested in your LED Panel Light 600x600 40W. Could you please send us your best price for 500pcs, 1000pcs and 2000pcs?\n\nWe also need the following information:\n1. Delivery time\n2. Payment terms\n3. Warranty period\n\nLooking forward to your reply.\n\nBest regards,\nJohn Smith\nProcurement Manager",
+    "expected": "inquiry"
+  },
+  {
+    "id": "E002",
+    "from": "wang.li@zhongmao-trading.cn",
+    "subject": "询问办公家具最小起订量",
+    "body": "您好，\n\n我们从阿里巴巴看到贵司的办公桌椅产品，想了解一下：\n1. 最小起订量是多少？\n2. 是否支持混批？\n3. 能否提供产品目录和报价单？\n\n我们计划采购约200套，用于新办公室装修。\n\n期待回复，谢谢！\n\n王丽 | 采购部",
+    "expected": "inquiry"
+  },
+  {
+    "id": "E003",
+    "from": "marco.rossi@italydesign.it",
+    "subject": "Sample request - Marble Tile Series MT-2024",
+    "body": "Hello,\n\nWe would like to request samples of your Marble Tile Series MT-2024 (2 pieces of each color, total 8 pieces).\n\nPlease advise the sample cost and shipping fee to Milan, Italy.\n\nOur DHL account: 96xxxxxxx\n\nBest regards,\nMarco Rossi",
+    "expected": "inquiry"
+  },
+  {
+    "id": "E004",
+    "from": "ahmed.hassan@uaebuild.ae",
+    "subject": "Urgent: Lead time for Aluminum Composite Panel",
+    "body": "Dear Team,\n\nWe have an urgent project in Dubai and need 3000 sqm of Aluminum Composite Panel (4mm, PVDF coating, silver metallic).\n\nPlease confirm:\n- Can you deliver within 25 days?\n- What is the FOB price per sqm?\n\nWe need your reply by tomorrow as we must submit the quotation to our client.\n\nRegards,\nAhmed Hassan",
+    "expected": "inquiry"
+  },
+  {
+    "id": "E005",
+    "from": "purchasing@nordicretail.se",
+    "subject": "Purchase Order #PO-2026-0871",
+    "body": "Dear Sales Team,\n\nPlease find attached our Purchase Order #PO-2026-0871 for the following items:\n\n- Item A: Office Desk OD-120, 150 pcs, USD 85.00/pc\n- Item B: Office Chair OC-330, 150 pcs, USD 62.00/pc\n\nTotal amount: USD 22,050.00\nDelivery: Before 2026-10-15\nPayment: 30% deposit, 70% before shipment\n\nPlease confirm receipt and send us the Proforma Invoice.\n\nBest regards,\nNordic Retail AB",
+    "expected": "order"
+  },
+  {
+    "id": "E006",
+    "from": "chen.jie@mingzhu-project.cn",
+    "subject": "订单确认 - 世纪明珠项目部瓷砖采购",
+    "body": "各位好，\n\n现确认本次瓷砖采购订单：\n- 800x800 抛光砖：1200 平方米，单价 48 元\n- 300x600 墙砖：800 平方米，单价 32 元\n\n合计金额：81,600 元\n交货日期：2026年9月20日前\n收货地址：温州市瑞安市上望街道上东路1669号\n\n请安排备货，发货前请提前3天通知。\n\n陈杰 | 项目部",
+    "expected": "order"
+  },
+  {
+    "id": "E007",
+    "from": "orders@uswholesale.com",
+    "subject": "RE: Order #US-44512 - Additional Quantity",
+    "body": "Hi,\n\nWe need to increase the quantity for Order #US-44512:\n\nOriginal: 500 pcs of Kitchen Faucet KF-88\nNew quantity: 750 pcs\n\nPlease update the Proforma Invoice accordingly and confirm the new delivery date.\n\nThanks,\nUS Wholesale Inc.",
+    "expected": "order"
+  },
+  {
+    "id": "E008",
+    "from": "sarah.chen@pacific-import.com.au",
+    "subject": "Order Amendment - Change of Specifications",
+    "body": "Dear Supplier,\n\nRegarding our order #AU-2026-0332, we need to change the specifications:\n\nFrom: Stainless Steel 304, brushed finish\nTo: Stainless Steel 316, mirror finish\n\nQuantity remains 800 pcs. Please advise the price difference.\n\nBest regards,\nSarah Chen",
+    "expected": "order"
+  },
+  {
+    "id": "E009",
+    "from": "quality@europemart.de",
+    "subject": "COMPLAINT: Quality issue with Batch #BM-20260715",
+    "body": "Dear Sir/Madam,\n\nWe regret to inform you that we found serious quality problems in Batch #BM-20260715 (Office Chairs, 400 pcs):\n\n1. 35 chairs have scratches on the metal base\n2. 12 chairs have defective gas lift (cannot adjust height)\n3. Color deviation on 20 chairs\n\nTotal defective: 67 pcs (16.75%)\n\nWe request immediate replacement and compensation. Please respond within 48 hours.\n\nPhoto evidence is attached.\n\nRegards,\nQuality Control Dept.\nEuropeMart GmbH",
+    "expected": "complaint"
+  },
+  {
+    "id": "E010",
+    "from": "zhang.wei@sz-decoration.cn",
+    "subject": "投诉：工期严重延误",
+    "body": "您好，\n\n我司于2026年7月10日下单的轻钢龙骨（合同编号：HT-20260710-023），约定7月25日交货，但至今（8月15日）仍未收到货物，已延误21天。\n\n现场施工队已停工待料，每天损失人工费用约8000元。\n\n请立即给出明确交货时间，并说明赔偿方案。如本周内仍未解决，我司将按合同追究违约责任。\n\n张伟 | 项目经理",
+    "expected": "complaint"
+  },
+  {
+    "id": "E011",
+    "from": "claims@shippingline.com",
+    "subject": "Damage Report - Container MSKU7788123",
+    "body": "Dear Customer,\n\nWe received damage report for Container MSKU7788123 (B/L No. COSU6398412750).\n\nCondition: 18 cartons crushed, contents damaged during transit.\nEstimated loss: USD 4,200\n\nPlease submit:\n- Commercial Invoice\n- Packing List\n- Photos of damaged goods\n\nClaim must be filed within 7 days.\n\nRegards,\nClaims Department",
+    "expected": "complaint"
+  },
+  {
+    "id": "E012",
+    "from": "warehouse@uktrade.co.uk",
+    "subject": "Shortage in Delivery - Order UK-5567",
+    "body": "Hello,\n\nUpon checking the delivery for Order UK-5567, we found a shortage:\n\nOrdered: 1,200 pcs\nReceived: 1,148 pcs\nShortage: 52 pcs (4.3%)\n\nPlease arrange for the missing items to be sent urgently or issue a credit note.\n\nBest regards,\nUK Trade Warehouse",
+    "expected": "complaint"
+  },
+  {
+    "id": "E013",
+    "from": "shipping@cosco-logistics.com",
+    "subject": "Shipping Advice - B/L No. COSU6398412750",
+    "body": "Dear Valued Customer,\n\nPlease be informed that your goods have been shipped:\n\nVessel: COSCO SHIPPING GEMINI / V.068E\nB/L No.: COSU6398412750\nPort of Loading: Ningbo, China\nPort of Discharge: Hamburg, Germany\nETD: 2026-08-28\nETA: 2026-10-02\nContainer: MSKU7788123 / 20GP\n\nPlease find attached the Bill of Lading draft for your confirmation.\n\nBest regards,\nCOSCO Logistics",
+    "expected": "notification"
+  },
+  {
+    "id": "E014",
+    "from": "noreply@bank-payment.com",
+    "subject": "Payment Received Notification - TT Remittance",
+    "body": "Dear Customer,\n\nWe are pleased to inform you that the following payment has been credited:\n\nAmount: USD 6,615.00\nRemitter: Nordic Retail AB\nReference: PO-2026-0871 / 30% deposit\nValue Date: 2026-08-25\n\nThis is a system-generated message. Please do not reply.\n\nBank Payment System",
+    "expected": "notification"
+  },
+  {
+    "id": "E015",
+    "from": "system@erp.company.com",
+    "subject": "【系统通知】库存预警 - 抛光砖800x800",
+    "body": "尊敬的用户：\n\n系统检测到以下物料库存低于安全库存线：\n\n物料编码：TC-800-POL\n物料名称：抛光砖 800x800\n当前库存：120 平方米\n安全库存：500 平方米\n\n建议：及时补货\n\n本邮件由ERP系统自动发送，请勿直接回复。\n\nERP 系统管理中心",
+    "expected": "notification"
+  },
+  {
+    "id": "E016",
+    "from": "customs@trade-declaration.cn",
+    "subject": "Customs Clearance Update - Declaration No. 20260830156",
+    "body": "Dear Client,\n\nYour customs declaration has been processed:\n\nDeclaration No.: 20260830156\nStatus: RELEASED\nRelease Date: 2026-08-29\nDuty Paid: CNY 12,480.00\nVAT Paid: CNY 8,320.00\n\nYou may now arrange for pickup.\n\nRegards,\nCustoms Brokerage Dept.",
+    "expected": "notification"
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "A01",
+    "from": "david.mueller@bauhaus-supply.de",
+    "subject": "Re: Your quotation Q-20260815 - We'd like to proceed",
+    "body": "Dear Sales Team,\n\nThank you for the quotation. After internal review, we have decided to move forward.\n\nPlease prepare the Proforma Invoice for:\n- Aluminum Composite Panel 4mm PVDF: 2,000 sqm\n- Delivery: end of September\n\nBut before that, could you also advise if you can offer a better price for 3,000 sqm?\n\nBest regards,\nDavid Mueller",
+    "expected": "order",
+    "note": "混合意图：主体是下单（order），但末尾又问了一次价格（inquiry）。规则层会两边都命中，置信度低。"
+  },
+  {
+    "id": "A02",
+    "from": "lisa.wong@pacific-trade.hk",
+    "subject": "URGENT - Request to postpone shipment for PO-2026-0871",
+    "body": "Hello,\n\nDue to unforeseen circumstances at our warehouse, we need to postpone the shipment for PO-2026-0871 by 3 weeks.\n\nThis is not a complaint about your service - your team has been excellent. We simply need more time to prepare the receiving area.\n\nPlease advise if this is feasible and whether there will be any storage fees.\n\nBest regards,\nLisa Wong",
+    "expected": "order",
+    "note": "含 URGENT + advise（投诉/询盘关键词），但明确写了 not a complaint。规则层极易误判为 complaint。"
+  },
+  {
+    "id": "A03",
+    "from": "legal@eurobuy-group.fr",
+    "subject": "Regarding the defective batch - What is your compensation policy?",
+    "body": "Dear Supplier,\n\nWe received the goods and found some issues with batch #BM-20260715.\n\nBefore we file a formal claim, we would like to understand your compensation policy. Could you please send us the relevant terms?\n\nWe value this partnership and hope to resolve this amicably.\n\nBest regards,\nLegal Department",
+    "expected": "complaint",
+    "note": "语气极其客气（value partnership / amicably），全是提问句式。规则层会当成 inquiry。"
+  },
+  {
+    "id": "A04",
+    "from": "operations@uktrade.co.uk",
+    "subject": "When can we expect delivery for order #UK-5567?",
+    "body": "Hi there,\n\nWe placed order #UK-5567 three weeks ago and haven't received any shipping advice yet.\n\nCould you please update us on the production status and expected delivery date?\n\nThanks,\nOperations Team",
+    "expected": "inquiry",
+    "note": "大量 order 关键词（order #、delivery），但真实意图是催问进度 = inquiry。规则层会判成 order。"
+  },
+  {
+    "id": "A05",
+    "from": "finance@nordicretail.se",
+    "subject": "Payment sent - please confirm receipt",
+    "body": "Dear Team,\n\nWe have transferred the deposit of USD 6,615.00 today. Remittance reference: PO-2026-0871.\n\nPlease confirm receipt and advise when production will start.\n\nBest regards,\nFinance Dept.",
+    "expected": "notification",
+    "note": "既有付款通知（notification），又有询问生产进度（inquiry）。主意图是告知已付款。"
+  },
+  {
+    "id": "A06",
+    "from": "marco.rossi@italydesign.it",
+    "subject": "Samples approved! Let's place the order",
+    "body": "Great news - our client loved the marble tile samples.\n\nWe would like to place an order for:\n- MT-2024 White: 500 sqm\n- MT-2024 Grey: 300 sqm\n\nPlease send the Proforma Invoice. Also, what is the lead time for 800 sqm?\n\nGrazie!\nMarco",
+    "expected": "order",
+    "note": "前半段是样品反馈（inquiry 语境），后半段是下单。规则层 sample/lead time 会拉高 inquiry 分。"
+  }
+]

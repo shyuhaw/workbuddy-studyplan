@@ -1,0 +1,435 @@
+{
+  "mode": "hybrid",
+  "enable_rewrite": true,
+  "auto_weight": false,
+  "w_vec": 1.0,
+  "w_bm25": 1.0,
+  "overall": {
+    "recall@1": 0.8,
+    "recall@3": 0.9,
+    "recall@5": 0.95
+  },
+  "semantic_only": {
+    "recall@1": 0.6,
+    "recall@3": 0.6,
+    "recall@5": 0.8
+  },
+  "details": [
+    {
+      "id": "Q01",
+      "type": "product_spec",
+      "query": "哪些客户问过 LED Downlight？",
+      "expects": [
+        "C04",
+        "C06"
+      ],
+      "top3": [
+        "C04",
+        "C01",
+        "C13"
+      ],
+      "hit@3": true,
+      "expected_fail": false,
+      "scores": [
+        0.0333,
+        0.0323,
+        0.0306
+      ]
+    },
+    {
+      "id": "Q02",
+      "type": "product_spec",
+      "query": "LED Panel Light PL-6060 的报价历史",
+      "expects": [
+        "C01",
+        "C02",
+        "C03"
+      ],
+      "top3": [
+        "C01",
+        "C02",
+        "C20"
+      ],
+      "hit@3": true,
+      "expected_fail": false,
+      "scores": [
+        0.0333,
+        0.0328,
+        0.0315
+      ]
+    },
+    {
+      "id": "Q03",
+      "type": "product_spec",
+      "query": "谁采购过 Solar Street Light？",
+      "expects": [
+        "C07",
+        "C09"
+      ],
+      "top3": [
+        "C07",
+        "C11",
+        "C04"
+      ],
+      "hit@3": true,
+      "expected_fail": false,
+      "scores": [
+        0.0331,
+        0.0323,
+        0.0311
+      ]
+    },
+    {
+      "id": "Q04",
+      "type": "product_spec",
+      "query": "LED Grow Light 满光谱植物灯的客户",
+      "expects": [
+        "C15",
+        "C16"
+      ],
+      "top3": [
+        "C15",
+        "C11",
+        "C17"
+      ],
+      "hit@3": true,
+      "expected_fail": false,
+      "scores": [
+        0.0333,
+        0.0325,
+        0.0325
+      ]
+    },
+    {
+      "id": "Q05",
+      "type": "product_spec",
+      "query": "LED Bulb A60 9W 的报价",
+      "expects": [
+        "C13"
+      ],
+      "top3": [
+        "C13",
+        "C04",
+        "C01"
+      ],
+      "hit@3": true,
+      "expected_fail": false,
+      "scores": [
+        0.0333,
+        0.0323,
+        0.0318
+      ]
+    },
+    {
+      "id": "Q06",
+      "type": "number_amount",
+      "query": "报过 USD 12.80 的是哪家？",
+      "expects": [
+        "C01"
+      ],
+      "top3": [
+        "C01",
+        "C04",
+        "C18"
+      ],
+      "hit@3": true,
+      "expected_fail": false,
+      "scores": [
+        0.0331,
+        0.0318,
+        0.0315
+      ]
+    },
+    {
+      "id": "Q07",
+      "type": "number_amount",
+      "query": "成交价 USD 12.20 的订单",
+      "expects": [
+        "C02"
+      ],
+      "top3": [
+        "C01",
+        "C02",
+        "C07"
+      ],
+      "hit@3": true,
+      "expected_fail": false,
+      "scores": [
+        0.0331,
+        0.0323,
+        0.032
+      ]
+    },
+    {
+      "id": "Q08",
+      "type": "number_amount",
+      "query": "索赔 USD 1,200 的是哪起？",
+      "expects": [
+        "C08"
+      ],
+      "top3": [
+        "C08",
+        "C12",
+        "C04"
+      ],
+      "hit@3": true,
+      "expected_fail": false,
+      "scores": [
+        0.0333,
+        0.0318,
+        0.0318
+      ]
+    },
+    {
+      "id": "Q09",
+      "type": "number_amount",
+      "query": "单价 USD 3.50 的产品是什么？",
+      "expects": [
+        "C04"
+      ],
+      "top3": [
+        "C16",
+        "C15",
+        "C04"
+      ],
+      "hit@3": true,
+      "expected_fail": false,
+      "scores": [
+        0.032,
+        0.0318,
+        0.0316
+      ]
+    },
+    {
+      "id": "Q10",
+      "type": "semantic",
+      "query": "有没有客户投诉过质量问题？",
+      "expects": [
+        "C04",
+        "C08"
+      ],
+      "top3": [
+        "C04",
+        "C08",
+        "C20"
+      ],
+      "hit@3": true,
+      "expected_fail": true,
+      "scores": [
+        0.0333,
+        0.0325,
+        0.031
+      ]
+    },
+    {
+      "id": "Q11",
+      "type": "semantic",
+      "query": "哪些客户很在意发货准时？",
+      "expects": [
+        "C12"
+      ],
+      "top3": [
+        "C15",
+        "C10",
+        "C08"
+      ],
+      "hit@3": false,
+      "expected_fail": true,
+      "scores": [
+        0.0323,
+        0.032,
+        0.0315
+      ]
+    },
+    {
+      "id": "Q12",
+      "type": "semantic",
+      "query": "哪些客户可以谈更长的回款时间？",
+      "expects": [
+        "C10"
+      ],
+      "top3": [
+        "C10",
+        "C01",
+        "C05"
+      ],
+      "hit@3": true,
+      "expected_fail": true,
+      "scores": [
+        0.0323,
+        0.0306,
+        0.0305
+      ]
+    },
+    {
+      "id": "Q13",
+      "type": "semantic",
+      "query": "哪些客户最怕不合规被查？",
+      "expects": [
+        "C14",
+        "C09"
+      ],
+      "top3": [
+        "C20",
+        "C06",
+        "C01"
+      ],
+      "hit@3": false,
+      "expected_fail": true,
+      "scores": [
+        0.0328,
+        0.032,
+        0.032
+      ]
+    },
+    {
+      "id": "Q14",
+      "type": "semantic",
+      "query": "哪个客户出现过产品一致性翻车？",
+      "expects": [
+        "C04"
+      ],
+      "top3": [
+        "C04",
+        "C08",
+        "C16"
+      ],
+      "hit@3": true,
+      "expected_fail": true,
+      "scores": [
+        0.0328,
+        0.0328,
+        0.032
+      ]
+    },
+    {
+      "id": "Q15",
+      "type": "mixed",
+      "query": "Global Import Ltd. 的面板灯成交价",
+      "expects": [
+        "C02",
+        "C01",
+        "C03"
+      ],
+      "top3": [
+        "C03",
+        "C02",
+        "C01"
+      ],
+      "hit@3": true,
+      "expected_fail": false,
+      "scores": [
+        0.0328,
+        0.0328,
+        0.0325
+      ]
+    },
+    {
+      "id": "Q16",
+      "type": "mixed",
+      "query": "Bright Home 的 Downlight 质量索赔",
+      "expects": [
+        "C04",
+        "C06"
+      ],
+      "top3": [
+        "C04",
+        "C06",
+        "C08"
+      ],
+      "hit@3": true,
+      "expected_fail": false,
+      "scores": [
+        0.0333,
+        0.0325,
+        0.032
+      ]
+    },
+    {
+      "id": "Q17",
+      "type": "mixed",
+      "query": "Sunrise Wholesale 的面板灯交期条款",
+      "expects": [
+        "C10",
+        "C12"
+      ],
+      "top3": [
+        "C12",
+        "C10",
+        "C02"
+      ],
+      "hit@3": true,
+      "expected_fail": false,
+      "scores": [
+        0.0333,
+        0.032,
+        0.032
+      ]
+    },
+    {
+      "id": "Q18",
+      "type": "mixed",
+      "query": "Nordic Trading 的太阳能路灯价格谈判",
+      "expects": [
+        "C07",
+        "C09"
+      ],
+      "top3": [
+        "C09",
+        "C07",
+        "C08"
+      ],
+      "hit@3": true,
+      "expected_fail": false,
+      "scores": [
+        0.0331,
+        0.0328,
+        0.032
+      ]
+    },
+    {
+      "id": "Q19",
+      "type": "mixed",
+      "query": "Amazon Seller Leo 的植物灯复购周期",
+      "expects": [
+        "C15",
+        "C16"
+      ],
+      "top3": [
+        "C16",
+        "C15",
+        "C10"
+      ],
+      "hit@3": true,
+      "expected_fail": false,
+      "scores": [
+        0.0331,
+        0.0331,
+        0.031
+      ]
+    },
+    {
+      "id": "Q20",
+      "type": "mixed",
+      "query": "Pacific Retail Group 的灯泡包装要求",
+      "expects": [
+        "C13",
+        "C14"
+      ],
+      "top3": [
+        "C13",
+        "C14",
+        "C03"
+      ],
+      "hit@3": true,
+      "expected_fail": false,
+      "scores": [
+        0.0333,
+        0.0328,
+        0.0323
+      ]
+    }
+  ],
+  "corpus_size": 21,
+  "query_count": 20
+}

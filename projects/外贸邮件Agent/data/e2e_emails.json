@@ -1,0 +1,302 @@
+[
+  {
+    "id": "E01",
+    "from": "michael.chen@globalimport-ltd.com",
+    "subject": "Inquiry for LED Panel Light - 3000pcs",
+    "body": "Dear Sir/Madam,\n\nWe are interested in your LED Panel Light (Model: PL-6060, 40W, 600x600mm).\n\nQuantity: 3,000 pcs\nTarget price: USD 12.50/pc FOB Ningbo\nPlease send your quotation before 2026-09-15.\n\nBest regards,\nMichael Chen\nProcurement Manager\nGlobal Import Ltd.",
+    "expected": {
+      "customer": "Global Import Ltd.",
+      "product": "LED Panel Light PL-6060",
+      "quantity": "3,000 pcs",
+      "price": "USD 12.50/pc",
+      "deadline": "2026-09-15"
+    },
+    "note": "标准英文询盘，格式规范——规则层应能抽全，作为基线样本",
+    "category": "inquiry"
+  },
+  {
+    "id": "E02",
+    "from": "klaus.weber@bauhaus-material.de",
+    "subject": "Request quote - aluminum profile",
+    "body": "Hello,\n\nWe need aluminum profiles for our window system project.\nItem: Aluminum Profile AP-2024, anodized silver\nQty: 5,000 meters\nOur budget is EUR 8,90 per meter.\nKindly reply by 15th September 2026.\n\nMit freundlichen Grüßen\nKlaus Weber\nBauhaus Material GmbH",
+    "expected": {
+      "customer": "Bauhaus Material GmbH",
+      "product": "Aluminum Profile AP-2024",
+      "quantity": "5,000 meters",
+      "price": "EUR 8,90 per meter",
+      "deadline": "15th September 2026"
+    },
+    "note": "陷阱1：欧陆数字格式 EUR 8,90（逗号作小数点），与千分位 3,000 易混淆",
+    "category": "inquiry"
+  },
+  {
+    "id": "E03",
+    "from": "王磊 <wanglei@hz-decoration.cn>",
+    "subject": "铝合金型材询价",
+    "body": "你好，\n\n我司需要采购铝合金型材（型号 6063-T5，表面氧化处理）。\n数量：500支（每支6米）\n目标价格：88元/支\n请在2026年9月20日前报价。\n\n杭州华筑装饰工程有限公司\n王磊\n采购部",
+    "expected": {
+      "customer": "杭州华筑装饰工程有限公司",
+      "product": "铝合金型材 6063-T5",
+      "quantity": "500支",
+      "price": "88元/支",
+      "deadline": "2026年9月20日"
+    },
+    "note": "陷阱2：中文格式（支/元/年月日），规则层需中文单位与日期正则",
+    "category": "inquiry"
+  },
+  {
+    "id": "E04",
+    "from": "sarah@uk-interiors.co.uk",
+    "subject": "Office furniture - container order",
+    "body": "Hi there,\n\nWe'd like to order a full 40HQ container of your office workstation furniture (Model OW-1200).\nPlease advise the unit price per set and total CIF Felixstowe.\nWe need the goods delivered by end of October 2026.\n\nRegards,\nSarah Mitchell\nUK Interiors Limited",
+    "expected": {
+      "customer": "UK Interiors Limited",
+      "product": "office workstation furniture OW-1200",
+      "quantity": "",
+      "price": "",
+      "deadline": "end of October 2026"
+    },
+    "note": "陷阱3：数量隐含在 40HQ 集装箱（无精确数字）、价格待对方报价——测试「诚实缺失」而非瞎猜",
+    "category": "order"
+  },
+  {
+    "id": "E05",
+    "from": "david@ausbuild.com.au",
+    "subject": "Mixed order - tiles and sanitary ware",
+    "body": "Dear team,\n\nPlease quote for the following:\n1) Ceramic floor tile 600x600mm - 2,500 sqm @ USD 6.80/sqm\n2) Wall hung toilet CW-880 - 120 sets @ USD 95.00/set\n3) Basin mixer tap - 300 pcs, our target USD 22.00/pc\n\nDelivery needed before 2026-10-31.\n\nDavid Brown\nAusbuild Pty Ltd",
+    "expected": {
+      "customer": "Ausbuild Pty Ltd",
+      "product": "Ceramic floor tile / Wall hung toilet CW-880 / Basin mixer tap",
+      "quantity": "2,500 sqm / 120 sets / 300 pcs",
+      "price": "USD 6.80/sqm / USD 95.00/set / USD 22.00/pc",
+      "deadline": "2026-10-31"
+    },
+    "note": "陷阱4：多产品多数量多价格——规则层易串行错配（数量对不上产品）",
+    "category": "inquiry"
+  },
+  {
+    "id": "E06",
+    "from": "james@nordic-lighting.se",
+    "subject": "RE: Quotation Q-20260815",
+    "body": "Hi,\n\nThanks for your quote. We accept the price of USD 15.20/pc for 1,200 pcs of LED downlight DL-9W.\n\nPlease proceed with production. We need shipment by end of next month at the latest.\n\n--- Original message ---\nOn 2026-08-15 you wrote: \"Quantity 800 pcs, price USD 16.00/pc, delivery before 2026-08-30\" - please ignore that, the new figures above apply.\n\nJames\nNordic Lighting AB",
+    "expected": {
+      "customer": "Nordic Lighting AB",
+      "product": "LED downlight DL-9W",
+      "quantity": "1,200 pcs",
+      "price": "USD 15.20/pc",
+      "deadline": "end of next month"
+    },
+    "note": "陷阱5（最关键）：正文引用了历史邮件旧数据(800pcs/USD16.00/2026-08-30)。规则层必错，只有 LLM 能识别「以最新数据为准」——这是 LLM 价值的硬证据",
+    "category": "order"
+  },
+  {
+    "id": "E07",
+    "from": "lisa@canadadecor.ca",
+    "subject": "Repeat order - same as PO-2026-0432",
+    "body": "Hello,\n\nWe need to reorder the same items as our previous order PO-2026-0432:\n- Acoustic ceiling panel 600x600, 1,800 sqm\n\nPlease arrange production, we need it before November 20, 2026.\nPrice as per previous contract.\n\nLisa\nCanada Decor Inc.",
+    "expected": {
+      "customer": "Canada Decor Inc.",
+      "product": "Acoustic ceiling panel 600x600",
+      "quantity": "1,800 sqm",
+      "price": "",
+      "deadline": "November 20, 2026"
+    },
+    "note": "价格「按前合同」未写明——测试缺失识别；含 PO 号干扰项，规则层可能把 PO-2026-0432 当订单号误抽",
+    "category": "order"
+  },
+  {
+    "id": "E08",
+    "from": "陈静 <chenjing@sz-furniture.com>",
+    "subject": "办公椅采购",
+    "body": "各位好，\n\n需要采购人体工学办公椅（型号 EC-360，网布面料），数量 350 张。\n含税单价 ¥580.00/张，需要开13%增值税专用发票。\n交货期：2026年11月10日前。\n\n深圳市舒座家具有限公司\n陈静",
+    "expected": {
+      "customer": "深圳市舒座家具有限公司",
+      "product": "人体工学办公椅 EC-360",
+      "quantity": "350 张",
+      "price": "580.00/张",
+      "deadline": "2026年11月10日"
+    },
+    "note": "中文 + ¥符号 + 「13%增值税」干扰（规则层可能把 13% 当价格相关数字）",
+    "category": "order"
+  },
+  {
+    "id": "E09",
+    "from": "complaints@us-hotelgroup.com",
+    "subject": "Complaint - defective LED panels, Order PO-2026-0398",
+    "body": "Dear Sir,\n\nWe received 2,400 pcs of LED panel light (PL-6060) under PO-2026-0398 on 2026-08-20.\n\nUnfortunately, 180 pcs show obvious color temperature deviation (6000K instead of 4000K). Photos are attached.\n\nWe request either replacement of the defective units or compensation of USD 3,600.\nPlease reply before 2026-09-05.\n\nRobert Turner\nOperations Manager\nUS Hotel Group LLC",
+    "category": "complaint",
+    "expected": {
+      "customer": "US Hotel Group LLC",
+      "product": "LED panel light PL-6060",
+      "quantity": "180 pcs",
+      "price": "USD 3,600",
+      "deadline": "2026-09-05"
+    },
+    "note": "投诉类陷阱：数量应是**缺陷数量 180 pcs**而非订单总量 2,400 pcs，价格是**索赔额**而非单价——测试 LLM 能否结合语境理解字段含义"
+  },
+  {
+    "id": "E10",
+    "from": "shipping@cosco-logistics.com",
+    "subject": "Shipping Advice - B/L No. COSU6123456789",
+    "body": "Dear Customer,\n\nWe are pleased to advise that the following shipment has been dispatched:\n\nOrder ref: PO-2026-0512\nGoods: Ceramic floor tile 600x600mm\nQuantity: 1,680 cartons\nVessel: MV PACIFIC STAR / V.231E\nETD Ningbo: 2026-08-28\nETA Felixstowe: 2026-09-25\nB/L No.: COSU6123456789\n\nPlease find attached the draft bill of lading for your confirmation.\n\nCOSCO Logistics Co., Ltd.",
+    "category": "notification",
+    "expected": {
+      "customer": "COSCO Logistics Co., Ltd.",
+      "product": "Ceramic floor tile 600x600mm",
+      "quantity": "1,680 cartons",
+      "price": "",
+      "deadline": "2026-09-25"
+    },
+    "note": "通知类陷阱：含多个日期（ETD 2026-08-28 开船 / ETA 2026-09-25 到港），截止日应取**到港日 ETA**——测试日期仲裁能力"
+  },
+  {
+    "id": "E11",
+    "from": "pierre.martin@lumiere-paris.fr",
+    "subject": "Demande de devis - eclairage industriel",
+    "body": "Bonjour,\n\nNous sommes interesses par votre LED High Bay Light 150W pour notre entrepot.\nQuantite: 500 pcs\nNotre budget est de 24,50 EUR par piece.\nMerci de repondre avant le 30 septembre 2026.\n\nCordialement,\nPierre Martin\nLumiere Paris SARL",
+    "expected": {
+      "customer": "Lumiere Paris SARL",
+      "product": "LED High Bay Light 150W",
+      "quantity": "500 pcs",
+      "price": "EUR 24,50/pc",
+      "deadline": "30 septembre 2026"
+    },
+    "note": "陷阱6：法语数字 EUR 24,50（逗号小数点）+ 法语日期——规则层需多语种正则",
+    "category": "inquiry"
+  },
+  {
+    "id": "E12",
+    "from": "luis.garcia@iluminacion-madrid.es",
+    "subject": "Pedido - varios modelos de LED",
+    "body": "Hola,\n\nQueriamos pedir los siguientes modelos:\n1) LED Tube T8 120cm - 2.000 pcs @ EUR 3,20/pc\n2) LED Panel Light 60x60 - 800 pcs @ EUR 11,90/pc\nPor favor enviar factura proforma antes del 15 de noviembre de 2026.\n\nSaludos,\nLuis Garcia\nIluminacion Madrid SL",
+    "expected": {
+      "customer": "Iluminacion Madrid SL",
+      "product": "LED Tube T8 120cm / LED Panel Light 60x60",
+      "quantity": "2.000 pcs / 800 pcs",
+      "price": "EUR 3,20/pc / EUR 11,90/pc",
+      "deadline": "15 de noviembre de 2026"
+    },
+    "note": "陷阱7：西语多产品多价格（EUR 3,20 逗号小数），规则层易串行错配",
+    "category": "order"
+  },
+  {
+    "id": "E13",
+    "from": "info@brightfuture.co.ke",
+    "subject": "Request for product catalog and price list",
+    "body": "Hello,\n\nWe are a distributor based in Nairobi and interested in your LED street lights and LED flood lights. Please send your full product catalog and FOB price list for our review. We expect to place a large order next quarter once we finalize projects.\n\nBest regards,\nBright Future Ltd",
+    "expected": {
+      "customer": "Bright Future Ltd",
+      "product": "LED street light / LED flood light",
+      "quantity": "",
+      "price": "",
+      "deadline": ""
+    },
+    "note": "陷阱8：纯目录询价，无数量/价格/截止日——测试「诚实缺失」而非瞎填",
+    "category": "inquiry"
+  },
+  {
+    "id": "E14",
+    "from": "tom@us-hotelgroup.com",
+    "subject": "Urgent - late shipment PO-2026-0512",
+    "body": "Dear Sir,\n\nWe ordered 1,680 cartons of ceramic floor tiles under PO-2026-0512, which was supposed to arrive by 2026-09-25 but is still not received as of today (2026-09-30). This delays our renovation project. We request compensation of USD 2,000 for the delay.\n\nRobert Turner\nUS Hotel Group LLC",
+    "expected": {
+      "customer": "US Hotel Group LLC",
+      "product": "Ceramic floor tile 600x600mm",
+      "quantity": "1,680 cartons",
+      "price": "USD 2,000",
+      "deadline": "2026-09-25"
+    },
+    "note": "投诉类-延迟交货（区别于 E09 缺陷）：数量为订单量 1,680 箱，价格为索赔额，截止日取原定到货日",
+    "category": "complaint"
+  },
+  {
+    "id": "E15",
+    "from": "finance@globalimport-ltd.com",
+    "subject": "Payment Advice - T/T for PO-2026-0398",
+    "body": "Dear Partner,\n\nWe have remitted the balance payment for PO-2026-0398 via T/T.\nAmount: USD 28,560.00\nValue date: 2026-09-10\nPlease arrange shipment after fund clearance.\n\nGlobal Import Ltd.",
+    "expected": {
+      "customer": "Global Import Ltd.",
+      "product": "",
+      "quantity": "",
+      "price": "USD 28,560.00",
+      "deadline": "2026-09-10"
+    },
+    "note": "通知类-收款水单：含金额 USD 28,560.00 与到账日，无产品/数量——测试通知类不瞎抽产品",
+    "category": "notification"
+  },
+  {
+    "id": "E16",
+    "from": "ahmed.alsayed@alnoor-trading.ae",
+    "subject": "Inquiry for LED flood lights - Dubai",
+    "body": "Hi,\n\nWe need LED Flood Light 200W, 1,500 pcs, target price USD 9.50/pc CFR Jebel Ali.\nPlease quote by 20 October 2026.\n\nAhmed Al Sayed\nAl Noor Trading LLC",
+    "expected": {
+      "customer": "Al Noor Trading LLC",
+      "product": "LED Flood Light 200W",
+      "quantity": "1,500 pcs",
+      "price": "USD 9.50/pc",
+      "deadline": "20 October 2026"
+    },
+    "note": "陷阱9：中东买家 + CFR 贸易术语（非 FOB），USD 9.50 点小数（与逗号千分位区分）",
+    "category": "inquiry"
+  },
+  {
+    "id": "E17",
+    "from": "lisa@canadadecor.ca",
+    "subject": "Repeat order follow-up PO-2026-0432",
+    "body": "Hello,\n\nPlease repeat the same order as PO-2026-0432: Acoustic ceiling panel 600x600, 2,000 sqm. Price as agreed in the contract. We need it before December 15, 2026.\n\nLisa\nCanada Decor Inc.",
+    "expected": {
+      "customer": "Canada Decor Inc.",
+      "product": "Acoustic ceiling panel 600x600",
+      "quantity": "2,000 sqm",
+      "price": "",
+      "deadline": "December 15, 2026"
+    },
+    "note": "复购+按合同价（价格缺失），数量与上封 E07 不同（2,000 vs 1,800）——测试不串味",
+    "category": "order"
+  },
+  {
+    "id": "E18",
+    "from": "karen@designworks.co.nz",
+    "subject": "Sample request - LED strip light",
+    "body": "Hi team,\n\nWe would like to request 5m samples of your LED Strip Light 2835 (neutral white) for evaluation. Please advise the sample cost and lead time. A small first order is expected after testing.\n\nKaren\nDesign Works Ltd",
+    "expected": {
+      "customer": "Design Works Ltd",
+      "product": "LED Strip Light 2835",
+      "quantity": "5m",
+      "price": "",
+      "deadline": ""
+    },
+    "note": "样品请求（category 归 inquiry，命中 sample 关键词）；数量为样品 5m 非批量——测试数量语义区分",
+    "category": "inquiry"
+  },
+  {
+    "id": "E19",
+    "from": "marco@italoluce.it",
+    "subject": "Quotation request - LED bulb",
+    "body": "Buongiorno,\n\nWe are interested in LED Bulb A60 9W, around 10,000 pcs. Target price around USD 0.55-0.65/pc. Please quote your best price, delivery by end of November 2026.\n\nMarco\nItalo Luce SRL",
+    "expected": {
+      "customer": "Italo Luce SRL",
+      "product": "LED Bulb A60 9W",
+      "quantity": "10,000 pcs",
+      "price": "USD 0.55-0.65/pc",
+      "deadline": "end of November 2026"
+    },
+    "note": "陷阱10：价格区间 USD 0.55-0.65（连字符范围非单值）——测试提取层是否保留区间或只取一端",
+    "category": "inquiry"
+  },
+  {
+    "id": "E20",
+    "from": "customs@dhl-global.com",
+    "subject": "Customs clearance update - Shipment COSU6987654321",
+    "body": "Dear Customer,\n\nShipment COSU6987654321 (LED panel light PL-6060, 3,000 cartons) cleared customs at Felixstowe on 2026-09-22. ETA destination warehouse 2026-09-28. No action required from your side.\n\nDHL Global",
+    "expected": {
+      "customer": "DHL Global",
+      "product": "LED panel light PL-6060",
+      "quantity": "3,000 cartons",
+      "price": "",
+      "deadline": "2026-09-28"
+    },
+    "note": "通知类-清关进展：多日期（清关日 2026-09-22 / 到仓日 2026-09-28），截止日取最终到仓日；无金额",
+    "category": "notification"
+  }
+]

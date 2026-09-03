@@ -1,0 +1,190 @@
+[
+  {
+    "case_id": "E01",
+    "category": "inquiry",
+    "priority": "高",
+    "state": "SENT",
+    "retrieved_top": [
+      "C01",
+      "C02",
+      "C17"
+    ],
+    "review_decision": "approve",
+    "sent_at": "2026-09-01 14:25",
+    "history": [
+      {
+        "from": "NEW",
+        "to": "RETRIEVING",
+        "actor": "system",
+        "note": "进入 RAG 检索：查历史报价/客户往来",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "RETRIEVING",
+        "to": "DRAFTING",
+        "actor": "system",
+        "note": "基于提取字段 + RAG 上下文起草回复",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "DRAFTING",
+        "to": "PENDING_REVIEW",
+        "actor": "system",
+        "note": "起草完成，等待人工审核（SLA 24h）",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "PENDING_REVIEW",
+        "to": "APPROVED",
+        "actor": "业务员小李",
+        "note": "价格沿用历史成交价，通过",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "APPROVED",
+        "to": "SENT",
+        "actor": "system",
+        "note": "回复已发送（接 mail_connector 即真实发信）",
+        "at": "2026-09-01 14:25"
+      }
+    ],
+    "draft": "Subject: Re: Quotation for PL-6060\n\nDear Global Import Ltd,\n\nThank you for your inquiry on PL-6060.\n\n【提取信息】数量 3000 pcs ｜ 目标价 USD 12.50/pc ｜ 期望交期 2026-09-15\n\n【历史参考（RAG 检索）】\n  · Global Import Ltd.（C01）：Global Import Ltd. 于 2025-11 首次询盘 LED Panel Light PL-6060 40W 600x600mm，数量 3000 pcs，我方报价 USD 12.80/pc FOB Ningbo，客户反馈目标价 USD 11.50 偏低，最终未成交。\n  · Global Import Ltd.（C02）：Global Import Ltd. 2026-03 返单 LED Panel Light PL-6060 40W，数量 5000 pcs，成交价 USD 12.20/pc，交期 30 天，付款方式 T/T 30% 预付款 70% 见提单副本，专属跟单员对接。\n  · Global Import Ltd.（C17）：Global Import Ltd. 2026-05 试单 LED High Bay Light 150W 工厂灯，数量 200 pcs，报价 USD 22.00/pc，反馈亮度满意，计划下季度批量 1000 pcs。\n\nWe are preparing the formal PI and will follow up shortly.\n\nBest regards,\nSales Team\n---\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期"
+  },
+  {
+    "case_id": "E02",
+    "category": "inquiry",
+    "priority": "高",
+    "state": "SENT",
+    "retrieved_top": [
+      "C19",
+      "C01",
+      "C03"
+    ],
+    "review_decision": "approve",
+    "sent_at": "2026-09-01 14:25",
+    "history": [
+      {
+        "from": "NEW",
+        "to": "RETRIEVING",
+        "actor": "system",
+        "note": "进入 RAG 检索：查历史报价/客户往来",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "RETRIEVING",
+        "to": "DRAFTING",
+        "actor": "system",
+        "note": "基于提取字段 + RAG 上下文起草回复",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "DRAFTING",
+        "to": "PENDING_REVIEW",
+        "actor": "system",
+        "note": "起草完成，等待人工审核（SLA 24h）",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "PENDING_REVIEW",
+        "to": "ESCALATED",
+        "actor": "scheduler",
+        "note": "审核超 24h 未处理，自动升级经理",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "ESCALATED",
+        "to": "PENDING_REVIEW",
+        "actor": "销售经理",
+        "note": "经理介入，亲自审核",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "PENDING_REVIEW",
+        "to": "APPROVED",
+        "actor": "销售经理",
+        "note": "经理终审通过",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "APPROVED",
+        "to": "SENT",
+        "actor": "system",
+        "note": "回复已发送（接 mail_connector 即真实发信）",
+        "at": "2026-09-01 14:25"
+      }
+    ],
+    "draft": "Subject: Re: Quotation for Aluminum Profile AP-2024\n\nDear Bauhaus Material GmbH,\n\nThank you for your inquiry on Aluminum Profile AP-2024.\n\n【提取信息】数量 5,000 meters ｜ 目标价 EUR 8,90/meter ｜ 期望交期 15th September 2026\n\n【历史参考（RAG 检索）】\n  · Bauhaus Material GmbH（C19）：Bauhaus Material GmbH 是德国新客户，2026-06 首次询盘 Aluminum Profile AP-2024 工业铝型材，数量 2000 meters，我方报价 EUR 9.20/meter FOB Shanghai，样品确认中，目标价期望压到 EUR 8.50 左右。\n  · Global Import Ltd.（C01）：Global Import Ltd. 于 2025-11 首次询盘 LED Panel Light PL-6060 40W 600x600mm，数量 3000 pcs，我方报价 USD 12.80/pc FOB Ningbo，客户反馈目标价 USD 11.50 偏低，最终未成交。\n  · Global Import Ltd.（C03）：Global Import Ltd. 偏好 600x600mm 规格的面板灯，年采购量约 2 万 pcs，对光效要求 100lm/W 以上，包装要求中性白盒加外箱唛头。\n\nWe are preparing the formal PI and will follow up shortly.\n\nBest regards,\nSales Team\n---\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期"
+  },
+  {
+    "case_id": "E03",
+    "category": "inquiry",
+    "priority": "中",
+    "state": "SENT",
+    "retrieved_top": [
+      "C20",
+      "C19",
+      "C21"
+    ],
+    "review_decision": "approve",
+    "sent_at": "2026-09-01 14:25",
+    "history": [
+      {
+        "from": "NEW",
+        "to": "RETRIEVING",
+        "actor": "system",
+        "note": "进入 RAG 检索：查历史报价/客户往来",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "RETRIEVING",
+        "to": "DRAFTING",
+        "actor": "system",
+        "note": "基于提取字段 + RAG 上下文起草回复",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "DRAFTING",
+        "to": "PENDING_REVIEW",
+        "actor": "system",
+        "note": "起草完成，等待人工审核（SLA 24h）",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "PENDING_REVIEW",
+        "to": "REJECTED",
+        "actor": "业务员小王",
+        "note": "数量单位待确认，打回重做",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "REJECTED",
+        "to": "DRAFTING",
+        "actor": "system",
+        "note": "根据驳回意见重新起草",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "DRAFTING",
+        "to": "PENDING_REVIEW",
+        "actor": "业务员小王",
+        "note": "补充单位后重新提交",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "PENDING_REVIEW",
+        "to": "APPROVED",
+        "actor": "业务员小王",
+        "note": "重做后通过",
+        "at": "2026-09-01 14:25"
+      },
+      {
+        "from": "APPROVED",
+        "to": "SENT",
+        "actor": "system",
+        "note": "回复已发送（接 mail_connector 即真实发信）",
+        "at": "2026-09-01 14:25"
+      }
+    ],
+    "draft": "Subject: Re: Quotation for 铝合金型材 6063-T5\n\nDear 杭州华筑装饰工程有限公司,\n\nThank you for your inquiry on 铝合金型材 6063-T5.\n\n【提取信息】数量 500支 ｜ 目标价 88元/支 ｜ 期望交期 2026年9月20日\n\n【历史参考（RAG 检索）】\n  · 杭州华筑装饰工程有限公司（C20）：杭州华筑装饰工程有限公司 为国内工装客户，2026-07 采购 LED Panel Light 600x600mm 工程批量 1000 pcs，项目价 USD 10.80/pc，含消防验收配合，账期 30 天。\n  · Bauhaus Material GmbH（C19）：Bauhaus Material GmbH 是德国新客户，2026-06 首次询盘 Aluminum Profile AP-2024 工业铝型材，数量 2000 meters，我方报价 EUR 9.20/meter FOB Shanghai，样品确认中，目标价期望压到 EUR 8.50 左右。\n  · Ausbuild Pty Ltd（C21）：Ausbuild Pty Ltd 是澳大利亚建筑商，2026-05 询盘 LED Flood Light 200W 工地投光灯，数量 300 pcs，单价 AUD 14.50/pc，要求 SAA 认证与 2 年质保。\n\nWe are preparing the formal PI and will follow up shortly.\n\nBest regards,\nSales Team\n---\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期"
+  }
+]

@@ -1,0 +1,232 @@
+{
+  "n_emails": 20,
+  "cls_rule_acc": 0.9,
+  "cls_final_acc": 1.0,
+  "ext_rule_acc": 0.7,
+  "ext_final_acc": 0.95,
+  "cls_rule_ok": 18,
+  "cls_final_ok": 20,
+  "ext_rule_ok": 70,
+  "ext_final_ok": 95,
+  "total_f": 100,
+  "prio_dist": {
+    "高": 5,
+    "中": 15,
+    "低": 0
+  },
+  "provider": "deepseek",
+  "is_mock": false,
+  "featured_emails": [
+    {
+      "id": "E06",
+      "subject": "RE: Quotation Q-20260815",
+      "category": "order",
+      "cat_source": "LLM",
+      "priority": "中",
+      "fields": {
+        "customer": "Nordic Lighting AB",
+        "product": "LED downlight DL-9W",
+        "quantity": "1,200 pcs",
+        "price": "USD 15.20/pc",
+        "deadline": "end of next month"
+      },
+      "expected": {
+        "customer": "Nordic Lighting AB",
+        "product": "LED downlight DL-9W",
+        "quantity": "1,200 pcs",
+        "price": "USD 15.20/pc",
+        "deadline": "end of next month"
+      },
+      "reasons": [
+        "截止日为相对表述，无法自动计算剩余天数"
+      ],
+      "actions": [
+        "确认订单：核对 PO 号与数量 → 排产 → 回签"
+      ],
+      "risks": [],
+      "from": "james@nordic-lighting.se",
+      "body": "Hi,\n\nThanks for your quote. We accept the price of USD 15.20/pc for 1,200 pcs of LED downlight DL-9W.\n\nPlease proceed with production. We need shipment by end of next month at the latest.\n\n--- Original message ---\nOn 2026-08-15 you wrote: \"Quantity 800 pcs, price USD 16.00/pc, delivery before 2026-08-30\" - please ignore that, the new figures above apply.\n\nJames\nNordic Lighting AB"
+    },
+    {
+      "id": "E09",
+      "subject": "Complaint - defective LED panels, Order PO-2026-0398",
+      "category": "complaint",
+      "cat_source": "LLM",
+      "priority": "高",
+      "fields": {
+        "customer": "US Hotel Group LLC",
+        "product": "LED panel light (PL-6060)",
+        "quantity": "180 pcs",
+        "price": "USD 3,600",
+        "deadline": "2026-09-05"
+      },
+      "expected": {
+        "customer": "US Hotel Group LLC",
+        "product": "LED panel light PL-6060",
+        "quantity": "180 pcs",
+        "price": "USD 3,600",
+        "deadline": "2026-09-05"
+      },
+      "reasons": [
+        "客诉类，涉及索赔与客户关系",
+        "距截止日仅 4 天"
+      ],
+      "actions": [
+        "启动客诉流程：核实批次 → 判定责任 → 48h 内给出处理方案"
+      ],
+      "risks": [],
+      "from": "complaints@us-hotelgroup.com",
+      "body": "Dear Sir,\n\nWe received 2,400 pcs of LED panel light (PL-6060) under PO-2026-0398 on 2026-08-20.\n\nUnfortunately, 180 pcs show obvious color temperature deviation (6000K instead of 4000K). Photos are attached.\n\nWe request either replacement of the defective units or compensation of USD 3,600.\nPlease reply before 2026-09-05.\n\nRobert Turner\nOperations Manager\nUS Hotel Group LLC"
+    },
+    {
+      "id": "E11",
+      "subject": "Demande de devis - eclairage industriel",
+      "category": "inquiry",
+      "cat_source": "LLM",
+      "priority": "中",
+      "fields": {
+        "customer": "Pierre Martin Lumiere Paris SA",
+        "product": "LED High Bay Light 150W",
+        "quantity": "500 pcs",
+        "price": "24,50 EUR",
+        "deadline": "30 septembre 2026"
+      },
+      "expected": {
+        "customer": "Lumiere Paris SARL",
+        "product": "LED High Bay Light 150W",
+        "quantity": "500 pcs",
+        "price": "EUR 24,50/pc",
+        "deadline": "30 septembre 2026"
+      },
+      "reasons": [
+        "距截止日 29 天"
+      ],
+      "actions": [
+        "准备 PI 报价单：确认单价 / 交期 / 付款方式 / 报价有效期"
+      ],
+      "risks": [],
+      "from": "pierre.martin@lumiere-paris.fr",
+      "body": "Bonjour,\n\nNous sommes interesses par votre LED High Bay Light 150W pour notre entrepot.\nQuantite: 500 pcs\nNotre budget est de 24,50 EUR par piece.\nMerci de repondre avant le 30 septembre 2026.\n\nCordialement,\nPierre Martin\nLumiere Paris SARL"
+    },
+    {
+      "id": "E16",
+      "subject": "Inquiry for LED flood lights - Dubai",
+      "category": "inquiry",
+      "cat_source": "规则层",
+      "priority": "中",
+      "fields": {
+        "customer": "Al Noor Trading LLC",
+        "product": "LED Flood Light 200W",
+        "quantity": "1,500 pcs",
+        "price": "USD 9.50/pc",
+        "deadline": "20 October 2026"
+      },
+      "expected": {
+        "customer": "Al Noor Trading LLC",
+        "product": "LED Flood Light 200W",
+        "quantity": "1,500 pcs",
+        "price": "USD 9.50/pc",
+        "deadline": "20 October 2026"
+      },
+      "reasons": [
+        "无紧急信号，按常规流程处理"
+      ],
+      "actions": [
+        "准备 PI 报价单：确认单价 / 交期 / 付款方式 / 报价有效期"
+      ],
+      "risks": [],
+      "from": "ahmed.alsayed@alnoor-trading.ae",
+      "body": "Hi,\n\nWe need LED Flood Light 200W, 1,500 pcs, target price USD 9.50/pc CFR Jebel Ali.\nPlease quote by 20 October 2026.\n\nAhmed Al Sayed\nAl Noor Trading LLC"
+    }
+  ],
+  "rag_samples": [
+    {
+      "id": "Q09",
+      "query": "单价 USD 3.50 的产品是什么？",
+      "type": "number_amount",
+      "expected": [
+        "C04"
+      ],
+      "top3": [
+        {
+          "id": "C16",
+          "score": 0.032,
+          "customer": "Amazon Seller Leo",
+          "text": "Amazon Seller Leo 重视产品图片与说明书本地化（英文），对包装彩盒有设计规范，复购周期约 45 天。"
+        },
+        {
+          "id": "C15",
+          "score": 0.0318,
+          "customer": "Amazon Seller Leo",
+          "text": "Amazon Seller Leo 采购 LED Grow Light 满光谱植物灯，单价 USD 18.50/pc，MOQ 300 pcs，要求可调光 0-100% 带定时，走 Amazon FBA 自发货混装。"
+        },
+        {
+          "id": "C04",
+          "score": 0.0314,
+          "customer": "Bright Home Co.",
+          "text": "Bright Home Co. 2025-09 采购 LED Downlight DL-90 12W，最小起订量 MOQ 1000 pcs，单价 USD 3.50/pc，出现过约 5% 灯珠色温不一致的问题，已补发更换并扣减尾款。"
+        }
+      ],
+      "hit": true
+    },
+    {
+      "id": "Q11",
+      "query": "哪些客户很在意发货准时？",
+      "type": "semantic",
+      "expected": [
+        "C12"
+      ],
+      "top3": [
+        {
+          "id": "C10",
+          "score": 0.0637,
+          "customer": "Sunrise Wholesale",
+          "text": "Sunrise Wholesale 是长期稳定客户，LED Panel Light 月均采购 8000 pcs，协议价 USD 11.90/pc，优先级高，由资深跟单员专属维护，账期可放宽至 60 天。"
+        },
+        {
+          "id": "C15",
+          "score": 0.0635,
+          "customer": "Amazon Seller Leo",
+          "text": "Amazon Seller Leo 采购 LED Grow Light 满光谱植物灯，单价 USD 18.50/pc，MOQ 300 pcs，要求可调光 0-100% 带定时，走 Amazon FBA 自发货混装。"
+        },
+        {
+          "id": "C12",
+          "score": 0.0632,
+          "customer": "Sunrise Wholesale",
+          "text": "Sunrise Wholesale 对面板灯交期要求严格，超 35 天需提前书面说明，历史逾期仅 1 次且已赔付 3% 违约金。"
+        }
+      ],
+      "hit": true
+    },
+    {
+      "id": "Q13",
+      "query": "哪些客户最怕不合规被查？",
+      "type": "semantic",
+      "expected": [
+        "C14",
+        "C09"
+      ],
+      "top3": [
+        {
+          "id": "C20",
+          "score": 0.0651,
+          "customer": "杭州华筑装饰工程有限公司",
+          "text": "杭州华筑装饰工程有限公司 为国内工装客户，2026-07 采购 LED Panel Light 600x600mm 工程批量 1000 pcs，项目价 USD 10.80/pc，含消防验收配合，账期 30 天。"
+        },
+        {
+          "id": "C06",
+          "score": 0.0648,
+          "customer": "Bright Home Co.",
+          "text": "Bright Home Co. 对 DL-90 系列要求显指 CRI>90，色温固定 4000K，不接受混批，来料抽检不良率需低于 1%。"
+        },
+        {
+          "id": "C14",
+          "score": 0.0645,
+          "customer": "Pacific Retail Group",
+          "text": "Pacific Retail Group 走商超渠道，对认证要求极高（ERP/CE/ROHS 齐全），不接受无认证供货，单价敏感但量大稳定。"
+        }
+      ],
+      "hit": true
+    }
+  ]
+}
