@@ -160,9 +160,11 @@ def evaluate_citation(answer: str, id_map: dict) -> dict:
         }
 
     # 简单启发：有引用编号的句子算"有依据"，否则算"可能幻觉"
+    # 兼容 [n] 和 [ n ] 两种格式（模板路径用 [ n ]，LLM路径用 [n]）
+    CLAIM_REF_RE = re.compile(r'\[\s*\d+\s*\]')
     claimed_with_ref = 0
     for claim in claims:
-        if re.search(r'\[\d+\]', claim):
+        if CLAIM_REF_RE.search(claim):
             claimed_with_ref += 1
         elif not re.search(r'(可以确认|不确定|无法确认|需要)', claim, re.IGNORECASE):
             pass  # 中性句不算
