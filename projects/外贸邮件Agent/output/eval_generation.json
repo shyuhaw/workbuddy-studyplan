@@ -1,128 +1,806 @@
 {
-  "meta": {
-    "llm": false,
-    "total": 4,
-    "timestamp": "auto"
+  "_meta": {
+    "tool": "eval_generation.py",
+    "rules_only": true,
+    "top_k": 5,
+    "eval_set_source": "C:\\Users\\Administrator\\WorkBuddy\\workbuddy学习\\projects\\外贸邮件Agent\\data\\eval_queries.json",
+    "eval_set_meta": {
+      "name": "RAG 检索评测集",
+      "purpose": "钉死 BM25 baseline 数字，为「明天加向量检索」提供对比基线",
+      "metric": "recall@k（top-k 中至少命中一个预期 chunk 即算对）",
+      "categories": {
+        "product_spec": "产品/规格检索（中英关键词重合，BM25 应命中）",
+        "number_amount": "数字/金额检索（价格数量是强信号，BM25 应命中）",
+        "semantic": "语义检索（query 不含 chunk 关键词，BM25 预计失败，诚实标注）",
+        "mixed": "客户+产品组合检索（多信号叠加）"
+      },
+      "expected_fail_note": "semantic 类为预先判断 BM25 会失败的样本，用于量化「纯关键词检索的召回天花板」，明天向量检索必须在此类上拉开差距。"
+    },
+    "generated_at": "2026-09-03 09:50:38"
+  },
+  "overall": {
+    "total_queries": 20,
+    "num_traceability_rate": 1.0,
+    "entity_traceability_rate": 1.0,
+    "citation_accuracy": 1.0,
+    "fidelity_rate": null,
+    "fallback_count": 0,
+    "total_prompt_tokens": 10717,
+    "total_completion_tokens": 761,
+    "total_est_cost_yuan": 0.016805,
+    "avg_elapsed_sec": 1.183,
+    "hallucination_samples_count": 0
+  },
+  "semantic_subset": {
+    "count": 5,
+    "num_traceability_rate": 1.0,
+    "entity_traceability_rate": 1.0,
+    "citation_accuracy": 1.0,
+    "fidelity_rate": null
   },
   "results": [
     {
-      "query_id": "TEST-Q01",
+      "id": "Q01",
+      "type": "product_spec",
       "query": "哪些客户问过 LED Downlight？",
-      "gen_mode": "template_fallback",
-      "answer": "Subject: Re: Quotation for the products\n\nDear Dear Customer,\n\nThank you for your inquiry on the products.\n\n【提取信息】数量 TBD ｜ 目标价 TBD（按历史成交价参考） ｜ 期望交期 TBD\n\n【历史参考（RAG 检索）】\n  · Bright Home Co.（C04）：Bright Home Co. 2025-09 采购 LED Downlight DL-90 12W，最小起订量 MOQ 1000 pcs，单价 USD 3.50/pc，出现过约 5% 灯珠色温不一致的问题，已补发更换并扣减尾款。\n  · Global Import Ltd.（C01）：Global Import Ltd. 于 2025-11 首次询盘 LED Panel Light PL-6060 40W 600x600mm，数量 3000 pcs，我方报价 USD 12.80/pc FOB Ningbo，客户反馈目标价 USD 11.50 偏低，最终未成交。\n  · Global Import Ltd.（",
-      "cited_ids": [],
-      "chunks_count": 3,
-      "citation_precision": 1.0,
-      "hallucination_rate": 1.0,
-      "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.667,
-      "faithfulness": 0.636,
-      "invalid_citations": [],
-      "valid_citations": [],
-      "answer_numbers": [
-        "1000",
-        "150",
-        "200",
-        "2025",
-        "2026",
-        "3000",
-        "600",
-        "6060",
-        "USD 11.50",
-        "USD 12.80/pc",
-        "USD 22.00/pc",
-        "USD 3.50/pc"
+      "expects": [
+        "C04",
+        "C06"
       ],
-      "gen_cost_yuan": 0
+      "elapsed_sec": 0.963,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "依据现有记录，只有 Bright Home Co. 在 2025-09 采购过 LED Downlight DL-90 12W [1]。",
+      "cited_ids": [
+        "C04"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "2025",
+          "09",
+          "90",
+          "12",
+          "1"
+        ],
+        "numbers_traceable": 5,
+        "number_traceability_rate": 1.0,
+        "entities_found": [
+          "DL-90 12W",
+          "LED D"
+        ],
+        "entities_traceable": 2,
+        "entity_traceability_rate": 1.0,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
     },
     {
-      "query_id": "TEST-Q02",
-      "query": "报过 USD 12.80 的是哪家？",
-      "gen_mode": "template_fallback",
-      "answer": "Subject: Re: Quotation for the products\n\nDear Dear Customer,\n\nThank you for your inquiry on the products.\n\n【提取信息】数量 TBD ｜ 目标价 TBD（按历史成交价参考） ｜ 期望交期 TBD\n\n【历史参考（RAG 检索）】\n  · Global Import Ltd.（C01）：Global Import Ltd. 于 2025-11 首次询盘 LED Panel Light PL-6060 40W 600x600mm，数量 3000 pcs，我方报价 USD 12.80/pc FOB Ningbo，客户反馈目标价 USD 11.50 偏低，最终未成交。\n  · Bright Home Co.（C04）：Bright Home Co. 2025-09 采购 LED Downlight DL-90 12W，最小起订量 MOQ 1000 pcs，单价 USD 3.50/pc，出现过约 5% 灯珠色温不一致的问题，已补发更换并扣减尾款。\n  · Bright Home Co.（C18",
-      "cited_ids": [],
-      "chunks_count": 3,
-      "citation_precision": 1.0,
-      "hallucination_rate": 1.0,
-      "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.679,
-      "faithfulness": 0.652,
-      "invalid_citations": [],
-      "valid_citations": [],
-      "answer_numbers": [
-        "1000",
-        "2025",
-        "2026",
-        "3000",
-        "600",
-        "6060",
-        "USD 11.50",
-        "USD 12.80/pc",
-        "USD 3.50/pc",
-        "USD 8.60",
-        "USD 9.80/pc"
+      "id": "Q02",
+      "type": "product_spec",
+      "query": "LED Panel Light PL-6060 的报价历史",
+      "expects": [
+        "C01",
+        "C02",
+        "C03"
       ],
-      "gen_cost_yuan": 0
+      "elapsed_sec": 1.198,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "Global Import Ltd. 于 2025-11 首次询盘 LED Panel Light PL-6060 40W，我方报价 USD 12.80/pc FOB Ningbo [1]；2026-03 返单成交价 USD 12.20/pc [2]。依据现有记录无法确认其他客户的 PL-6060 报价。",
+      "cited_ids": [
+        "C01",
+        "C02"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "2025",
+          "11",
+          "6060",
+          "40",
+          "12.80",
+          "1",
+          "2026",
+          "03",
+          "12.20",
+          "2"
+        ],
+        "numbers_traceable": 10,
+        "number_traceability_rate": 1.0,
+        "entities_found": [
+          "USD 12",
+          "FOB N",
+          "LED P",
+          "PL-6060 40W",
+          "PL-6060"
+        ],
+        "entities_traceable": 5,
+        "entity_traceability_rate": 1.0,
+        "citation_total": 2,
+        "citation_valid": 2,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
     },
     {
-      "query_id": "TEST-Q03",
-      "query": "有没有客户投诉过质量问题？",
-      "gen_mode": "template_fallback",
-      "answer": "Subject: Re: Quotation for the products\n\nDear Dear Customer,\n\nThank you for your inquiry on the products.\n\n【提取信息】数量 TBD ｜ 目标价 TBD（按历史成交价参考） ｜ 期望交期 TBD\n\n【历史参考（RAG 检索）】\n  · Bright Home Co.（C04）：Bright Home Co. 2025-09 采购 LED Downlight DL-90 12W，最小起订量 MOQ 1000 pcs，单价 USD 3.50/pc，出现过约 5% 灯珠色温不一致的问题，已补发更换并扣减尾款。\n  · Nordic Trading（C08）：Nordic Trading 2025-12 有一批 LED Tube 出现光衰严重，客户提起索赔 USD 1,200，最终以补偿 200 pcs 现货了结，已纳入质量黑名单观察期。\n  · Bright Home Co.（C06）：Bright Home Co. 对 DL-90 系列要求显指 CRI>90，色温固定 4000K，不接",
-      "cited_ids": [],
-      "chunks_count": 3,
-      "citation_precision": 1.0,
-      "hallucination_rate": 1.0,
-      "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.643,
-      "faithfulness": 0.471,
-      "invalid_citations": [],
-      "valid_citations": [],
-      "answer_numbers": [
-        "1000",
-        "200",
-        "2025",
-        "4000",
-        "USD 1,200",
-        "USD 3.50/pc"
-      ],
-      "gen_cost_yuan": 0
-    },
-    {
-      "query_id": "TEST-Q04",
+      "id": "Q03",
+      "type": "product_spec",
       "query": "谁采购过 Solar Street Light？",
-      "gen_mode": "template_fallback",
-      "answer": "Subject: Re: Quotation for the products\n\nDear Dear Customer,\n\nThank you for your inquiry on the products.\n\n【提取信息】数量 TBD ｜ 目标价 TBD（按历史成交价参考） ｜ 期望交期 TBD\n\n【历史参考（RAG 检索）】\n  · Nordic Trading（C07）：Nordic Trading 2026-01 询问 Solar Street Light 100W 集成款，目标价 USD 45.00/pc，我方成本 USD 52.00 无法接单，建议降级为 60W 型号报价 USD 38.00/pc 达成意向。\n  · Sunrise Wholesale（C11）：Sunrise Wholesale 采购 LED Flood Light 100W 户外投光灯，单价 USD 6.80/pc，MOQ 500 pcs，外壳要求压铸铝黑色，配支架。\n  · Nordic Trading（C09）：Nordic Trading 主做北欧市政项目，偏好 IP65 防水太阳能路灯，重视 ",
-      "cited_ids": [],
-      "chunks_count": 3,
-      "citation_precision": 1.0,
-      "hallucination_rate": 1.0,
-      "num_traceable_rate": 1.0,
-      "entity_traceable_rate": 0.654,
-      "faithfulness": 0.438,
-      "invalid_citations": [],
-      "valid_citations": [],
-      "answer_numbers": [
-        "100",
-        "2026",
-        "500",
-        "USD 38.00/pc",
-        "USD 45.00/pc",
-        "USD 52.00",
-        "USD 6.80/pc"
+      "expects": [
+        "C07",
+        "C09"
       ],
-      "gen_cost_yuan": 0
+      "elapsed_sec": 1.038,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "依据现有记录，Nordic Trading 曾询问 Solar Street Light 100W 集成款，但未明确采购，建议降级为 60W 型号后达成意向 [1]。",
+      "cited_ids": [
+        "C07"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "100",
+          "60",
+          "1"
+        ],
+        "numbers_traceable": 3,
+        "number_traceability_rate": 1.0,
+        "entities_found": [],
+        "entities_traceable": 0,
+        "entity_traceability_rate": null,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q04",
+      "type": "product_spec",
+      "query": "LED Grow Light 满光谱植物灯的客户",
+      "expects": [
+        "C15",
+        "C16"
+      ],
+      "elapsed_sec": 0.853,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "依据现有记录，LED Grow Light 满光谱植物灯的客户是 Amazon Seller Leo [1]。",
+      "cited_ids": [
+        "C15"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "1"
+        ],
+        "numbers_traceable": 1,
+        "number_traceability_rate": 1.0,
+        "entities_found": [
+          "LED G"
+        ],
+        "entities_traceable": 1,
+        "entity_traceability_rate": 1.0,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q05",
+      "type": "product_spec",
+      "query": "LED Bulb A60 9W 的报价",
+      "expects": [
+        "C13"
+      ],
+      "elapsed_sec": 1.093,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "LED Bulb A60 9W 的报价为 USD 0.62/pc，MOQ 5000 pcs，要求 E27 螺口，包装为彩色零售卡 [1]。",
+      "cited_ids": [
+        "C13"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "5000",
+          "60",
+          "9",
+          "0.62",
+          "5000",
+          "27",
+          "1"
+        ],
+        "numbers_traceable": 7,
+        "number_traceability_rate": 1.0,
+        "entities_found": [
+          "E27",
+          "USD 0",
+          "LED B",
+          "A60 9W",
+          "MOQ 5000"
+        ],
+        "entities_traceable": 5,
+        "entity_traceability_rate": 1.0,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q06",
+      "type": "number_amount",
+      "query": "报过 USD 12.80 的是哪家？",
+      "expects": [
+        "C01"
+      ],
+      "elapsed_sec": 0.936,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "报过 USD 12.80 的是 Global Import Ltd. [1]",
+      "cited_ids": [
+        "C01"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "12.80",
+          "1"
+        ],
+        "numbers_traceable": 2,
+        "number_traceability_rate": 1.0,
+        "entities_found": [
+          "USD 12"
+        ],
+        "entities_traceable": 1,
+        "entity_traceability_rate": 1.0,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q07",
+      "type": "number_amount",
+      "query": "成交价 USD 12.20 的订单",
+      "expects": [
+        "C02"
+      ],
+      "elapsed_sec": 1.488,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "依据现有记录，成交价 USD 12.20 的订单是 Global Import Ltd. 于 2026-03 返单的 LED Panel Light PL-6060 40W，数量 5000 pcs，交期 30 天，付款方式 T/T 30% 预付款 70% 见提单副本 [2]。",
+      "cited_ids": [
+        "C02"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "5000",
+          "12.20",
+          "2026",
+          "03",
+          "6060",
+          "40",
+          "5000",
+          "30",
+          "70",
+          "2"
+        ],
+        "numbers_traceable": 10,
+        "number_traceability_rate": 1.0,
+        "entities_found": [
+          "USD 12",
+          "LED P",
+          "PL-6060 40W"
+        ],
+        "entities_traceable": 3,
+        "entity_traceability_rate": 1.0,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q08",
+      "type": "number_amount",
+      "query": "索赔 USD 1,200 的是哪起？",
+      "expects": [
+        "C08"
+      ],
+      "elapsed_sec": 0.912,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "依据现有记录，索赔 USD 1,200 的是 Nordic Trading 的 LED Tube 光衰问题 [1]。",
+      "cited_ids": [
+        "C08"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "1,200",
+          "1"
+        ],
+        "numbers_traceable": 2,
+        "number_traceability_rate": 1.0,
+        "entities_found": [
+          "USD 1",
+          "LED T"
+        ],
+        "entities_traceable": 2,
+        "entity_traceability_rate": 1.0,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q09",
+      "type": "number_amount",
+      "query": "单价 USD 3.50 的产品是什么？",
+      "expects": [
+        "C04"
+      ],
+      "elapsed_sec": 0.911,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "单价 USD 3.50 的产品是 LED Downlight DL-90 12W [3]。",
+      "cited_ids": [
+        "C04"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "3.50",
+          "90",
+          "12",
+          "3"
+        ],
+        "numbers_traceable": 4,
+        "number_traceability_rate": 1.0,
+        "entities_found": [
+          "DL-90 12W",
+          "LED D",
+          "USD 3"
+        ],
+        "entities_traceable": 3,
+        "entity_traceability_rate": 1.0,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q10",
+      "type": "semantic",
+      "query": "有没有客户投诉过质量问题？",
+      "expects": [
+        "C04",
+        "C08"
+      ],
+      "elapsed_sec": 1.827,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "有。Bright Home Co. 在 2025-09 采购 LED Downlight DL-90 12W 时出现过约 5% 灯珠色温不一致的问题 [1]；Nordic Trading 在 2025-12 有一批 LED Tube 出现光衰严重，客户提起索赔 USD 1,200 [2]。",
+      "cited_ids": [
+        "C04",
+        "C08"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "2025",
+          "09",
+          "90",
+          "12",
+          "5",
+          "1",
+          "1,200",
+          "2"
+        ],
+        "numbers_traceable": 8,
+        "number_traceability_rate": 1.0,
+        "entities_found": [
+          "DL-90 12W",
+          "USD 1",
+          "LED T",
+          "LED D"
+        ],
+        "entities_traceable": 4,
+        "entity_traceability_rate": 1.0,
+        "citation_total": 2,
+        "citation_valid": 2,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q11",
+      "type": "semantic",
+      "query": "哪些客户很在意发货准时？",
+      "expects": [
+        "C12"
+      ],
+      "elapsed_sec": 1.201,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "Sunrise Wholesale 对面板灯交期要求严格，超 35 天需提前书面说明 [3]。依据现有记录，其他客户未明确提及发货准时要求。",
+      "cited_ids": [
+        "C12"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "35",
+          "3"
+        ],
+        "numbers_traceable": 2,
+        "number_traceability_rate": 1.0,
+        "entities_found": [],
+        "entities_traceable": 0,
+        "entity_traceability_rate": null,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q12",
+      "type": "semantic",
+      "query": "哪些客户可以谈更长的回款时间？",
+      "expects": [
+        "C10"
+      ],
+      "elapsed_sec": 0.925,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "依据现有记录，Sunrise Wholesale 的账期可放宽至 60 天 [1]。其他客户未提及回款时间，无法确认。",
+      "cited_ids": [
+        "C10"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "60",
+          "1"
+        ],
+        "numbers_traceable": 2,
+        "number_traceability_rate": 1.0,
+        "entities_found": [],
+        "entities_traceable": 0,
+        "entity_traceability_rate": null,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q13",
+      "type": "semantic",
+      "query": "哪些客户最怕不合规被查？",
+      "expects": [
+        "C14",
+        "C09"
+      ],
+      "elapsed_sec": 2.231,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "依据现有记录，Pacific Retail Group 对认证要求极高（ERP/CE/ROHS 齐全），不接受无认证供货，最怕不合规被查 [3]。其他客户未明确提及对合规的担忧。",
+      "cited_ids": [
+        "C14"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "3"
+        ],
+        "numbers_traceable": 1,
+        "number_traceability_rate": 1.0,
+        "entities_found": [
+          "ROHS",
+          "ERP",
+          "CE"
+        ],
+        "entities_traceable": 3,
+        "entity_traceability_rate": 1.0,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q14",
+      "type": "semantic",
+      "query": "哪个客户出现过产品一致性翻车？",
+      "expects": [
+        "C04"
+      ],
+      "elapsed_sec": 0.894,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "Bright Home Co. 出现过约 5% 灯珠色温不一致的问题 [2]。",
+      "cited_ids": [
+        "C04"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "5",
+          "2"
+        ],
+        "numbers_traceable": 2,
+        "number_traceability_rate": 1.0,
+        "entities_found": [],
+        "entities_traceable": 0,
+        "entity_traceability_rate": null,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q15",
+      "type": "mixed",
+      "query": "Global Import Ltd. 的面板灯成交价",
+      "expects": [
+        "C02",
+        "C01",
+        "C03"
+      ],
+      "elapsed_sec": 1.287,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "Global Import Ltd. 的面板灯成交价为 USD 12.20/pc [2]。",
+      "cited_ids": [
+        "C02"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "12.20",
+          "2"
+        ],
+        "numbers_traceable": 2,
+        "number_traceability_rate": 1.0,
+        "entities_found": [
+          "USD 12"
+        ],
+        "entities_traceable": 1,
+        "entity_traceability_rate": 1.0,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q16",
+      "type": "mixed",
+      "query": "Bright Home 的 Downlight 质量索赔",
+      "expects": [
+        "C04",
+        "C06"
+      ],
+      "elapsed_sec": 1.066,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "依据现有记录，Bright Home Co. 的 LED Downlight DL-90 12W 曾出现约 5% 灯珠色温不一致的问题，已补发更换并扣减尾款 [1]。但未提及质量索赔的具体金额或索赔流程，因此无法确认是否存在正式索赔 [1]。",
+      "cited_ids": [
+        "C04"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "90",
+          "12",
+          "5",
+          "1"
+        ],
+        "numbers_traceable": 4,
+        "number_traceability_rate": 1.0,
+        "entities_found": [
+          "DL-90 12W",
+          "LED D"
+        ],
+        "entities_traceable": 2,
+        "entity_traceability_rate": 1.0,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q17",
+      "type": "mixed",
+      "query": "Sunrise Wholesale 的面板灯交期条款",
+      "expects": [
+        "C10",
+        "C12"
+      ],
+      "elapsed_sec": 1.35,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "Sunrise Wholesale 对面板灯交期要求严格，超 35 天需提前书面说明，历史逾期仅 1 次且已赔付 3% 违约金 [1]。",
+      "cited_ids": [
+        "C12"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "35",
+          "1",
+          "3"
+        ],
+        "numbers_traceable": 3,
+        "number_traceability_rate": 1.0,
+        "entities_found": [],
+        "entities_traceable": 0,
+        "entity_traceability_rate": null,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q18",
+      "type": "mixed",
+      "query": "Nordic Trading 的太阳能路灯价格谈判",
+      "expects": [
+        "C07",
+        "C09"
+      ],
+      "elapsed_sec": 1.383,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "依据现有记录，Nordic Trading 曾就 Solar Street Light 100W 集成款询价，目标价 USD 45.00/pc，我方成本 USD 52.00 无法接单，建议降级为 60W 型号报价 USD 38.00/pc 达成意向 [1]。但未提及最终成交价格或具体谈判结果 [1]。",
+      "cited_ids": [
+        "C07"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "100",
+          "45.00",
+          "52.00",
+          "60",
+          "38.00",
+          "1"
+        ],
+        "numbers_traceable": 6,
+        "number_traceability_rate": 1.0,
+        "entities_found": [
+          "USD 52",
+          "USD 38",
+          "USD 45"
+        ],
+        "entities_traceable": 3,
+        "entity_traceability_rate": 1.0,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q19",
+      "type": "mixed",
+      "query": "Amazon Seller Leo 的植物灯复购周期",
+      "expects": [
+        "C15",
+        "C16"
+      ],
+      "elapsed_sec": 1.204,
+      "gen_mode": "llm",
+      "has_answer": false,
+      "no_citation": false,
+      "answer": "依据现有记录无法确认。 [1][2]",
+      "cited_ids": [
+        "C15",
+        "C16"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "1",
+          "2"
+        ],
+        "numbers_traceable": 2,
+        "number_traceability_rate": 1.0,
+        "entities_found": [],
+        "entities_traceable": 0,
+        "entity_traceability_rate": null,
+        "citation_total": 2,
+        "citation_valid": 2,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
+    },
+    {
+      "id": "Q20",
+      "type": "mixed",
+      "query": "Pacific Retail Group 的灯泡包装要求",
+      "expects": [
+        "C13",
+        "C14"
+      ],
+      "elapsed_sec": 0.894,
+      "gen_mode": "llm",
+      "has_answer": true,
+      "no_citation": false,
+      "answer": "Pacific Retail Group 的灯泡包装要求为彩色零售卡 [1]。",
+      "cited_ids": [
+        "C13"
+      ],
+      "invalid_cites": [],
+      "rules": {
+        "numbers_found": [
+          "1"
+        ],
+        "numbers_traceable": 1,
+        "number_traceability_rate": 1.0,
+        "entities_found": [],
+        "entities_traceable": 0,
+        "entity_traceability_rate": null,
+        "citation_total": 1,
+        "citation_valid": 1,
+        "citation_accuracy": 1.0,
+        "invalid_citations": []
+      },
+      "fidelity": null
     }
   ],
-  "aggregate": {
-    "总条目": 4,
-    "平均引用准确率": 1.0,
-    "平均幻觉率": 1.0,
-    "平均数字可溯源率": 1.0,
-    "平均实体可溯源率": 0.661,
-    "平均忠实度": 0.549,
-    "总生成成本(元)": 0,
-    "LLM 生成条目": 0,
-    "模板降级条目": 4
-  }
+  "hallucination_samples": []
 }
