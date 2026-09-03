@@ -149,7 +149,10 @@ def evaluate_citation(answer: str, id_map: dict) -> dict:
 
     # 幻觉：找出所有断言性句子，检查是否都有引用
     sentences = re.split(r'[。.!！\n]', answer)
-    claims = [s.strip() for s in sentences if len(s.strip()) > 10]
+    # 过滤模板元数据行（【xxx】/问题：/相关历史片段：等），只保留实质内容
+    CLAIM_META_RE = re.compile(r'^(【|问题：|相关历史片段：|\（请人工核对)')
+    claims = [s.strip() for s in sentences if len(s.strip()) > 10
+              and not CLAIM_META_RE.match(s.strip())]
     total_claims = len(claims)
     if total_claims == 0:
         return {
