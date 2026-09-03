@@ -211,35 +211,42 @@ footer{text-align:center;color:#484f58;font-size:13px;padding-top:40px;border-to
 
 <!-- RAG -->
 <section>
-  <h2>RAG 历史报价检索（BM25 baseline → 意图自适应混合）</h2>
-  <p class="lead">语义类 query 字面不重叠，靠向量检索命中。下面展示从 BM25 基线到 recall@3=100% 的演进路径。</p>
+  <h2>RAG 历史报价检索（BM25 → 混合检索 → 交叉编码精排）</h2>
+  <p class="lead">三轮递进：召回保 recall → 精排提 P@1。完整链路：检索 → 组装 → 生成 → 评测。</p>
 
   <div class="metrics">
     <div class="metric"><div class="num">21</div><div class="lbl">客户档案 chunk</div></div>
-    <div class="metric"><div class="num">90%</div><div class="lbl">BM25 baseline recall@3</div></div>
-    <div class="metric"><div class="num">100%</div><div class="lbl">意图自适应混合 recall@3</div></div>
-    <div class="metric"><div class="num">0</div><div class="lbl">第三方依赖（自写 BM25）</div></div>
+    <div class="metric"><div class="num">100%</div><div class="lbl">混合检索 recall@3</div></div>
+    <div class="metric"><div class="num">95%</div><div class="lbl">精排后 P@1</div></div>
+    <div class="metric"><div class="num">85.7%</div><div class="lbl">忠实度（LLM judge）</div></div>
   </div>
 
   <div class="grid2" style="margin-top:16px">
     <div class="card">
-      <h3>纯 Python 自写 Okapi BM25</h3>
-      <p>约 30 行、零依赖、可离线可复现。k1/b 公式能当面讲清。分词保留型号/价格/数量等关键数字信号。</p>
+      <h3>检索三阶段</h3>
+      <p>
+        <b>阶段1</b> BM25 baseline（85%@1）→ <b>阶段2</b> 混合检索 RRF（recall@3=100%，P@1=75%）→ <b>阶段3</b> 交叉编码精排（P@1=95%，NDCG@3=0.908）<br>
+        精排用 DeepSeek pairwise scoring，成本 < ¥0.01/20条。
+      </p>
     </div>
     <div class="card">
-      <h3>意图自适应调权</h3>
-      <p>数字类 query → BM25 主导；语义类 query → 向量主导（w_vec=3.0）。query rewriting（口语→业务术语）+ max-pooling 多向量（抗稀释）。</p>
+      <h3>生成与评测</h3>
+      <p>
+        检索后组装上下文（去重/截断/引用编号+id_map）→ DeepSeek 生成带标注答案 → 两层评测<br>
+        规则层（数字可溯源率 100%、引用准确率 100%）+ LLM judge（忠实度 85.7%）
+      </p>
     </div>
   </div>
 
   <div class="callout blue" style="margin-top:16px">
-    <div class="t">Q11 真实召回轨迹（语义类 hard case）</div>
-    <p style="font-family:ui-monospace,font-size:13px;color:#8b949e;margin-top:8px">
-      <span style="color:#58a6ff">0.0637</span>　<b>C10</b> · Sunrise Wholesale — "月均采购 8000 pcs..."<br>
-      <span style="color:#58a6ff">0.0635</span>　<b>C15</b> · Amazon Seller Leo — "单价 USD 18.50/pc..."<br>
-      <span style="color:#3fb950">0.0632</span>　<b style="color:#3fb950">C12 ✓</b> · Sunrise Wholesale — "<b>对面板灯交期要求严格，超 35 天需提前书面说明...</b>"<br>
+    <div class="t">精排效果（4 条真实提升）</div>
+    <p style="font-size:13px;color:#c9d1d9;margin-top:8px">
+      Q07「成交价 USD 12.20 的订单」：C02 rank2 → rank1<br>
+      Q09「单价 USD 3.50 的产品」：C04 rank3 → rank1<br>
+      Q11「在意发货准时」：C12 rank3 → rank1<br>
+      Q13「怕不合规被查」：C14 rank3 → rank1<br>
+      <span style="color:#3fb950">R@3 保持 91%，精排不损害召回。</span>
     </p>
-    <p style="margin-top:8px">同口径下 Q09 / Q13 也全部进入 top-3 —— 整体 + 语义类 <b style="color:#3fb950">recall@3 = 100%</b>。</p>
   </div>
 </section>
 
@@ -386,7 +393,7 @@ PENDING_REVIEW → (SLA超时) → ESCALATED → PENDING_REVIEW
   <p class="lead">不只是一张结果截图——粘贴一封客户邮件，实时看到五个环节真实跑出来的结果。</p>
 
   <div class="metrics">
-    <div class="metric"><div class="num">5</div><div class="lbl">串联环节<br>（分类→提取→决策→RAG→起草）</div></div>
+    <div class="metric"><div class="num">7</div><div class="lbl">串联环节<br>（分类→提取→决策→检索→组装→生成→评测）</div></div>
     <div class="metric"><div class="num">20</div><div class="lbl">可一键载入<br>的真实示例邮件</div></div>
     <div class="metric"><div class="num">0</div><div class="lbl">第三方前端<br>依赖（纯 HTML/JS）</div></div>
     <div class="metric"><div class="num">真实</div><div class="lbl">调用智谱向量 +<br>DeepSeek 兜底</div></div>

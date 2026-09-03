@@ -79,5 +79,19 @@
   | 单次成本 | ¥0.0008 |
   | 总成本（20条）| ¥0.015 |
 - 幻觉主因是元叙述（"依据现有记录无法确认"），非真正编造
-- 实体可溯源率 59.8% 是短板 → 明天做 Rerank 精排
+- 实体可溯源率 59.8% 是短板 → 今天做 Rerank 精排
 - 修复了 6 个真实 bug（extract_numbers 字段错、_CHUNK_CACHE 缺失、workflow transit 重复等）
+- Git: `aa016ab Day5: 生成端闭环完成`
+
+**今日完成欠账**（10:10）：
+- ✅ Rerank 精排：`src/reranker.py`（LLMReranker + DeepSeek pairwise scoring）
+- ✅ P@1/NDCG 评测：`src/eval_rerank.py` → `output/eval_rerank.json`（20条）
+- 精排结果：P@1 75%→95%、NDCG@3 0.824→0.908、R@3 保持 91%
+- ✅ README 更新：新增「交叉编码精排」「RAG 生成端闭环」两节
+- Git: `a5613d8 Day5 补做：Rerank 精排 + P@1/NDCG + README 更新`
+
+**RAG 完整链路状态**：
+- 检索：BM25 baseline → 混合检索（RRF）→ 交叉编码精排（三轮递进）
+- 生成：context_builder → generator(LLM+引用标注) → eval_generation(忠实度85.7%)
+- 评测指标全集：recall@K / P@1 / NDCG@K / 引用准确率 / 数字可溯源率 / 实体可溯源率 / 忠实度 / 幻觉率
+- 全部数字可复现，成本可控（¥0.015/20条生成 + ¥0.01/20条精排）
