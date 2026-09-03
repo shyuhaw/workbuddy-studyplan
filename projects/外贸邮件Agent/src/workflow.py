@@ -174,14 +174,21 @@ class WorkflowCase:
         """
         bundle = self.context_bundle
         query = bundle["query"] if bundle else ""
-        self.draft = self._render_draft_template()
-        self.gen_mode = "template_fallback"
-        self.cited_ids = []
-        if not self._generator or not bundle:
+        id_map = bundle.get("id_map", {}) if bundle else {}
+
+        if not self._generator:
+            # 强制模板路径：使用带 [n] 引用的新版模板
+            res = _template_fallback(query, bundle["context"] if bundle else "", id_map, "no_generator")
+            self.draft = res["answer"]
+            self.gen_mode = "template_fallback"
+            self.cited_ids = res["cited_ids"]
+            self.gen_result = res
+            self.transit(S_PENDING_REVIEW, actor="system",
+                         note=f"起草完成（模板路径，无 LLM），等待人工审核（SLA {self.sla_hours}h）")
             return self
 
         # —— LLM 生成 ——
-        res = self._generator.generate(query, bundle["context"], bundle["id_map"])
+        res = self._generator.generate(query, bundle["context"], id_map)
         self.gen_mode = res["mode"]
         if res["mode"] == "llm" and res["answer"]:
             self.draft = (
@@ -192,10 +199,13 @@ class WorkflowCase:
                 f"[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期"
             )
             self.cited_ids = res["cited_ids"]
-            self.gen_result = res
         else:
             # 降级：保留模板产出，但显式标注，不冒充生成结果
-            self.gen_result = res
+            self.draft = res["answer"]
+            self.cited_ids = res.get("cited_ids", [])
+        self.gen_result = res
+        self.transit(S_PENDING_REVIEW, actor="system",
+                     note=f"起草完成（{self.gen_mode}），等待人工审核（SLA {self.sla_hours}h）")
         return self
 
     def _render_draft_template(self):
