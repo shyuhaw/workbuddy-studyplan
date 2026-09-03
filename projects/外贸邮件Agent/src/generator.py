@@ -36,6 +36,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from context_builder import (  # noqa: E402
     EMPTY_CONTEXT, extract_citations, map_citations, est_tokens,
+    _CHUNK_CACHE,
 )
 
 try:
@@ -185,7 +186,7 @@ class AnswerGenerator:
         """
         if not self.provider:
             self.fallback_count += 1
-            return _template_fallback(query, context_str, reason="no_provider")
+            return _template_fallback(query, context_str, id_map, "no_provider")
 
         prompt = build_prompt(context_str, query)
         t0 = time.time()
@@ -195,7 +196,7 @@ class AnswerGenerator:
             self.fallback_count += 1
             if self.verbose:
                 print(f"[降级] LLM 调用失败（{type(e).__name__}: {e}）→ 回退模板")
-            return _template_fallback(query, context_str, reason=f"{type(e).__name__}: {e}")
+            return _template_fallback(query, context_str, id_map, f"{type(e).__name__}: {e}")
 
         elapsed = time.time() - t0
 
@@ -209,11 +210,11 @@ class AnswerGenerator:
             self.fallback_count += 1
             if self.verbose:
                 print(f"[降级] JSON 解析失败（{e}）→ 回退模板")
-            return _template_fallback(query, context_str, reason=f"parse_failed: {e}")
+            return _template_fallback(query, context_str, id_map, f"parse_failed: {e}")
 
         if not answer:
             self.fallback_count += 1
-            return _template_fallback(query, context_str, reason="empty_answer")
+            return _template_fallback(query, context_str, id_map, "empty_answer")
 
         # —— 引用归一：答案内联 [n] 与 JSON cited 字段取并集 ——
         inline = extract_citations(answer)

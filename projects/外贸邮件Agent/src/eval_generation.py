@@ -245,7 +245,7 @@ def run_eval(query_id: str, query: str, use_llm: bool, verbose: bool = False) ->
         "invalid_citations": citation["invalid_citations"],
         "valid_citations": citation["valid_citations"],
         "answer_numbers": traceability["answer_numbers"],
-        "gen_cost_yuan": summary.get("gen_cost_yuan", 0),
+        "gen_cost_yuan": summary.get("gen_cost_yuan") or 0,
     }
 
     if verbose:

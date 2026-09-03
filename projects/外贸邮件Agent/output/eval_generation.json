@@ -1,0 +1,128 @@
+{
+  "meta": {
+    "llm": false,
+    "total": 4,
+    "timestamp": "auto"
+  },
+  "results": [
+    {
+      "query_id": "TEST-Q01",
+      "query": "哪些客户问过 LED Downlight？",
+      "gen_mode": "template_fallback",
+      "answer": "Subject: Re: Quotation for the products\n\nDear Dear Customer,\n\nThank you for your inquiry on the products.\n\n【提取信息】数量 TBD ｜ 目标价 TBD（按历史成交价参考） ｜ 期望交期 TBD\n\n【历史参考（RAG 检索）】\n  · Bright Home Co.（C04）：Bright Home Co. 2025-09 采购 LED Downlight DL-90 12W，最小起订量 MOQ 1000 pcs，单价 USD 3.50/pc，出现过约 5% 灯珠色温不一致的问题，已补发更换并扣减尾款。\n  · Global Import Ltd.（C01）：Global Import Ltd. 于 2025-11 首次询盘 LED Panel Light PL-6060 40W 600x600mm，数量 3000 pcs，我方报价 USD 12.80/pc FOB Ningbo，客户反馈目标价 USD 11.50 偏低，最终未成交。\n  · Global Import Ltd.（",
+      "cited_ids": [],
+      "chunks_count": 3,
+      "citation_precision": 1.0,
+      "hallucination_rate": 1.0,
+      "num_traceable_rate": 1.0,
+      "entity_traceable_rate": 0.667,
+      "faithfulness": 0.636,
+      "invalid_citations": [],
+      "valid_citations": [],
+      "answer_numbers": [
+        "1000",
+        "150",
+        "200",
+        "2025",
+        "2026",
+        "3000",
+        "600",
+        "6060",
+        "USD 11.50",
+        "USD 12.80/pc",
+        "USD 22.00/pc",
+        "USD 3.50/pc"
+      ],
+      "gen_cost_yuan": 0
+    },
+    {
+      "query_id": "TEST-Q02",
+      "query": "报过 USD 12.80 的是哪家？",
+      "gen_mode": "template_fallback",
+      "answer": "Subject: Re: Quotation for the products\n\nDear Dear Customer,\n\nThank you for your inquiry on the products.\n\n【提取信息】数量 TBD ｜ 目标价 TBD（按历史成交价参考） ｜ 期望交期 TBD\n\n【历史参考（RAG 检索）】\n  · Global Import Ltd.（C01）：Global Import Ltd. 于 2025-11 首次询盘 LED Panel Light PL-6060 40W 600x600mm，数量 3000 pcs，我方报价 USD 12.80/pc FOB Ningbo，客户反馈目标价 USD 11.50 偏低，最终未成交。\n  · Bright Home Co.（C04）：Bright Home Co. 2025-09 采购 LED Downlight DL-90 12W，最小起订量 MOQ 1000 pcs，单价 USD 3.50/pc，出现过约 5% 灯珠色温不一致的问题，已补发更换并扣减尾款。\n  · Bright Home Co.（C18",
+      "cited_ids": [],
+      "chunks_count": 3,
+      "citation_precision": 1.0,
+      "hallucination_rate": 1.0,
+      "num_traceable_rate": 1.0,
+      "entity_traceable_rate": 0.679,
+      "faithfulness": 0.652,
+      "invalid_citations": [],
+      "valid_citations": [],
+      "answer_numbers": [
+        "1000",
+        "2025",
+        "2026",
+        "3000",
+        "600",
+        "6060",
+        "USD 11.50",
+        "USD 12.80/pc",
+        "USD 3.50/pc",
+        "USD 8.60",
+        "USD 9.80/pc"
+      ],
+      "gen_cost_yuan": 0
+    },
+    {
+      "query_id": "TEST-Q03",
+      "query": "有没有客户投诉过质量问题？",
+      "gen_mode": "template_fallback",
+      "answer": "Subject: Re: Quotation for the products\n\nDear Dear Customer,\n\nThank you for your inquiry on the products.\n\n【提取信息】数量 TBD ｜ 目标价 TBD（按历史成交价参考） ｜ 期望交期 TBD\n\n【历史参考（RAG 检索）】\n  · Bright Home Co.（C04）：Bright Home Co. 2025-09 采购 LED Downlight DL-90 12W，最小起订量 MOQ 1000 pcs，单价 USD 3.50/pc，出现过约 5% 灯珠色温不一致的问题，已补发更换并扣减尾款。\n  · Nordic Trading（C08）：Nordic Trading 2025-12 有一批 LED Tube 出现光衰严重，客户提起索赔 USD 1,200，最终以补偿 200 pcs 现货了结，已纳入质量黑名单观察期。\n  · Bright Home Co.（C06）：Bright Home Co. 对 DL-90 系列要求显指 CRI>90，色温固定 4000K，不接",
+      "cited_ids": [],
+      "chunks_count": 3,
+      "citation_precision": 1.0,
+      "hallucination_rate": 1.0,
+      "num_traceable_rate": 1.0,
+      "entity_traceable_rate": 0.643,
+      "faithfulness": 0.471,
+      "invalid_citations": [],
+      "valid_citations": [],
+      "answer_numbers": [
+        "1000",
+        "200",
+        "2025",
+        "4000",
+        "USD 1,200",
+        "USD 3.50/pc"
+      ],
+      "gen_cost_yuan": 0
+    },
+    {
+      "query_id": "TEST-Q04",
+      "query": "谁采购过 Solar Street Light？",
+      "gen_mode": "template_fallback",
+      "answer": "Subject: Re: Quotation for the products\n\nDear Dear Customer,\n\nThank you for your inquiry on the products.\n\n【提取信息】数量 TBD ｜ 目标价 TBD（按历史成交价参考） ｜ 期望交期 TBD\n\n【历史参考（RAG 检索）】\n  · Nordic Trading（C07）：Nordic Trading 2026-01 询问 Solar Street Light 100W 集成款，目标价 USD 45.00/pc，我方成本 USD 52.00 无法接单，建议降级为 60W 型号报价 USD 38.00/pc 达成意向。\n  · Sunrise Wholesale（C11）：Sunrise Wholesale 采购 LED Flood Light 100W 户外投光灯，单价 USD 6.80/pc，MOQ 500 pcs，外壳要求压铸铝黑色，配支架。\n  · Nordic Trading（C09）：Nordic Trading 主做北欧市政项目，偏好 IP65 防水太阳能路灯，重视 ",
+      "cited_ids": [],
+      "chunks_count": 3,
+      "citation_precision": 1.0,
+      "hallucination_rate": 1.0,
+      "num_traceable_rate": 1.0,
+      "entity_traceable_rate": 0.654,
+      "faithfulness": 0.438,
+      "invalid_citations": [],
+      "valid_citations": [],
+      "answer_numbers": [
+        "100",
+        "2026",
+        "500",
+        "USD 38.00/pc",
+        "USD 45.00/pc",
+        "USD 52.00",
+        "USD 6.80/pc"
+      ],
+      "gen_cost_yuan": 0
+    }
+  ],
+  "aggregate": {
+    "总条目": 4,
+    "平均引用准确率": 1.0,
+    "平均幻觉率": 1.0,
+    "平均数字可溯源率": 1.0,
+    "平均实体可溯源率": 0.661,
+    "平均忠实度": 0.549,
+    "总生成成本(元)": 0,
+    "LLM 生成条目": 0,
+    "模板降级条目": 4
+  }
+}
