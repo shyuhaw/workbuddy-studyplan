@@ -40,6 +40,9 @@ EMPTY_CONTEXT = "（无相关历史记录）"
 CJK_RE = re.compile(r"[\u4e00-\u9fff]")
 CITE_RE = re.compile(r"\[(\d+)\]")
 
+# chunk id -> raw text 缓存：generator 模板降级路径查原文溯源用
+_CHUNK_CACHE = {}
+
 
 # ----------------------------------------------------------------------
 # 工具
