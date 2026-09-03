@@ -34,6 +34,14 @@ from datetime import datetime, timedelta
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from vector_retriever import build_hybrid
+from context_builder import build_context, EMPTY_CONTEXT
+
+# 生成端（RAG 的 G）：真正的 LLM 起草，替代原先的模板拼接
+# 延迟导入 —— 无 DeepSeek Key 时仍能跑通工作流的其余部分
+try:
+    from generator import AnswerGenerator
+except Exception:
+    AnswerGenerator = None
 
 # 状态常量
 S_NEW = "NEW"
@@ -71,10 +79,13 @@ def _fmt(dt):
 class WorkflowCase:
     """一个询盘的生命周期状态机"""
 
-    def __init__(self, mail_result, retriever=None, sla_hours=SLA_HOURS, clock=None):
+    def __init__(self, mail_result, retriever=None, sla_hours=SLA_HOURS, clock=None,
+                 generator=None, use_llm_draft=True):
         """
-        mail_result: agent.process_one() 的输出（含 category/fields/priority 等）
-        retriever:    混合检索器实例（BM25+向量，默认加载语料）
+        mail_result:   agent.process_one() 的输出（含 category/fields/priority 等）
+        retriever:     混合检索器实例（BM25+向量，默认加载语料）
+        generator:     AnswerGenerator 实例（None 时自动创建；传 False 可强制走模板）
+        use_llm_draft: 是否启用 LLM 起草（关掉即退回旧的模板拼接路径）
         """
         self.result = mail_result
         self.fields = mail_result.get("fields", {})
@@ -82,6 +93,16 @@ class WorkflowCase:
         self.history = []          # 审计轨迹
         self.retrieved = []        # RAG 命中
         self.draft = ""
+        # —— 生成端（Day05 新增）——
+        self.context_bundle = None  # 上下文组装结果（含 id_map）
+        self.cited_ids = []         # 答案引用到的 chunk id（审计链：答案 → 来源）
+        self.gen_mode = None        # "llm" / "template_fallback"
+        self.gen_result = None      # generator 的原始返回（含耗时/成本/无效引用）
+        self._use_llm_draft = use_llm_draft
+        if generator is None:
+            self._generator = AnswerGenerator() if (use_llm_draft and AnswerGenerator) else None
+        else:
+            self._generator = generator
         self.review_decision = None
         self.sent_at = None
         self.escalated_at = None
@@ -132,11 +153,52 @@ class WorkflowCase:
         return self
 
     def _step_draft(self):
+        """RETRIEVING → DRAFTING：组装上下文后起草。"""
         self.transit(S_DRAFTING, actor="system", note="基于提取字段 + RAG 上下文起草回复")
-        self.draft = self._render_draft()
+
+        # —— 组装上下文（带 [n] 编号 + id_map）——
+        cust = self.fields.get("customer") or ""
+        prod = self.fields.get("product") or ""
+        query = f"{cust} {prod}".strip() or self.result.get("subject", "")
+        self.context_bundle = build_context(query, self.retrieved)
+        return self._draft_from_context()
+
+    def _draft_from_context(self):
+        """基于已组装好的上下文起草：优先 LLM 生成（带引用标注），失败降级模板。
+
+        拆成独立方法的原因：打回重做（reject）时状态已经迁到 DRAFTING，
+        不能再 transit 一次，只需复用同一个 context_bundle 重新生成答案。
+
+        审计价值：self.cited_ids 记录「答案引用了哪些 chunk」，
+        配合 context_bundle["id_map"] 可回溯到原文，构成完整可验证链路。
+        """
+        bundle = self.context_bundle
+        query = bundle["query"] if bundle else ""
+        self.draft = self._render_draft_template()
+        self.gen_mode = "template_fallback"
+        self.cited_ids = []
+        if not self._generator or not bundle:
+            return self
+
+        # —— LLM 生成 ——
+        res = self._generator.generate(query, bundle["context"], bundle["id_map"])
+        self.gen_mode = res["mode"]
+        if res["mode"] == "llm" and res["answer"]:
+            self.draft = (
+                f"{res['answer']}\n\n"
+                f"---\n"
+                f"[生成方式] LLM（引用 {len(res['cited_ids'])} 个历史片段："
+                f"{', '.join(res['cited_ids']) or '无'}）\n"
+                f"[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期"
+            )
+            self.cited_ids = res["cited_ids"]
+            self.gen_result = res
+        else:
+            # 降级：保留模板产出，但显式标注，不冒充生成结果
+            self.gen_result = res
         return self
 
-    def _render_draft(self):
+    def _render_draft_template(self):
         f = self.fields
         cust = f.get("customer") or "Dear Customer"
         prod = f.get("product") or "the products"
@@ -199,7 +261,8 @@ class WorkflowCase:
         elif decision == "reject":
             self.transit(S_REJECTED, actor=actor, note=note or "人工驳回，打回重做")
             self.transit(S_DRAFTING, actor="system", note="根据驳回意见重新起草")
-            self.draft = self._render_draft()
+            # 重做沿用同一个上下文（含引用编号与 id_map），只是重新生成一次答案
+            self._draft_from_context()
         else:
             raise ValueError(f"未知决策：{decision}")
         return self
@@ -235,6 +298,10 @@ class WorkflowCase:
             "priority": self.result.get("priority"),
             "state": self.state,
             "retrieved_top": [h["id"] for h in self.retrieved[:3]],
+            # —— 生成端可审计信息（Day05 新增）——
+            "gen_mode": self.gen_mode,          # llm = 真生成；template_fallback = 降级
+            "cited_ids": self.cited_ids,        # 答案 → 来源 chunk，可回溯核对
+            "gen_cost_yuan": (self.gen_result or {}).get("est_cost"),
             "review_decision": self.review_decision,
             "sent_at": _fmt(self.sent_at) if self.sent_at else None,
             "history": self.history,

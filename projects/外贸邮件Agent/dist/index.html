@@ -2,119 +2,104 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>跨境客户邮件智能处理 Agent · 作品集</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI Agent 作品集合集</title>
 <style>
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-  background: #0d1117; color: #e6edf3; line-height: 1.7;
-}
-.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px 80px; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#0d1117;color:#e6edf3;line-height:1.7}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px 80px}
 
 /* Hero */
-.hero { padding: 72px 0 48px; border-bottom: 1px solid #21262d; margin-bottom: 56px; }
-.tag { display:inline-block; font-size:12px; letter-spacing:2px; color:#58a6ff;
-       border:1px solid #1f6feb; padding:4px 12px; border-radius:12px; margin-bottom:20px; }
-h1 { font-size: 40px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 16px; }
-.sub { font-size: 18px; color: #8b949e; max-width: 760px; }
-.metrics { display:grid; grid-template-columns: repeat(4,1fr); gap:16px; margin-top:40px; }
-.metric { background:#161b22; border:1px solid #21262d; border-radius:10px; padding:20px; }
-.metric .num { font-size:30px; font-weight:700; color:#58a6ff; line-height:1.2; }
-.metric .num.warn { color:#d29922; }
-.metric .num.ok { color:#3fb950; }
-.metric .lbl { font-size:13px; color:#8b949e; margin-top:6px; }
+.hero{padding:72px 0 48px;border-bottom:1px solid #21262d;margin-bottom:56px}
+.tag{display:inline-block;font-size:12px;letter-spacing:2px;color:#58a6ff;border:1px solid #1f6feb;padding:4px 12px;border-radius:12px;margin-bottom:20px}
+h1{font-size:40px;font-weight:700;letter-spacing:-0.5px;margin-bottom:16px}
+.sub{font-size:18px;color:#8b949e;max-width:760px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.metric{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:20px}
+.metric .num{font-size:30px;font-weight:700;color:#58a6ff;line-height:1.2}
+.metric .num.warn{color:#d29922}
+.metric .num.ok{color:#3fb950}
+.metric .lbl{font-size:13px;color:#8b949e;margin-top:6px}
 
 /* Section */
-section { margin-bottom: 56px; }
-h2 { font-size: 24px; margin-bottom: 8px; display:flex; align-items:center; gap:10px; }
-h2::before { content:''; width:4px; height:22px; background:#1f6feb; border-radius:2px; }
-.lead { color:#8b949e; margin-bottom: 24px; font-size:15px; }
+section{margin-bottom:56px}
+h2{font-size:24px;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+h2::before{content:'';width:4px;height:22px;background:#1f6feb;border-radius:2px}
+.lead{color:#8b949e;margin-bottom:24px;font-size:15px}
+.tech-stack{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.tech-tag{font-size:12px;padding:4px 10px;border-radius:8px;background:#1f2937;color:#8b949e;border:1px solid #30363d}
 
 /* Cards */
-.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.card { background:#161b22; border:1px solid #21262d; border-radius:10px; padding:22px; }
-.card h3 { font-size:16px; margin-bottom:10px; color:#e6edf3; }
-.card p, .card li { font-size:14px; color:#8b949e; }
-.card ul { padding-left:18px; margin-top:8px; }
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:22px}
+.card h3{font-size:16px;margin-bottom:10px;color:#e6edf3}
+.card p,.card li{font-size:14px;color:#8b949e}
+.card ul{padding-left:18px;margin-top:8px}
 
 /* Flow */
-.flow { display:flex; align-items:stretch; gap:12px; flex-wrap:wrap; }
-.node { flex:1; min-width:180px; background:#161b22; border:1px solid #21262d;
-        border-radius:10px; padding:18px; position:relative; }
-.node.hl { border-color:#1f6feb; background:#0f1a2b; }
-.node .step { font-size:11px; color:#58a6ff; letter-spacing:1px; margin-bottom:6px; }
-.node .title { font-size:15px; font-weight:600; margin-bottom:8px; }
-.node .tech { font-size:12px; color:#6e7681; font-family: ui-monospace, monospace; }
-.arrow { display:flex; align-items:center; color:#484f58; font-size:20px; }
+.flow{display:flex;align-items:stretch;gap:12px;flex-wrap:wrap}
+.node{flex:1;min-width:180px;background:#161b22;border:1px solid #21262d;border-radius:10px;padding:18px;position:relative}
+.node.hl{border-color:#1f6feb;background:#0f1a2b}
+.node .step{font-size:11px;color:#58a6ff;letter-spacing:1px;margin-bottom:6px}
+.node .title{font-size:15px;font-weight:600;margin-bottom:8px}
+.node .tech{font-size:12px;color:#6e7681;font-family:ui-monospace,monospace}
+.arrow{display:flex;align-items:center;color:#484f58;font-size:20px}
 
 /* Table */
-table { width:100%; border-collapse:collapse; margin-top:16px; font-size:14px; }
-th { background:#161b22; padding:12px; text-align:left; font-weight:600;
-     border-bottom:2px solid #21262d; color:#8b949e; font-size:13px; }
-td { padding:12px; border-bottom:1px solid #21262d; }
-tr:hover td { background:#161b22; }
-.num-cell { font-variant-numeric: tabular-nums; font-weight:600; }
-.good { color:#3fb950; } .mid { color:#d29922; } .bad { color:#f85149; }
+table{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px}
+th{background:#161b22;padding:12px;text-align:left;font-weight:600;border-bottom:2px solid #21262d;color:#8b949e;font-size:13px}
+td{padding:12px;border-bottom:1px solid #21262d}
+tr:hover td{background:#161b22}
+.num-cell{font-variant-numeric:tabular-nums;font-weight:600}
+.good{color:#3fb950}.mid{color:#d29922}.bad{color:#f85149}
 
 /* Callout */
-.callout { background:#2d1a0e; border:1px solid #9e6a03; border-left:4px solid #d29922;
-           border-radius:8px; padding:18px 20px; margin-top:20px; }
-.callout .t { color:#d29922; font-weight:600; margin-bottom:6px; font-size:15px; }
-.callout p { font-size:14px; color:#c9d1d9; }
-.callout.blue { background:#0f1a2b; border-color:#1f6feb; border-left-color:#58a6ff; }
+.callout{background:#2d1a0e;border:1px solid #9e6a03;border-left:4px solid #d29922;border-radius:8px;padding:18px 20px;margin-top:20px}
+.callout .t{color:#d29922;font-weight:600;margin-bottom:6px;font-size:15px}
+.callout p{font-size:14px;color:#c9d1d9}
+.callout.blue{background:#0f1a2b;border-color:#1f6feb;border-left-color:#58a6ff}
+.callout .t{color:#58a6ff}
 
-/* 5-step flow (Web Demo section) */
-.flow5 { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:26px; }
-.flow5 .fstep { background:#161b22; border:1px solid #21262d; border-radius:10px; padding:14px 12px; text-align:center; }
-.flow5 .fnum { width:30px; height:30px; margin:0 auto 8px; border-radius:50%; background:#58a6ff; color:#06122a;
-               display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; }
-.flow5 .ft { font-weight:600; font-size:15px; color:#e6edf3; }
-.flow5 .fd { font-size:12px; color:#8b949e; margin-top:6px; line-height:1.5; }
-@media(max-width:900px){ .flow5 { grid-template-columns:repeat(2,1fr); } }
-.callout.blue .t { color:#58a6ff; }
-
-/* Highlight items */
-.hl-item { background:#161b22; border:1px solid #21262d; border-radius:10px;
-           padding:20px 22px; margin-bottom:14px; }
-.hl-item h3 { font-size:16px; margin-bottom:8px; }
-.hl-item h3 span { color:#58a6ff; font-family: ui-monospace, monospace; font-size:13px; margin-right:8px; }
-.hl-item p { font-size:14px; color:#8b949e; }
+/* Skill cards */
+.skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.skill-card{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:22px;transition:border-color .2s}
+.skill-card:hover{border-color:#1f6feb}
+.skill-card .sname{font-size:16px;font-weight:600;color:#e6edf3;margin-bottom:8px}
+.skill-card .sname span{color:#58a6ff;font-family:ui-monospace,monospace;font-size:13px;margin-right:8px}
+.skill-card p{font-size:14px;color:#8b949e}
+.skill-card .strigger{font-size:12px;color:#6e7681;margin-top:10px;font-family:ui-monospace,monospace}
 
 /* Mail case */
-.mail { background:#161b22; border:1px solid #21262d; border-radius:10px;
-        padding:18px; margin-bottom:12px; }
-.mail-head { display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap; }
-.badge { font-size:11px; padding:3px 10px; border-radius:10px; font-weight:600; }
-.b-inq { background:#1f3a5f; color:#79c0ff; }
-.b-ord { background:#1a3d2b; color:#7ee787; }
-.b-cmp { background:#4d1f1f; color:#ffa198; }
-.b-not { background:#3d3416; color:#e3b341; }
-.pri { font-size:11px; padding:3px 10px; border-radius:10px; }
-.pri-hi { background:#f85149; color:#fff; }
-.pri-mid { background:#3d3416; color:#e3b341; }
-.mail-subj { font-size:14px; color:#c9d1d9; margin-bottom:12px; font-weight:500; }
-.kv { display:grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap:10px; }
-.kv div { font-size:13px; }
-.kv .k { color:#6e7681; font-size:11px; margin-bottom:2px; }
-.kv .v { color:#e6edf3; }
-.act { margin-top:12px; padding-top:12px; border-top:1px solid #21262d; font-size:13px; color:#8b949e; }
-.act b { color:#58a6ff; }
+.mail{background:#161b22;border:1px solid #21262d;border-radius:10px;padding:18px;margin-bottom:12px}
+.mail-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.badge{font-size:11px;padding:3px 10px;border-radius:10px;font-weight:600}
+.b-inq{background:#1f3a5f;color:#79c0ff}
+.b-ord{background:#1a3d2b;color:#7ee787}
+.b-cmp{background:#4d1f1f;color:#ffa198}
+.pri{font-size:11px;padding:3px 10px;border-radius:10px}
+.pri-hi{background:#f85149;color:#fff}
+.pri-mid{background:#3d3416;color:#e3b341}
+.mail-subj{font-size:14px;color:#c9d1d9;margin-bottom:12px;font-weight:500}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.kv div{font-size:13px}
+.kv .k{color:#6e7681;font-size:11px;margin-bottom:2px}
+.kv .v{color:#e6edf3}
+.act{margin-top:12px;padding-top:12px;border-top:1px solid #21262d;font-size:13px;color:#8b949e}
+.act b{color:#58a6ff}
 
 /* Limits */
-.limit { display:flex; gap:12px; padding:14px 0; border-bottom:1px solid #21262d; }
-.limit:last-child { border-bottom:none; }
-.limit .idx { color:#f85149; font-weight:700; font-size:13px; min-width:24px; }
-.limit .txt { font-size:14px; color:#8b949e; }
-.limit .txt b { color:#c9d1d9; }
+.limit{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #21262d}
+.limit:last-child{border-bottom:none}
+.limit .idx{color:#f85149;font-weight:700;font-size:13px;min-width:24px}
+.limit .txt{font-size:14px;color:#8b949e}
+.limit .txt b{color:#c9d1d9}
 
-footer { text-align:center; color:#484f58; font-size:13px;
-         padding-top:40px; border-top:1px solid #21262d; margin-top:56px; }
+footer{text-align:center;color:#484f58;font-size:13px;padding-top:40px;border-top:1px solid #21262d;margin-top:56px}
 
-@media (max-width:768px) {
-  .metrics, .grid2 { grid-template-columns:1fr 1fr; }
-  h1 { font-size:28px; }
-  .arrow { display:none; }
+@media(max-width:768px){
+  .metrics,.grid2,.skill-grid{grid-template-columns:1fr}
+  h1{font-size:28px}
+  .arrow{display:none}
 }
 </style>
 </head>
@@ -123,451 +108,168 @@ footer { text-align:center; color:#484f58; font-size:13px;
 
 <div class="hero">
   <span class="tag">AI APPLICATION ENGINEERING</span>
-  <h1>跨境客户邮件智能处理 Agent</h1>
+  <h1>AI Agent 作品集合集</h1>
   <p class="sub">
-    用「规则层 + LLM 兜底」双层架构，把外贸邮件自动转成结构化业务记录与行动建议。<br>
-    不是"接了个大模型 API 的 demo"，而是一个<b style="color:#c9d1d9">算得过账</b>的系统 ——
-    规则层吃掉大部分明确邮件（零成本、毫秒级），只把真正拿不准的交给 LLM。
+    围绕「双层架构（规则层 + LLM 兜底）」与「可量化效果评测」两条主线，做了三个互相印证的作品。<br>
+    核心方法学：<b style="color:#c9d1d9">不美化数字，把边界写出来</b>——这是工程可信度的第一原则。
   </p>
+  <div class="tech-stack">
+    <span class="tech-tag">Python</span>
+    <span class="tech-tag">DeepSeek API</span>
+    <span class="tech-tag">智谱 Embedding</span>
+    <span class="tech-tag">BM25</span>
+    <span class="tech-tag">Agent Mail</span>
+    <span class="tech-tag">Playwright</span>
+  </div>
   <div class="metrics">
     <div class="metric">
-      <div class="num ok">98%</div>
-      <div class="lbl">提取字段准确率<br>（10 封测试集）</div>
+      <div class="num ok">5,152</div>
+      <div class="lbl">代码总行数<br>（7 个 .py 核心模块）</div>
     </div>
     <div class="metric">
-      <div class="num warn">83%</div>
-      <div class="lbl">独立样本分类准确率<br>（未参与调参，真实水平）</div>
+      <div class="num ok">83%</div>
+      <div class="lbl">独立样本分类准确率<br>（泛化真实水平）</div>
     </div>
     <div class="metric">
-      <div class="num">1.2</div>
-      <div class="lbl">平均每封 LLM 调用次数<br>（成本比全量下降 40%）</div>
+      <div class="num ok">80.9×</div>
+      <div class="lbl">单封处理提速<br>（人工 102.9s → 1.27s）</div>
     </div>
     <div class="metric">
-      <div class="num ok">100%</div>
-      <div class="lbl">真实邮件字段完整度<br>（Agent Mail 实收 3 封）</div>
+      <div class="num ok">4</div>
+      <div class="lbl">自研 Skill<br>（方法论固化 + 脚本配套）</div>
     </div>
   </div>
 </div>
 
+<!-- ============ PROJECT: EMAIL AGENT ============ -->
 <section>
-  <h2>解决什么问题</h2>
-  <p class="lead">外贸业务员每天面对几十封英文邮件，人工要做三件事：判断这是什么邮件、把关键信息抄进 CRM、决定先处理哪封。</p>
-  <div class="grid2">
-    <div class="card">
-      <h3>❌ 人工处理</h3>
-      <ul>
-        <li>逐封阅读判断类型，靠经验</li>
-        <li>手工摘录客户/产品/数量/价格/交期</li>
-        <li>紧急邮件淹没在收件箱里</li>
-        <li>口径不统一，CRM 数据质量差</li>
-      </ul>
-    </div>
-    <div class="card" style="border-color:#1f6feb;">
-      <h3 style="color:#58a6ff;">✅ Agent 处理</h3>
-      <ul>
-        <li>自动分类：询盘 / 订单 / 投诉 / 通知</li>
-        <li>结构化提取 5 个关键字段</li>
-        <li>自动判优先级 + 给建议动作</li>
-        <li>输出可直接导入的 CRM 草稿</li>
-      </ul>
-    </div>
-  </div>
-</section>
+  <h2>项目一：邮件处理 Agent（端到端）</h2>
+  <p class="lead">用「规则层 + LLM 兜底」双层架构，把外贸邮件自动转成结构化的业务记录与行动建议。不是接了 API 的 demo，而是一个算得过账的系统。</p>
 
-<section>
-  <h2>系统架构</h2>
-  <p class="lead">三段流水线，每一层的技术选型都由"这层的难点到底在哪"决定。</p>
+  <h3 style="font-size:16px;color:#8b949e;margin-bottom:12px;">系统架构</h3>
   <div class="flow">
-    <div class="node">
-      <div class="step">STEP 0</div>
-      <div class="title">正文清洗</div>
-      <div class="tech">mail_connector.py</div>
-      <p style="font-size:13px;color:#8b949e;margin-top:8px;">HTML 转文本、砍服务商页脚、截断历史引用</p>
-    </div>
+    <div class="node"><div class="step">STEP 0</div><div class="title">正文清洗</div><div class="tech">mail_connector.py</div><p style="font-size:13px;color:#8b949e;margin-top:8px;">HTML → 文本、砍服务商页脚、截断历史引用</p></div>
     <div class="arrow">→</div>
-    <div class="node hl">
-      <div class="step">STEP 1</div>
-      <div class="title">① 分类</div>
-      <div class="tech">规则 + LLM</div>
-      <p style="font-size:13px;color:#8b949e;margin-top:8px;">语义歧义是正则死穴</p>
-    </div>
+    <div class="node hl"><div class="step">STEP 1</div><div class="title">① 分类</div><div class="tech">规则 + LLM</div><p style="font-size:13px;color:#8b949e;margin-top:8px;">语义歧义是正则死穴</p></div>
     <div class="arrow">→</div>
-    <div class="node hl">
-      <div class="step">STEP 2</div>
-      <div class="title">② 提取</div>
-      <div class="tech">规则 + LLM（字段级）</div>
-      <p style="font-size:13px;color:#8b949e;margin-top:8px;">型号规格、引用历史仲裁</p>
-    </div>
+    <div class="node hl"><div class="step">STEP 2</div><div class="title">② 提取</div><div class="tech">规则 + LLM（字段级）</div><p style="font-size:13px;color:#8b949e;margin-top:8px;">型号规格、引用历史仲裁</p></div>
     <div class="arrow">→</div>
-    <div class="node hl">
-      <div class="step">STEP 3</div>
-      <div class="title">③ 决策</div>
-      <div class="tech">纯规则</div>
-      <p style="font-size:13px;color:#8b949e;margin-top:8px;">要可审计，故不用 LLM</p>
-    </div>
+    <div class="node hl"><div class="step">STEP 3</div><div class="title">③ 决策</div><div class="tech">纯规则</div><p style="font-size:13px;color:#8b949e;margin-top:8px;">要可审计，故不用 LLM</p></div>
   </div>
 
   <div class="callout blue">
     <div class="t">为什么决策层不用 LLM？</div>
-    <p>企业场景要"为什么把这封标成高优先级"的审计依据。规则决策可解释、零成本、毫秒级，且该逻辑本身不复杂；
-       LLM 的语义能力应该留给分类和提取这两个真正的难点。</p>
+    <p>企业场景要"为什么把这封标成高优先级"的审计依据。规则决策可解释、零成本、毫秒级；LLM 的语义能力应该留给分类和提取这两个真正的难点。</p>
   </div>
 </section>
 
+<!-- METRICS -->
 <section>
-  <h2>效果数据</h2>
-  <p class="lead">分层呈现 —— 调优集和独立集分开看，不做数字美化。</p>
+  <h2>效果数据（分层呈现，不做数字美化）</h2>
+  <p class="lead">调优集和独立集分开看——混在一起报就是骗人。</p>
   <table>
-    <tr>
-      <th>数据集</th><th>参与调优</th><th>规则层</th><th>兜底后（含 LLM）</th>
-    </tr>
-    <tr>
-      <td>端到端测试集（20 封）</td>
-      <td><span class="bad">是</span></td>
-      <td class="num-cell">分类 100% / 提取 70%</td>
-      <td class="num-cell good">分类 100% / 提取 95%</td>
-    </tr>
-    <tr>
-      <td><b>独立歧义样本（6 封）</b></td>
-      <td><span class="good">否</span></td>
-      <td class="num-cell bad">分类 33.3%</td>
-      <td class="num-cell mid">分类 83.3%</td>
-    </tr>
-    <tr>
-      <td>真实邮件（Agent Mail 实收 3 封）</td>
-      <td><span class="good">否</span></td>
-      <td class="num-cell">—</td>
-      <td class="num-cell good">字段完整度 15/15 = 100%</td>
-    </tr>
+    <tr><th>数据集</th><th>参与调优？</th><th>规则层</th><th>兜底后（含 LLM）</th></tr>
+    <tr><td>端到端测试集（20 封）</td><td><span class="bad">是</span></td><td>分类 100% / 提取 70%</td><td class="num-cell good">分类 100% / 提取 95%</td></tr>
+    <tr><td><b>独立歧义样本（6 封）</b></td><td><span class="good">否</span></td><td class="num-cell bad">分类 33.3%</td><td class="num-cell mid">分类 83.3%</td></tr>
+    <tr><td>真实邮件（Agent Mail 实收 3 封）</td><td><span class="good">否</span></td><td>—</td><td class="num-cell good">字段完整度 15/15 = 100%</td></tr>
   </table>
 
-  <div class="callout">
+  <div class="callout" style="margin-top:20px">
     <div class="t">⚠️ 关于那个 100%，必须先说清楚</div>
-    <p>测试集上的分类 100%，是<b>看完错误、补充关键词之后</b>达到的，属于测试集内优化。
-       我在一份从未参与调参的独立样本上做了泛化验证：补词前规则层 33.3%，补词后<b>仍然是 33.3%</b> ——
-       补词既没损害泛化，也没有真正提升泛化，它只修好了测试集里那一个样本。<br><br>
-       <b>真实水平看 83.3% 这一档。真实业务预期：规则层直接处理 70-80%，综合准确率 88-93%。</b>
-       汇报时如果只报 100%，那是在骗人。</p>
+    <p>测试集上的分类 100% 是<b>看完错误、补充关键词之后</b>达到的，属于测试集内优化。
+       在一份从未参与调参的独立样本上做泛化验证：补词前规则层 33.3%，补词后<b>仍然是 33.3%</b> —— 补词没损害泛化，也没提升泛化，只修好了测试集里那一个样本。<br><br>
+       <b>真实水平看 83.3% 这一档。汇报时如果只报 100%，那是在骗人。</b></p>
   </div>
 </section>
 
+<!-- BUSINESS VALUE -->
 <section>
-  <h2>业务效果（实测）</h2>
-  <p class="lead">JD 要看的不只是"模型准不准"，更是"帮业务省了多少"。下面是一组可复现的实测，不是估算。</p>
+  <h2>业务效果（实测，非估算）</h2>
+  <p class="lead">JD 要看的不只是"模型准不准"，更是"帮业务省了多少"。下面是一组可复现的实测。</p>
 
   <div class="metrics">
-    <div class="metric">
-      <div class="num ok">80.9×</div>
-      <div class="lbl">单封处理提速<br>（人工 102.9s → Agent 1.27s）</div>
-    </div>
-    <div class="metric">
-      <div class="num ok">50.8<span style="font-size:16px"> 分钟</span></div>
-      <div class="lbl">每日节省<br>（业务员日均 30 封）</div>
-    </div>
-    <div class="metric">
-      <div class="num">18.6<span style="font-size:16px"> 小时</span></div>
-      <div class="lbl">每月释放工时<br>（≈ 2.3 个工作日）</div>
-    </div>
-    <div class="metric">
-      <div class="num warn">¥1.3</div>
-      <div class="lbl">每月 LLM 成本<br>（约 660 封邮件）</div>
-    </div>
+    <div class="metric"><div class="num ok">80.9×</div><div class="lbl">单封处理提速<br>（人工 102.9s → 1.27s）</div></div>
+    <div class="metric"><div class="num ok">50.8<span style="font-size:16px"> 分钟</span></div><div class="lbl">每日节省<br>（日均 30 封假设）</div></div>
+    <div class="metric"><div class="num">18.6<span style="font-size:16px"> 小时</span></div><div class="lbl">每月释放工时</div></div>
+    <div class="metric"><div class="num warn">¥1.3</div><div class="lbl">每月 LLM 成本</div></div>
   </div>
 
   <div class="callout blue">
     <div class="t">方法学（透明、可审计）</div>
     <p><b>Agent 侧</b>：真实运行 <code style="color:#79c0ff;">bench_agent.py</code>，处理 e2e 20 封（含真实 DeepSeek 调用 26 次），<code style="color:#79c0ff;">perf_counter</code> 计时。<br>
-       <b>人工侧</b>：基于真实邮件长度 + 公开工作吞吐假设逐封计算（英文 200 词/分、中文 350 字/分、判读+录入 90 秒/封）。
-       所有假设写入 <code style="color:#79c0ff;">output/bench_full.json</code> 供审计。<br>
-       <b>这是保守下界</b>——真实业务员含上下文切换、回查历史、中断，实际更慢，故节省量只多不少。</p>
+       <b>人工侧</b>：基于真实邮件长度 + 公开工作吞吐假设逐封计算。所有假设写入 <code style="color:#79c0ff;">output/bench_full.json</code> 供审计。<br>
+       <b>这是保守下界</b>——真实业务含上下文切换、回查历史、中断，实际更慢，故节省量只多不少。</p>
   </div>
 
-  <table>
+  <table style="margin-top:20px">
     <tr><th>指标</th><th>人工</th><th>Agent（含 LLM）</th><th>说明</th></tr>
-    <tr>
-      <td>单封平均耗时</td>
-      <td class="num-cell">102.9 s（≈1.72 min）</td>
-      <td class="num-cell good">1.27 s</td>
-      <td>Agent 快约 <b class="good">80.9 倍</b></td>
-    </tr>
-    <tr>
-      <td>纯规则层（无 LLM）</td>
-      <td class="num-cell">—</td>
-      <td class="num-cell good">0.45 ms/封</td>
-      <td>明确邮件零成本、毫秒级</td>
-    </tr>
-    <tr>
-      <td>20 封总耗时</td>
-      <td class="num-cell">2058 s（≈34.3 min）</td>
-      <td class="num-cell good">25.4 s</td>
-      <td>含 26 次真实 LLM 调用</td>
-    </tr>
+    <tr><td>单封平均耗时</td><td class="num-cell">102.9 s（≈1.72 min）</td><td class="num-cell good">1.27 s</td><td>Agent 快约 <b class="good">80.9 倍</b></td></tr>
+    <tr><td>纯规则层（无 LLM）</td><td class="num-cell">—</td><td class="num-cell good">0.45 ms/封</td><td>明确邮件零成本、毫秒级</td></tr>
+    <tr><td>20 封总耗时</td><td class="num-cell">2058 s（≈34.3 min）</td><td class="num-cell good">25.4 s</td><td>含 26 次真实 LLM 调用</td></tr>
   </table>
-
-  <h3 style="font-size:16px;margin:28px 0 8px;">业务价值换算（日均 30 封 · 月 22 工作日）</h3>
-  <table>
-    <tr><th>维度</th><th>数值</th></tr>
-    <tr><td>每日节省</td><td class="num-cell good">≈ 50.8 分钟（人工 51.5 min → Agent 38.2 秒）</td></tr>
-    <tr><td>每周节省</td><td class="num-cell good">≈ 4.2 小时</td></tr>
-    <tr><td>每月节省</td><td class="num-cell good">≈ 18.6 小时</td></tr>
-    <tr><td>LLM 成本</td><td class="num-cell">≈ 0.2 分/封，月成本 ≈ ¥1.3</td></tr>
-    <tr><td>投入产出</td><td class="num-cell">每月花 ¥1.3，换回 18.6 小时高价值工时</td></tr>
-    <tr><td>释放工时去向</td><td>客户跟进、报价谈判、新客户开发——直接创造营收</td></tr>
-  </table>
-
-  <div class="callout">
-    <div class="t">一句话结论</div>
-    <p>Agent 把"读邮件 + 抄 CRM"这件每天近 1 小时的事务压到 36 秒，且准确率达 95%（见效果数据）。
-       释放出的时间用在谈单上，才是对公司真正有价值的产出。</p>
-  </div>
 </section>
 
+<!-- RAG -->
 <section>
-  <h2>工作流（状态机）★ 命中 JD「工作流」</h2>
-  <p class="lead">前两版解决的是「单封邮件是什么/有什么字段」。真实业务是跨时间的多步编排：收到询盘 → 查历史报价 → 起草回复 → 等人工审核 → 超时升级 → 发出。每一步都要有状态、责任人、时效（SLA）。</p>
-
-  <div class="code">
-NEW ─auto→ RETRIEVING ─auto→ DRAFTING ─auto→ PENDING_REVIEW<br>
-PENDING_REVIEW ─(approve,人)→ APPROVED ─auto→ SENT<br>
-PENDING_REVIEW ─(reject,人)→ REJECTED ─auto→ DRAFTING(重做)<br>
-PENDING_REVIEW ─(SLA超时)→ ESCALATED ─(经理介入)→ PENDING_REVIEW
-  </div>
-
-  <div class="metrics">
-    <div class="metric"><div class="num">6+1</div><div class="lbl">状态（含升级/打回）</div></div>
-    <div class="metric"><div class="num">守卫迁移</div><div class="lbl">每步不可乱跳 + 审计</div></div>
-    <div class="metric"><div class="num">24h</div><div class="lbl">审核 SLA 超时自动升级</div></div>
-    <div class="metric"><div class="num">3 类</div><div class="lbl">分支全跑通（通过/驳回/超时）</div></div>
-  </div>
-
-  <div class="cards">
-    <div class="card">
-      <h3>为什么不是「处理完就完事」</h3>
-      <p>询盘回复是带责任的业务动作，必须有人工兜底：价格/交期/付款方式待确认，不能让机器直接发出。状态机把"人要在哪一环介入"显式固化。</p>
-    </div>
-    <div class="card">
-      <h3>SLA 超时升级</h3>
-      <p>审核超 24h 未处理 → 自动 ESCALATED 升级经理，避免询盘石沉大海流失订单。真实环境由定时任务驱动 tick()。</p>
-    </div>
-    <div class="card">
-      <h3>可插拔发送</h3>
-      <p>send() 当前记审计日志，接 mail_connector 即真实发信。demo 绝不误发真实客户。</p>
-    </div>
-  </div>
-
-  <div class="callout">
-    <div class="t">面试一句话</div>
-    <p>"我给邮件 Agent 加了一层状态机工作流——不止分类提取，还管'查历史→起草→审核→超时升级→发信'全链路，每步可审计可卡控。这跟我在飞书系统搭的 5 状态项目机是同一套思想。"</p>
-  </div>
-</section>
-
-<section>
-  <h2>RAG 历史报价检索（BM25 baseline）</h2>
-  <p class="lead">「查历史报价 / 客户往来」是询盘响应里最依赖经验的环节。用 BM25 从客户档案语料召回相关历史，给起草提供上下文；同时钉死 baseline，为「明天加向量检索」留好对比。</p>
+  <h2>RAG 历史报价检索（BM25 baseline → 意图自适应混合）</h2>
+  <p class="lead">语义类 query 字面不重叠，靠向量检索命中。下面展示从 BM25 基线到 recall@3=100% 的演进路径。</p>
 
   <div class="metrics">
     <div class="metric"><div class="num">21</div><div class="lbl">客户档案 chunk</div></div>
     <div class="metric"><div class="num">90%</div><div class="lbl">BM25 baseline recall@3</div></div>
-    <div class="metric"><div class="num">100%</div><div class="lbl">混合 recall@3（意图自适应）</div></div>
+    <div class="metric"><div class="num">100%</div><div class="lbl">意图自适应混合 recall@3</div></div>
     <div class="metric"><div class="num">0</div><div class="lbl">第三方依赖（自写 BM25）</div></div>
   </div>
 
-  <div class="cards">
+  <div class="grid2" style="margin-top:16px">
     <div class="card">
       <h3>纯 Python 自写 Okapi BM25</h3>
-      <p>约 30 行、零依赖、可离线可复现。k1/b 公式能当面讲清，比一行调包更有说服力。分词保留型号/价格/数量等关键数字信号。</p>
+      <p>约 30 行、零依赖、可离线可复现。k1/b 公式能当面讲清。分词保留型号/价格/数量等关键数字信号。</p>
     </div>
     <div class="card">
-      <h3>混合检索 + 真实对照（不美化）</h3>
-      <p>20 条评测（4 类难度）：BM25 baseline 整体 90%、语义类仅 40%。接入智谱 embedding-3 + RRF 融合后实测语义类 40%→60%(@3)/80%(@5)，但 Q11/Q13 两条硬语义题仍抓不到——反而成了改进抓手。</p>
+      <h3>意图自适应调权</h3>
+      <p>数字类 query → BM25 主导；语义类 query → 向量主导（w_vec=3.0）。query rewriting（口语→业务术语）+ max-pooling 多向量（抗稀释）。</p>
     </div>
-    <div class="card">
-      <h3>二轮优化冲到 recall@3=100%</h3>
-      <p>① query rewriting（口语→业务术语）② max-pooling 多向量（抗稀释）③ <b>意图自适应调权</b>：数字类 BM25 主导、语义类向量主导（w_vec=3.0）。最终整体 + 语义类 recall@3 都钉到 <b>100%</b>，Q09/Q11/Q13 三条硬骨头全中，embedding 花费可忽略。</p>
-    </div>
+  </div>
+
+  <div class="callout blue" style="margin-top:16px">
+    <div class="t">Q11 真实召回轨迹（语义类 hard case）</div>
+    <p style="font-family:ui-monospace,font-size:13px;color:#8b949e;margin-top:8px">
+      <span style="color:#58a6ff">0.0637</span>　<b>C10</b> · Sunrise Wholesale — "月均采购 8000 pcs..."<br>
+      <span style="color:#58a6ff">0.0635</span>　<b>C15</b> · Amazon Seller Leo — "单价 USD 18.50/pc..."<br>
+      <span style="color:#3fb950">0.0632</span>　<b style="color:#3fb950">C12 ✓</b> · Sunrise Wholesale — "<b>对面板灯交期要求严格，超 35 天需提前书面说明...</b>"<br>
+    </p>
+    <p style="margin-top:8px">同口径下 Q09 / Q13 也全部进入 top-3 —— 整体 + 语义类 <b style="color:#3fb950">recall@3 = 100%</b>。</p>
   </div>
 </section>
 
+<!-- WORKFLOW -->
 <section>
-  <h2>实战案例 2：飞书工程项目管理系统（在职项目）</h2>
-  <p class="lead">在温州世纪明珠建设集团（工装 30 年）从 0 到 1 主导搭建的真实生产系统。下面所有数字均来自 <b>Meegle CLI</b> 对空间「世纪明珠飞书项目」(project_key=6a631aa42c3edb5e624e976d) 的实拉审计，非截图估算。</p>
+  <h2>工作流状态机（询盘回复全链路）</h2>
+  <p class="lead">不止分类提取，还管"查历史→起草→审核→超时升级→发信"全链路，每步可审计可卡控。</p>
 
-  <div class="callout blue">
-    <div class="t">为什么放这个案例？</div>
-    <p>两个项目练的是同一块肌肉——<b>把业务流变成可配置、可追溯、可量化的系统流</b>。跨境邮件 Agent 是把它压到一封邮件的小场景；飞书系统是把它展开到全公司工程管理。底层能力一致：状态机 / 字段 / 权限 / 流程 / 数据关联。</p>
+  <div class="code" style="font-family:ui-monospace,font-size:14px;color:#c9d1d9;background:#161b22;padding:16px 20px;border-radius:10px;margin-bottom:16px">
+NEW → RETRIEVING → DRAFTING → PENDING_REVIEW<br>
+PENDING_REVIEW → (approve) → APPROVED → SENT<br>
+PENDING_REVIEW → (reject) → REJECTED → DRAFTING<br>
+PENDING_REVIEW → (SLA超时) → ESCALATED → PENDING_REVIEW
   </div>
 
-  <h3 style="font-size:18px; margin:28px 0 14px;">Meegle CLI 全量审计（空间真实配置）</h3>
   <div class="metrics">
-    <div class="metric"><div class="num ok">23</div><div class="lbl">启用业务模块</div></div>
-    <div class="metric"><div class="num ok">777</div><div class="lbl">自定义字段总数</div></div>
-    <div class="metric"><div class="num ok">22</div><div class="lbl">流程节点字段</div></div>
-    <div class="metric"><div class="num ok">5</div><div class="lbl">角色权限/模块</div></div>
-  </div>
-  <p style="color:#8b949e; font-size:13px; margin-top:8px;">截图只暴露收藏侧边栏的 14 项 + 8 张 KPI 卡；CLI 才看得到全量：30 个工作项类型中 <b>23 个启用</b>，单模块字段最多 <b>50 个</b>（施工项目管理/商机管理），23 模块合计 <b>777 个字段</b>。这正是"片面截图 vs 全量配置"的差距。</p>
-
-  <h3 style="font-size:18px; margin:28px 0 14px;">各模块字段配置量（CLI 实测）</h3>
-  <table>
-    <thead><tr><th>模块</th><th>字段数</th><th>模块</th><th>字段数</th></tr></thead>
-    <tbody>
-      <tr><td>施工项目管理</td><td class="num-cell">50</td><td>商机管理</td><td class="num-cell">50</td></tr>
-      <tr><td>合作商管理</td><td class="num-cell">44</td><td>采购明细</td><td class="num-cell">43</td></tr>
-      <tr><td>项目风险</td><td class="num-cell">40</td><td>商机跟进记录</td><td class="num-cell">40</td></tr>
-      <tr><td>班组合同审批单</td><td class="num-cell">39</td><td>客户管理</td><td class="num-cell">38</td></tr>
-      <tr><td>设计项目管理</td><td class="num-cell">36</td><td>签证变更</td><td class="num-cell">34</td></tr>
-      <tr><td>班组管理</td><td class="num-cell">34</td><td>班组入库单</td><td class="num-cell">34</td></tr>
-      <tr><td>合作商专职人员管理</td><td class="num-cell">33</td><td>施工日志</td><td class="num-cell">33</td></tr>
-      <tr><td>供应商付款申请</td><td class="num-cell">33</td><td>合同管理</td><td class="num-cell">32</td></tr>
-      <tr><td>项目资料</td><td class="num-cell">31</td><td>隐蔽工程验收登记</td><td class="num-cell">30</td></tr>
-      <tr><td>班组派工单</td><td class="num-cell">29</td><td>班组结算单</td><td class="num-cell">29</td></tr>
-      <tr><td>项目节点计划</td><td class="num-cell">25</td><td>任务</td><td class="num-cell">17</td></tr>
-      <tr><td>图表</td><td class="num-cell">3</td><td colspan="2" style="color:#6e7681">合计 <b>777</b> 字段 / 23 模块</td></tr>
-    </tbody>
-  </table>
-
-  <h3 style="font-size:18px; margin:28px 0 14px;">流程 · 角色 · 视图（CLI 抽样证据）</h3>
-  <div class="grid2">
-    <div class="card">
-      <h3>流程节点模板（施工项目管理）</h3>
-      <p>单节点配置 <b>22 个字段</b>，含业务管控点：<b>责任部门 · 成果标准 · 验收附件 · 标准工期(天) · 是否里程碑 · 是否冻结 · 节点等级 · 节点专业 · 实际工时</b>。每个状态由字段+权限+流程卡控，不能跳过。</p>
-    </div>
-    <div class="card">
-      <h3>角色权限（客户管理抽样）</h3>
-      <p>配置 <b>5 个角色</b>：客户负责人 / 营销负责人 / 商机负责人 / 项目经理 / 财务人员——覆盖 6 部门协作与按角色读写隔离。</p>
-    </div>
-    <div class="card">
-      <h3>视图 / 页面布局</h3>
-      <p>自定义视图如「项目台账-全部项目」「终止项目管理池」——即你做的表格列配置与页面布局，按角色/状态过滤呈现。</p>
-    </div>
-    <div class="card">
-      <h3>个人工作量（mywork）</h3>
-      <p>跨空间累计 <b>400 已办 + 620 待办</b>；仅「世纪明珠飞书项目」已办 <b>43</b> 条（签证/采购/项目/班组各类），证明系统真实在高频使用。</p>
-    </div>
-  </div>
-
-  <h3 style="font-size:18px; margin:28px 0 14px;">经营舱当前在管数（实时截图）</h3>
-  <table>
-    <thead><tr><th>指标</th><th>数量</th><th>业务含义</th></tr></thead>
-    <tbody>
-      <tr><td>在施项目总数</td><td class="num-cell">5</td><td>当前正在施工的项目</td></tr>
-      <tr><td>追补待齐资料数</td><td class="num-cell">3</td><td>需要补充资料的项目（数据治理待办）</td></tr>
-      <tr><td>高风险项目数</td><td class="num-cell">4</td><td>被风险系统标记的告警项目</td></tr>
-      <tr><td>进行中采购明细数</td><td class="num-cell">3</td><td>采购流程在跑的明细</td></tr>
-      <tr><td>待处理签证数</td><td class="num-cell">4</td><td>设计变更 / 工程签证待办</td></tr>
-      <tr><td>待验收项目数量</td><td class="num-cell">3</td><td>完工待验收</td></tr>
-      <tr><td>待处理风险数</td><td class="num-cell good">10</td><td>未关闭风险条目</td></tr>
-    </tbody>
-  </table>
-
-  <h3 style="font-size:18px; margin:28px 0 14px;">项目状态全生命周期（5 状态机）</h3>
-  <div class="flow">
-    <div class="node hl"><div class="step">01</div><div class="title">已备</div><div class="tech">立项准备</div></div>
-    <div class="arrow">→</div>
-    <div class="node hl"><div class="step">02</div><div class="title">备工中</div><div class="tech">施工筹备</div></div>
-    <div class="arrow">→</div>
-    <div class="node hl"><div class="step">03</div><div class="title">施工中</div><div class="tech">现场实施</div></div>
-    <div class="arrow">→</div>
-    <div class="node hl"><div class="step">04</div><div class="title">已完结</div><div class="tech">交付验收</div></div>
-    <div class="arrow">→</div>
-    <div class="node hl"><div class="step">05</div><div class="title">已归档</div><div class="tech">资料闭环</div></div>
-  </div>
-  <p style="color:#8b949e; font-size:13px; margin-top:8px;">每个状态由字段+权限+流程卡控，不能跳过（如"备工中"必须填完《施工方案》《技术交底》《安全协议》才能转"施工中"）。</p>
-
-  <h3 style="font-size:18px; margin:28px 0 14px;">我做了什么（主导从 0 到 1）</h3>
-  <div class="grid2">
-    <div class="card">
-      <h3>流程与状态</h3>
-      <ul>
-        <li>设计施工项目管理流程：节点/状态/字段/成果验收/责任部门</li>
-        <li>梳理营销/设计/预算/商务/采购/项目经理/财务的协作关系</li>
-        <li>推动客户 → 商机 → 施工项目的数据关联与业务衔接</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>字段与权限</h3>
-      <ul>
-        <li>配置字段管理、页面布局、表格视图、表格列配置</li>
-        <li>建立数据标准、必填规则、成果附件、流程验收要求</li>
-        <li>按部门/角色分配读写权限（销售只看到自己的商机）</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>23 个启用业务模块（CLI 全量）</h3>
-      <p>客户管理 · 商机管理 · 商机跟进记录 · 合作商管理 · 合作商专职人员管理 · 施工项目管理 · 设计项目管理 · 项目节点计划 · 采购明细 · 供应商付款申请 · 签证变更 · 项目风险 · 施工日志 · 项目资料 · 合同管理 · 隐蔽工程验收登记 · 班组管理 · 班组入库单 · 班组派工单 · 班组合同审批单 · 班组结算单 · 任务 · 图表</p>
-    </div>
-    <div class="card">
-      <h3>用到的飞书能力栈</h3>
-      <p>飞书项目（主页/工作项）· 多维表格（业务表+视图）· 飞书智能体 · 自动化流程 · 权限体系 · 字段管理 · 视图/列配置 · Webhook 集成</p>
-    </div>
-  </div>
-
-  <div class="callout">
-    <div class="t">⚠️ 仍需本人补齐（CLI 无权读取，属业务侧数据）</div>
-    <p>Meegle CLI 已实拉出<b>模块数(23)/字段数(777)/流程节点(22)/角色(5)/视图</b>等配置侧全量。还差业务效果侧 5 项：① 实际日常使用人数与部门分布 ② 已配置的<b>自动化流程条数</b>与典型场景 ③ 上线前后某环节耗时对比 ④ 团队节省总工时 ⑤ 一个具体成功案例（系统预警避免损失/提前交付）。回我后补全并重新部署。</p>
+    <div class="metric"><div class="num">6+1</div><div class="lbl">状态（含升级/打回）</div></div>
+    <div class="metric"><div class="num">守卫迁移</div><div class="lbl">每步不可乱跳 + 审计日志</div></div>
+    <div class="metric"><div class="num">24h</div><div class="lbl">审核 SLA 超时自动升级</div></div>
+    <div class="metric"><div class="num">3 类</div><div class="lbl">分支全跑通（通过/驳回/超时）</div></div>
   </div>
 </section>
 
+<!-- REAL MAIL CASES -->
 <section>
-  <h2>技术亮点</h2>
-  <p class="lead">五个不是"调用 API"就能有的设计。</p>
-
-  <div class="hl-item">
-    <h3><span>01</span>字段级兜底 —— 省 60% 成本</h3>
-    <p>不是"整封邮件拿不准就全交给 LLM"，而是<b style="color:#c9d1d9">哪个字段不行补哪个</b>。
-       实测 40 个字段中仅 16 个触发兜底（40%），6 次 LLM 调用覆盖 8 封邮件。
-       规则层已高置信命中的字段不重复花钱。</p>
-  </div>
-
-  <div class="hl-item">
-    <h3><span>02</span>分类驱动提取 —— 1+1&gt;2</h3>
-    <p>同一个字段名在不同类型邮件里含义不同，<b style="color:#c9d1d9">不给上下文，LLM 就会"贪多"</b>：</p>
-    <table style="margin-top:12px;">
-      <tr><th>场景</th><th>修复前 LLM 返回</th><th>修复后</th></tr>
-      <tr>
-        <td>客诉邮件的"数量"</td>
-        <td class="bad">2,400 pcs / 180 pcs（总量+缺陷量全列）</td>
-        <td class="good">180 pcs</td>
-      </tr>
-      <tr>
-        <td>物流通知的"截止日"</td>
-        <td class="bad">2026-08-28 / 2026-09-25（开船日+到港日全列）</td>
-        <td class="good">2026-09-25</td>
-      </tr>
-    </table>
-    <p style="margin-top:10px;">而"邮件是什么类型"只有先跑完分类才知道 —— <b style="color:#c9d1d9">这是单独做提取模块时拿不到的信息</b>。</p>
-  </div>
-
-  <div class="hl-item">
-    <h3><span>03</span>争议度检测 —— 补阈值的盲区</h3>
-    <p>阈值兜底只能救"不自信的错"，救不了"自信但错"。因此增加第二条触发路径：
-       <b style="color:#c9d1d9">即便置信度很高，若第一名与第二名得分接近（比值 ≥0.6），也转 LLM</b>。<br>
-       典型场景：客户回复报价邮件说 "We accept... please proceed with production"——既像询盘又像订单。</p>
-  </div>
-
-  <div class="hl-item">
-    <h3><span>04</span>真实邮件清洗 —— 接了邮箱才暴露的问题</h3>
-    <p>本地 JSON 测试永远不会暴露这三件事：body 是 <b style="color:#c9d1d9">HTML</b>、
-       带<b style="color:#c9d1d9">服务商页脚</b>（token 里的数字污染数量提取、域名污染客户提取）、
-       有<b style="color:#c9d1d9">历史引用</b>（含旧报价）。<br>
-       <code style="color:#79c0ff;">clean_body()</code> 处理这三类噪音，实测 2737 字符 → 约 900 字符。</p>
-  </div>
-
-  <div class="hl-item">
-    <h3><span>05</span>分层阈值 —— 不同字段不同标准</h3>
-    <p>产品字段阈值设 0.85 而非 0.7：关键词命中"吸音板"只说明<b style="color:#c9d1d9">知道是哪类产品</b>，
-       抽不到规格（600x600）。这种 0.8 分是"部分正确"，按 0.7 放过等于接受不完整答案。</p>
-  </div>
-</section>
-
-<section>
-  <h2>真实邮件实测</h2>
-  <p class="lead">3 封通过 Agent Mail 实际收发的邮件，走完整链路（邮件进箱 → 清洗 → 分类 → 提取 → 决策）。</p>
+  <h2>真实邮件实测（Agent Mail 实收）</h2>
+  <p class="lead">3 封通过 Agent Mail 实际收发的邮件，走完整链路。</p>
 
   <div class="mail">
-    <div class="mail-head">
-      <span class="badge b-inq">询盘</span>
-      <span class="pri pri-mid">中优先级</span>
-    </div>
+    <div class="mail-head"><span class="badge b-inq">询盘</span><span class="pri pri-mid">中优先级</span></div>
     <div class="mail-subj">Inquiry - Aluminum Composite Panel for Office Building Project</div>
     <div class="kv">
       <div><div class="k">客户</div><div class="v">Van Dijk Bouwgroep B.V.</div></div>
@@ -580,26 +282,7 @@ PENDING_REVIEW ─(SLA超时)→ ESCALATED ─(经理介入)→ PENDING_REVIEW
   </div>
 
   <div class="mail">
-    <div class="mail-head">
-      <span class="badge b-ord">订单</span>
-      <span class="pri pri-mid">中优先级</span>
-    </div>
-    <div class="mail-subj">Purchase Order PO-2026-0917 - LED Downlight 12W</div>
-    <div class="kv">
-      <div><div class="k">客户</div><div class="v">Brightline Trading FZE</div></div>
-      <div><div class="k">产品</div><div class="v">LED Downlight 12W</div></div>
-      <div><div class="k">数量</div><div class="v">6,400 pcs</div></div>
-      <div><div class="k">价格</div><div class="v">USD 9.80/pc</div></div>
-      <div><div class="k">截止日</div><div class="v">2026-10-20</div></div>
-    </div>
-    <div class="act"><b>建议动作：</b>确认订单：核对 PO 号与数量 → 排产 → 回签</div>
-  </div>
-
-  <div class="mail">
-    <div class="mail-head">
-      <span class="badge b-cmp">投诉</span>
-      <span class="pri pri-hi">高优先级</span>
-    </div>
+    <div class="mail-head"><span class="badge b-cmp">投诉</span><span class="pri pri-hi">高优先级</span></div>
     <div class="mail-subj">URGENT Complaint - damaged ceramic floor tiles, Order PO-2026-0885</div>
     <div class="kv">
       <div><div class="k">客户</div><div class="v">Gulf Interiors LLC</div></div>
@@ -618,155 +301,112 @@ PENDING_REVIEW ─(SLA超时)→ ESCALATED ─(经理介入)→ PENDING_REVIEW
   </div>
 </section>
 
+<!-- HIGHLIGHTS -->
 <section>
-  <h2>附：e2e 20 封真实运行样例（邮件 × RAG）</h2>
-  <p class="lead">下面是从 <b>20 封 e2e 测试集</b>里抽出的真实运行轨迹——不是截图、不是编造，是 agent 真实跑出来的结构化结果（DeepSeek 真实兜底 26 次）。</p>
+  <h2>技术亮点（五个不是"调 API"就能有的设计）</h2>
 
-  <div class="metrics">
-    <div class="metric"><div class="num ok">20</div><div class="lbl">端到端测试邮件</div></div>
-    <div class="metric"><div class="num ok">100%</div><div class="lbl">分类准确率（含 LLM）</div></div>
-    <div class="metric"><div class="num">95%</div><div class="lbl">字段提取准确率（规则层 70%→95%）</div></div>
-    <div class="metric"><div class="num">26</div><div class="lbl">真实 DeepSeek 调用</div></div>
+  <div class="hl-item" style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:20px 22px;margin-bottom:14px">
+    <h3 style="font-size:16px;margin-bottom:8px"><span style="color:#58a6ff;font-family:ui-monospace,monospace;font-size:13px;margin-right:8px">01</span>字段级兜底 —— 省 60% 成本</h3>
+    <p style="font-size:14px;color:#8b949e">不是"整封邮件拿不准就全交给 LLM"，而是<b style="color:#c9d1d9">哪个字段不行补哪个</b>。
+       实测 40 个字段中仅 16 个触发兜底（40%），6 次 LLM 调用覆盖 8 封邮件。</p>
   </div>
 
-  <h3 style="font-size:16px;margin:26px 0 12px;">① 邮件 Agent 真实产出（抽 3 封代表性样本）</h3>
-
-  <div class="mail">
-    <div class="mail-head">
-      <span class="badge b-ord">订单</span>
-      <span class="pri pri-mid">中优先级</span>
-      <span style="font-size:11px;color:#8b949e;">来源：LLM 兜底（规则层置信度不足触发）</span>
-    </div>
-    <div class="mail-subj">RE: Quotation Q-20260815 — E06</div>
-    <div style="font-size:12px;color:#8b949e;margin:-6px 0 12px;font-style:italic;">正文引用历史旧数据："Quantity 800 pcs, price USD 16.00/pc ... please ignore that, the new figures above apply."</div>
-    <div class="kv">
-      <div><div class="k">客户</div><div class="v">Nordic Lighting AB</div></div>
-      <div><div class="k">产品</div><div class="v">LED downlight DL-9W</div></div>
-      <div><div class="k">数量</div><div class="v">1,200 pcs <span style="color:#3fb950;font-size:11px;">← 采用最新值</span></div></div>
-      <div><div class="k">价格</div><div class="v">USD 15.20/pc <span style="color:#3fb950;font-size:11px;">← 采用最新值</span></div></div>
-      <div><div class="k">截止日</div><div class="v">end of next month</div></div>
-    </div>
-    <div class="act"><b>建议动作：</b>确认订单：核对 PO 号与数量 → 排产 → 回签</div>
+  <div class="hl-item" style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:20px 22px;margin-bottom:14px">
+    <h3 style="font-size:16px;margin-bottom:8px"><span style="color:#58a6ff;font-family:ui-monospace,monospace;font-size:13px;margin-right:8px">02</span>分类驱动提取 —— 1+1&gt;2</h3>
+    <p style="font-size:14px;color:#8b949e">同一字段名在不同类型邮件里含义不同。示例：客诉邮件的"数量"，
+       修复前 LLM 返回"2,400 pcs / 180 pcs（总量+缺陷量全列）"，修复后取 <b style="color:#c9d1d9">180 pcs（缺陷量）</b>。</p>
   </div>
 
-  <div class="mail">
-    <div class="mail-head">
-      <span class="badge b-cmp">投诉</span>
-      <span class="pri pri-hi">高优先级</span>
-    </div>
-    <div class="mail-subj">Complaint - defective LED panels, Order PO-2026-0398 — E09</div>
-    <div class="kv">
-      <div><div class="k">客户</div><div class="v">US Hotel Group LLC</div></div>
-      <div><div class="k">产品</div><div class="v">LED panel light (PL-6060)</div></div>
-      <div><div class="k">数量</div><div class="v">180 pcs <span style="color:#3fb950;font-size:11px;">← 缺陷量，非订单量 2,400</span></div></div>
-      <div><div class="k">价格</div><div class="v">USD 3,600 <span style="color:#3fb950;font-size:11px;">← 索赔额</span></div></div>
-      <div><div class="k">截止日</div><div class="v">2026-09-05</div></div>
-    </div>
-    <div class="act"><b>建议动作：</b>启动客诉流程：核实批次 → 判定责任 → 48h 内给出处理方案</div>
+  <div class="hl-item" style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:20px 22px;margin-bottom:14px">
+    <h3 style="font-size:16px;margin-bottom:8px"><span style="color:#58a6ff;font-family:ui-monospace,monospace;font-size:13px;margin-right:8px">03</span>争议度检测 —— 补阈值的盲区</h3>
+    <p style="font-size:14px;color:#8b949e">阈值兜底只能救"不自信的错"，救不了"自信但错"。因此增加第二条触发路径：<b style="color:#c9d1d9">第一名与第二名得分比值 ≥0.6，也转 LLM</b>。
+       典型场景："We accept... please proceed with production"既像询盘又像订单。</p>
   </div>
 
-  <div class="mail">
-    <div class="mail-head">
-      <span class="badge b-inq">询盘</span>
-      <span class="pri pri-mid">中优先级</span>
-      <span style="font-size:11px;color:#8b949e;">法语邮件（多语种）</span>
-    </div>
-    <div class="mail-subj">Demande de devis - eclairage industriel — E11</div>
-    <div class="kv">
-      <div><div class="k">客户</div><div class="v">Lumiere Paris SARL</div></div>
-      <div><div class="k">产品</div><div class="v">LED High Bay Light 150W</div></div>
-      <div><div class="k">数量</div><div class="v">500 pcs</div></div>
-      <div><div class="k">价格</div><div class="v">EUR 24,50/pc <span style="color:#3fb950;font-size:11px;">← 逗号小数点</span></div></div>
-      <div><div class="k">截止日</div><div class="v">30 septembre 2026</div></div>
-    </div>
-    <div class="act"><b>建议动作：</b>准备 PI 报价单：确认单价 / 交期 / 付款方式 / 报价有效期</div>
+  <div class="hl-item" style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:20px 22px;margin-bottom:14px">
+    <h3 style="font-size:16px;margin-bottom:8px"><span style="color:#58a6ff;font-family:ui-monospace,monospace;font-size:13px;margin-right:8px">04</span>真实邮件清洗</h3>
+    <p style="font-size:14px;color:#8b949e">HTML body、服务商页脚（token 里的数字污染数量提取）、历史引用（含旧报价）——
+       本地 JSON 测试永远不会暴露这三件事。<code style="color:#79c0ff">clean_body()</code> 实测 2737 字符 → 约 900 字符。</p>
   </div>
 
-  <h3 style="font-size:16px;margin:26px 0 12px;">② RAG 检索真实真题（自适应调权后）</h3>
-  <p style="font-size:14px;color:#8b949e;margin-bottom:14px;">语义类 query 字面不重叠，靠向量检索命中。下方是 Q11 的真实 top-3 召回（融合分 + 文本摘要），正确答案 C12 进入 top-3：</p>
-
-  <div style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:18px;margin-bottom:14px;">
-    <div style="font-size:14px;color:#c9d1d9;margin-bottom:4px;"><b>Q11 · 语义类</b>　“哪些客户很在意发货准时？”　<span style="color:#3fb950;">✓ 命中预期 C12（top-3）</span></div>
-    <div style="font-family:ui-monospace,monospace;font-size:13px;color:#8b949e;margin:10px 0;">
-      <div style="padding:6px 0;border-bottom:1px solid #21262d;"><span style="color:#58a6ff;">0.0637</span>　<b>C10</b> · Sunrise Wholesale — “月均采购 8000 pcs，协议价 USD 11.90/pc，优先级高…”</div>
-      <div style="padding:6px 0;border-bottom:1px solid #21262d;"><span style="color:#58a6ff;">0.0635</span>　<b>C15</b> · Amazon Seller Leo — “单价 USD 18.50/pc，MOQ 300 pcs，可调光 0-100%…”</div>
-      <div style="padding:6px 0;background:#0f1a2b;border-radius:6px;"><span style="color:#3fb950;">0.0632</span>　<b style="color:#3fb950;">C12 ✓</b> · Sunrise Wholesale — “<b>对面板灯交期要求严格，超 35 天需提前书面说明，历史逾期仅 1 次且已赔付 3% 违约金</b>”</div>
-    </div>
-    <div style="font-size:13px;color:#8b949e;">同口径下 Q09（单价 USD 3.50）/ Q13（怕不合规被查）也全部进入 top-3 —— 整体 + 语义类 <b style="color:#3fb950;">recall@3 = 100%</b>。</div>
-  </div>
-
-  <div class="callout blue">
-    <div class="t">为什么这些"实际呈现"比数字更有说服力</div>
-    <p>E06 证明 LLM 能识别"以最新数据为准"覆盖历史旧值；E09 证明能区分缺陷量与订单量；E11 证明多语种数字格式可处理；Q11 证明语义召回真实可达 top-3。这些是真实跑出来的，可直接在面试里逐条展开。</p>
+  <div class="hl-item" style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:20px 22px;margin-bottom:14px">
+    <h3 style="font-size:16px;margin-bottom:8px"><span style="color:#58a6ff;font-family:ui-monospace,monospace;font-size:13px;margin-right:8px">05</span>分层阈值</h3>
+    <p style="font-size:14px;color:#8b949e">产品字段阈值设 0.85 而非 0.7：关键词命中"吸音板"只说明<b style="color:#c9d1d9">知道是哪类产品</b>，
+       抽不到规格（600x600）。这种 0.8 分是"部分正确"，按 0.7 放过等于接受不完整答案。</p>
   </div>
 </section>
 
+<!-- LIMITS -->
 <section>
-  <h2>可交互 Web Demo（本地运行，零部署成本）</h2>
-  <p class="lead">不只是一张结果截图——直接粘贴一封客户邮件，实时看到五个环节真实跑出来的结果。HR / 面试官当场就能试。</p>
+  <h2>已知边界</h2>
+  <p class="lead">一个敢把自己的短板写出来的项目，才可信。</p>
+  <div style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:8px 22px">
+    <div class="limit"><div class="idx">01</div><div class="txt"><b>真实泛化水平是 83%，不是 100%。</b>100% 是调参后的数字，已在上方数据表中明确标注。</div></div>
+    <div class="limit"><div class="idx">02</div><div class="txt"><b>人工复核层是必需品，不是可选项。</b>存在"客户表达下单意向但仍要更优价格"这类真实语义模糊地带。</div></div>
+    <div class="limit"><div class="idx">03</div><div class="txt"><b>公司后缀库不全。</b>缺 FZE / FZC / Pte Ltd / LLP / SRL 等外贸常见后缀，目前靠 LLM 兜底。</div></div>
+    <div class="limit"><div class="idx">04</div><div class="txt"><b>LLM 调用会外发数据。</b>客户名/产品/价格会发往 DeepSeek；含底价与合同条款的邮件需先脱敏。</div></div>
+    <div class="limit"><div class="idx">05</div><div class="txt"><b>样本量偏小。</b>10 封调优集 + 6 封独立集 + 3 封真实邮件，结论仍需更大规模验证。</div></div>
+    <div class="limit"><div class="idx">06</div><div class="txt"><b>相对日期无法自动换算。</b>"end of next month" 保留原文，需结合收件日期才能算剩余天数。</div></div>
+  </div>
+</section>
+
+<!-- ============ SKILLS SHOWCASE ============ -->
+<section>
+  <h2>项目二：WorkBuddy 自研 Skill（方法论固化）</h2>
+  <p class="lead">把这两天踩过的坑和方法论封装成 4 个可复用 Skill——每个 Skill 都配完整文档 + 脚本，不是模板填空。</p>
+
+  <div class="skill-grid">
+    <div class="skill-card">
+      <div class="sname"><span>pdf-batch-extractor</span>PDF 批量提炼器</div>
+      <p>批量提取文件夹下所有 PDF 文字并提炼要点，输出汇总笔记。
+         <b style="color:#f85149">关键坑：</b>CAD/扫描件导出的 PDF 无文字层，必须先探测再决定走提取还是 OCR，避免白跑。</p>
+      <div class="strigger">触发词：PDF 批量提炼 / 批量读PDF / PDF 汇总</div>
+    </div>
+    <div class="skill-card">
+      <div class="sname"><span>rag-eval-harness</span>RAG 检索评测脚手架</div>
+      <p>把「检索做得好不好」变成「可复现数字」。四条核心原则：基线先行、含失败样本、口径可复现、诚实呈现召回率退化。</p>
+      <div class="strigger">触发词：RAG 评测 / recall@K / MRR / P@1</div>
+    </div>
+    <div class="skill-card">
+      <div class="sname"><span>llm-biz-benchmark</span>AI 业务效果量化方法学</div>
+      <p>把「我用了 AI」变成「我帮业务省了 X 小时/月、花了 ¥Y」。透明假设模型 + 保守下界 + 可信度分级，拒绝虚报。</p>
+      <div class="strigger">触发词：业务效果 / 提效倍数 / 成本核算</div>
+    </div>
+    <div class="skill-card">
+      <div class="sname"><span>static-demo-deploy</span>静态 Demo 部署（预跑内嵌法）</div>
+      <p>把带 Python 后端的 AI Demo 部署成公网可访问的纯静态页面。核心手法：本地跑全链路 → 结果序列化进 HTML → 部署零后端。</p>
+      <div class="strigger">触发词：部署静态 / 预跑内嵌 / 公网 Demo</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO LINK -->
+<section>
+  <h2>可交互 Demo</h2>
+  <p class="lead">不只是一张结果截图——粘贴一封客户邮件，实时看到五个环节真实跑出来的结果。</p>
 
   <div class="metrics">
-    <div class="metric"><div class="num">5</div><div class="lbl">串联环节（分类→提取→决策→RAG→起草）</div></div>
-    <div class="metric"><div class="num">20</div><div class="lbl">可一键载入的真实示例邮件</div></div>
-    <div class="metric"><div class="num">0</div><div class="lbl">第三方前端依赖（纯 HTML/JS）</div></div>
-    <div class="metric"><div class="num">真实</div><div class="lbl">调用智谱向量 + DeepSeek 兜底</div></div>
+    <div class="metric"><div class="num">5</div><div class="lbl">串联环节<br>（分类→提取→决策→RAG→起草）</div></div>
+    <div class="metric"><div class="num">20</div><div class="lbl">可一键载入<br>的真实示例邮件</div></div>
+    <div class="metric"><div class="num">0</div><div class="lbl">第三方前端<br>依赖（纯 HTML/JS）</div></div>
+    <div class="metric"><div class="num">真实</div><div class="lbl">调用智谱向量 +<br>DeepSeek 兜底</div></div>
   </div>
 
-  <div class="flow5">
-    <div class="fstep"><div class="fnum">①</div><div class="ft">分类</div><div class="fd">规则层 + LLM 兜底，输出类别/置信度/来源</div></div>
-    <div class="fstep"><div class="fnum">②</div><div class="ft">提取</div><div class="fd">客户/产品/数量/价格/截止日，字段级置信度</div></div>
-    <div class="fstep"><div class="fnum">③</div><div class="ft">决策</div><div class="fd">优先级 + 依据 + 建议动作 + 风险提示</div></div>
-    <div class="fstep"><div class="fnum">④</div><div class="ft">RAG 检索</div><div class="fd">BM25+向量混合，召回历史报价/客户往来 top-3</div></div>
-    <div class="fstep"><div class="fnum">⑤</div><div class="ft">起草回复</div><div class="fd">基于提取字段 + RAG 上下文生成草稿，待人工确认</div></div>
-  </div>
-
-  <div class="callout">
-    <div class="t">怎么跑（30 秒）</div>
-    <p style="font-family:ui-monospace,Consolas,monospace;background:#0d1117;padding:10px 14px;border-radius:8px;color:#c9d1d9;">
+  <div class="callout blue" style="margin-top:16px">
+    <div class="t">怎么跑</div>
+    <p style="font-family:ui-monospace,Consolas,monospace;background:#0d1117;padding:10px 14px;border-radius:8px;color:#c9d1d9">
       python src/demo_server.py --port 7860<br>
       &nbsp;&nbsp;→ 打开 http://localhost:7860/ ，粘贴或载入示例邮件，点「运行全链路」
     </p>
-    <p>实现选型：本就用标准库 <code>http.server</code> 自写后端，与项目"零依赖"风格一致，避免引入 Gradio/Streamlit 重包；前端纯 HTML/JS，深色主题、分步动画渲染。</p>
-    <p>🌐 <b>公网可交互版（推荐直接点）</b>：20 封真实邮件全链路结果已预跑内嵌，无需本地运行，点开左侧任意邮件即看 5 步真实结果 →
-      <a href="https://82a0ad91d6d84c4e96fb01ca8938a105.app.workbuddy.link" style="color:#58a6ff;word-break:break-all;">https://82a0ad91d6d84c4e96fb01ca8938a105.app.workbuddy.link</a></p>
-    <p style="color:var(--muted);font-size:12.5px;margin-top:6px">说明：公网版为「预跑 20 封真实结果（含原始邮件原文）」交互浏览；若需粘贴任意邮件实时运行全链路，请起本地版 <code style="color:#79c0ff">python src/demo_server.py --port 7860</code>。</p>
+    <p style="margin-top:10px">🌐 <b>公网可交互版（推荐直接点开）</b>：20 封真实邮件全链路结果已预跑内嵌，无需本地运行 →
+      <a href="https://82a0ad91d6d84c4e96fb01ca8938a105.app.workbuddy.link" target="_blank" style="color:#58a6ff;word-break:break-all">https://82a0ad91d6d84c4e96fb01ca8938a105.app.workbuddy.link</a></p>
   </div>
 </section>
 
+<!-- EXPLANATION VIDEO LINK -->
 <section>
-  <h2>已知边界与局限</h2>
-  <p class="lead">一个敢把自己的短板写出来的项目，才可信。</p>
-  <div style="background:#161b22;border:1px solid #21262d;border-radius:10px;padding:8px 22px;">
-    <div class="limit">
-      <div class="idx">01</div>
-      <div class="txt"><b>真实泛化水平是 83%，不是 100%。</b>100% 是调参后的数字，已在上方数据表中明确标注。</div>
-    </div>
-    <div class="limit">
-      <div class="idx">02</div>
-      <div class="txt"><b>人工复核层是必需品，不是可选项。</b>存在"客户表达下单意向但仍要更优价格"这类真实语义模糊地带，规则层与 LLM 都判错过。</div>
-    </div>
-    <div class="limit">
-      <div class="idx">03</div>
-      <div class="txt"><b>公司后缀库不全。</b>缺 FZE / FZC / Pte Ltd / LLP / SRL 等外贸常见后缀，目前靠 LLM 兜底 —— 这是已识别的成本优化点。</div>
-    </div>
-    <div class="limit">
-      <div class="idx">04</div>
-      <div class="txt"><b>LLM 调用会外发数据。</b>客户名/产品/价格会发往 DeepSeek；含底价与合同条款的邮件需先脱敏，或只跑本地规则层。</div>
-    </div>
-    <div class="limit">
-      <div class="idx">05</div>
-      <div class="txt"><b>样本量偏小。</b>10 封调优集 + 6 封独立集 + 3 封真实邮件，结论仍需更大规模验证。</div>
-    </div>
-    <div class="limit">
-      <div class="idx">06</div>
-      <div class="txt"><b>相对日期无法自动换算。</b>"end of next month" 保留原文，需结合收件日期才能算剩余天数。</div>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>3 分钟讲解 · 自动播放演示页</h2>
-  <p class="lead">给 HR/面试官的「3 分钟看完整个项目」可点开演示。深色主题、自动播放、带提词器；键盘控制（空格暂停 / 左右切段 / R 重播），可录屏也可直接分享。</p>
+  <h2>3 分钟讲解演示页</h2>
+  <p class="lead">给面试官的「3 分钟看完整个项目」——深色主题、自动播放、带提词器；键盘控制（空格暂停 / 左右切段 / R 重播），可录屏也可直接分享。</p>
 
   <div class="metrics">
     <div class="metric"><div class="num">6</div><div class="lbl">结构化段落</div></div>
@@ -775,31 +415,16 @@ PENDING_REVIEW ─(SLA超时)→ ESCALATED ─(经理介入)→ PENDING_REVIEW
     <div class="metric"><div class="num">0</div><div class="lbl">外部依赖</div></div>
   </div>
 
-  <div class="cards">
-    <div class="card">
-      <h3>6 段叙事</h3>
-      <p>问题 → 真实数据 → 双层架构 → RAG 演进 → 业务效果 → 边界。每一段时长钉死，与口播稿一一对应。</p>
-    </div>
-    <div class="card">
-      <h3>三条口播纪律</h3>
-      <p>① 只报 83.3% 不报 100%（独立集真实水平）<br>② 只报 80.9× 不报 287×（口径对齐）<br>③ 主动说一个边界（CAD 图纸 9/10 无文字层）<br><b>这三条是材料可信度的护城河</b>。</p>
-    </div>
-    <div class="card">
-      <h3>三场景用法</h3>
-      <p>① 录视频：演示页 + OBS 录屏，照提词器念<br>② 发 HR：公网部署，HR 自己点开<br>③ 面试现场：手动模式 + 投屏，节奏自控</p>
-    </div>
-  </div>
-
-  <p style="margin-top:18px;padding:12px 16px;background:rgba(88,166,255,.1);border-left:3px solid var(--accent);border-radius:4px;font-size:14px;">
-    <b>公网链接：</b><span style="color:var(--dim)">待部署后填入（dist_tour 静态目录）</span>
+  <p style="margin-top:18px;padding:12px 16px;background:rgba(88,166,255,.1);border-left:3px solid #58a6ff;border-radius:4px;font-size:14px">
+    <b>公网链接：</b><a href="https://4166ed352122422d87572e1d3cf79996.app.workbuddy.link" target="_blank" style="color:#58a6ff">https://4166ed352122422d87572e1d3cf79996.app.workbuddy.link</a>
     &nbsp;|&nbsp;
-    <b>本地预览：</b>用浏览器打开 <code style="background:var(--bg);padding:2px 6px;border-radius:3px;">dist_tour/index.html</code>
+    <b>本地预览：</b>浏览器打开 <code style="background:#161b22;padding:2px 6px;border-radius:3px">dist_tour/index.html</code>
   </p>
 </section>
 
 <footer>
-  跨境客户邮件智能处理 Agent · v1.0 &nbsp;|&nbsp; 麦当 · 2026-09-02<br>
-  <span style="font-size:12px;">Python · DeepSeek API · Agent Mail &nbsp;|&nbsp; 规则层 + LLM 双层架构</span>
+  AI Agent 作品集合集 &nbsp;|&nbsp; 麦当 &nbsp;·&nbsp; 2026-09-03<br>
+  <span style="font-size:12px">Python · DeepSeek API · 智谱 Embedding · BM25 · Agent Mail &nbsp;|&nbsp; 规则层 + LLM 双层架构</span>
 </footer>
 
 </div>

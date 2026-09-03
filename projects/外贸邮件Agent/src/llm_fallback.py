@@ -94,8 +94,10 @@ class DeepSeekProvider(BaseProvider):
     endpoint = "https://api.deepseek.com/chat/completions"
     model = "deepseek-chat"
 
-    def __init__(self, api_key):
+    def __init__(self, api_key, timeout=30):
         self.api_key = api_key
+        # timeout 可调：生成端（RAG）要求 5s 内返回否则降级，分类/提取沿用 30s
+        self.timeout = timeout
 
     def raw_call(self, system_prompt, user_prompt):
         """调用 API 返回原始文本（不做业务解析）—— 供分类/提取等不同下游复用"""
@@ -112,7 +114,7 @@ class DeepSeekProvider(BaseProvider):
             "temperature": 0,
             "response_format": {"type": "json_object"},
         }
-        resp = requests.post(self.endpoint, headers=headers, json=payload, timeout=30)
+        resp = requests.post(self.endpoint, headers=headers, json=payload, timeout=self.timeout)
         resp.raise_for_status()
         data = resp.json()
         return data["choices"][0]["message"]["content"]
