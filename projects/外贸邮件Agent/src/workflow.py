@@ -39,9 +39,10 @@ from context_builder import build_context, EMPTY_CONTEXT
 # 生成端（RAG 的 G）：真正的 LLM 起草，替代原先的模板拼接
 # 延迟导入 —— 无 DeepSeek Key 时仍能跑通工作流的其余部分
 try:
-    from generator import AnswerGenerator
+    from generator import AnswerGenerator, _template_fallback
 except Exception:
     AnswerGenerator = None
+    _template_fallback = None
 
 # 状态常量
 S_NEW = "NEW"
