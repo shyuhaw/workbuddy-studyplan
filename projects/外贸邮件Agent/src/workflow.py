@@ -139,9 +139,7 @@ class WorkflowCase:
         if self.state != S_NEW:
             raise RuntimeError(f"run_pipeline 只能从 NEW 启动，当前 {self.state}")
         self._step_retrieve()
-        self._step_draft()
-        self.transit(S_PENDING_REVIEW, actor="system",
-                     note=f"起草完成，等待人工审核（SLA {self.sla_hours}h）")
+        self._step_draft()  # 内部已处理 PENDING_REVIEW 迁移
         return self
 
     def _step_retrieve(self):
