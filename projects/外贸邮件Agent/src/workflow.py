@@ -44,6 +44,13 @@ except Exception:
     AnswerGenerator = None
     _template_fallback = None
 
+# 意图词：优化 query 构造时从邮件正文提取的信号词（与 eval_query_optimization.py 共用）
+_QUERY_INTENT_TERMS = [
+    "quotation", "price", "cost", "unit price", "specification", "model",
+    "delivery", "lead time", "shipment", "payment", "order", "quantity",
+    "报价", "价格", "规格", "型号", "交期", "付款", "订单", "数量",
+]
+
 # 状态常量
 S_NEW = "NEW"
 S_RETRIEVING = "RETRIEVING"
@@ -81,15 +88,19 @@ class WorkflowCase:
     """一个询盘的生命周期状态机"""
 
     def __init__(self, mail_result, retriever=None, sla_hours=SLA_HOURS, clock=None,
-                 generator=None, use_llm_draft=True):
+                 generator=None, use_llm_draft=True, query_mode="simple"):
         """
         mail_result:   agent.process_one() 的输出（含 category/fields/priority 等）
         retriever:     混合检索器实例（BM25+向量，默认加载语料）
         generator:     AnswerGenerator 实例（None 时自动创建；传 False 可强制走模板）
         use_llm_draft: 是否启用 LLM 起草（关掉即退回旧的模板拼接路径）
+        query_mode:    检索 query 构造模式：
+                       "simple"  = 原始 f"{cust} {prod}"（默认，向后兼容）
+                       "optimized" = 追加主题 + 正文意图词（推荐用于评测）
         """
         self.result = mail_result
         self.fields = mail_result.get("fields", {})
+        self._query_mode = query_mode
         self.state = S_NEW
         self.history = []          # 审计轨迹
         self.retrieved = []        # RAG 命中
@@ -111,6 +122,27 @@ class WorkflowCase:
         self._clock = clock or _now
         self._retriever = retriever or build_hybrid()[0]
         self._entered_at = {S_NEW: self._clock()}
+
+    # ------------------------------------------------------------------
+    # Query 构造
+    # ------------------------------------------------------------------
+    def _build_query(self):
+        """构建检索 query，根据 query_mode 选择构造策略。"""
+        cust = self.fields.get("customer") or ""
+        prod = self.fields.get("product") or ""
+        subject = self.result.get("subject", "")
+
+        if self._query_mode == "optimized" and subject:
+            # 优化模式：客户 + 产品 + 主题 + 正文意图词
+            base = f"{cust} {prod}".strip() or subject
+            text = f"{subject} {self.result.get('body', '')}".lower()
+            hit_terms = [t for t in _QUERY_INTENT_TERMS if t in text]
+            if hit_terms:
+                return f"{base} {' '.join(hit_terms[:3])}".strip()
+            return f"{base} {subject}".strip()
+        else:
+            # 简单模式（原始）
+            return f"{cust} {prod}".strip() or subject
 
     # ------------------------------------------------------------------
     # 状态迁移（带守卫 + 审计）
@@ -144,9 +176,7 @@ class WorkflowCase:
 
     def _step_retrieve(self):
         self.transit(S_RETRIEVING, actor="system", note="进入 RAG 检索：查历史报价/客户往来")
-        cust = self.fields.get("customer") or ""
-        prod = self.fields.get("product") or ""
-        query = f"{cust} {prod}".strip() or self.result.get("subject", "")
+        query = self._build_query()
         hits = self._retriever.search(query, top_k=3)
         self.retrieved = hits
         return self
@@ -154,12 +184,7 @@ class WorkflowCase:
     def _step_draft(self):
         """RETRIEVING → DRAFTING：组装上下文后起草。"""
         self.transit(S_DRAFTING, actor="system", note="基于提取字段 + RAG 上下文起草回复")
-
-        # —— 组装上下文（带 [n] 编号 + id_map）——
-        cust = self.fields.get("customer") or ""
-        prod = self.fields.get("product") or ""
-        query = f"{cust} {prod}".strip() or self.result.get("subject", "")
-        self.context_bundle = build_context(query, self.retrieved)
+        self.context_bundle = build_context(self._build_query(), self.retrieved)
         return self._draft_from_context()
 
     def _draft_from_context(self):

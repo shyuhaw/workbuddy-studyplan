@@ -111,3 +111,26 @@
 - Git: 08998b8
 
 **RAG 完整链路已闭合**：检索(三重递进) → 组装(引用编号) → 生成(LLM+降级) → 评测(忠实度/幻觉/P@1/NDCG)
+
+---
+
+## 2026-09-05 Day7 学习计划推送
+
+### 进度判断（2026-09-05 08:41）
+
+**核心发现**：
+- max_rounds=10时Agent最优（95%可用率），max_rounds=6时严重降级（15/20）
+- Pipeline query优化实验：三种构造方式检索层均100%命中，差异在生成阶段
+- **核心假设验证中**：Pipeline可用率低的主因是query构造质量，非模型能力
+
+**今日主轴**：Pipeline Query优化落地 + A/B对比重跑
+
+**执行方法论**：
+1. 复制 `eval_query_optimization.py` 的 `INTENT_TERMS` 到 `workflow.py`
+2. 升级 query 构造：`f"{cust} {prod}"` → `f"{cust} {prod} {subject} {intent_words}"`
+3. 统一口径重跑A/B对比（max_rounds=10）
+4. 对比优化前后Pipeline表现，验证「用流水线成本拿Agent效果」假设
+
+**产出文件**：`Day07-学习计划-20260905.md`
+
+**下次接续**：若Pipeline优化成功（目标70%+可用率），推进⑧MCP服务封装；若未达预期，分析原因并调整策略。

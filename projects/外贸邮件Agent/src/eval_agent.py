@@ -111,13 +111,13 @@ def is_useful(answer):
     return len(answer) >= MIN_USEFUL_LEN
 
 
-def run_pipeline(mail):
+def run_pipeline(mail, query_mode="simple"):
     """A 组：Day01-05 的固定流水线。"""
     reset_token_total()
     t0 = time.time()
     try:
         res = MailAgent().process_one(mail)
-        case = WorkflowCase(res).run_pipeline()
+        case = WorkflowCase(res, query_mode=query_mode).run_pipeline()
         answer = case.draft or ""
         cited = case.cited_ids or []
         gen_mode = case.gen_mode
@@ -437,6 +437,8 @@ def main():
     ap = argparse.ArgumentParser(description="A/B 评测：固定流水线 vs Agent 自主规划")
     ap.add_argument("--limit", type=int, default=0, help="只跑前 N 条（默认全跑 20 条）")
     ap.add_argument("--rounds", type=int, default=6, help="Agent 最大轮数")
+    ap.add_argument("--query-mode", choices=["simple", "optimized"], default="simple",
+                    help="Pipeline query 构造模式：simple=原始，optimized=带意图词")
     ap.add_argument("--reuse", help="从已有 eval json 重新汇总（不重跑，用于余额中断后补救）")
     ap.add_argument("--h3", action="store_true",
                     help="H3 干净对比：固定编排写回信(A3) vs Agent 自主(B)，共用工具与生成器")
@@ -471,7 +473,7 @@ def main():
 
             print(f"[{i}/{len(emails)}] {mail.get('id')} {mail.get('subject', '')[:40]} ... ",
                   end="", flush=True)
-            a = run_pipeline(mail)
+            a = run_pipeline(mail, query_mode=args.query_mode)
             b = run_agent(mail, max_rounds=args.rounds)
             results.append({"mail_id": mail.get("id"), "subject": mail.get("subject", ""),
                             "category": mail.get("category", ""),

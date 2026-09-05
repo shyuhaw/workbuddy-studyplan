@@ -221,6 +221,7 @@ class MailAgent:
         return {
             "id": mail.get("id", ""),
             "subject": subject,
+            "body": body,
             "category": final_cat,
             "cat_source": cat_source,
             "need_cls": need_cls,
