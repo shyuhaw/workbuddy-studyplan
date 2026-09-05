@@ -183,4 +183,21 @@
 ### Git
 - commit: 语料库扩充 + eval_agent.json 更新
 
+---
+
+## Day7 最终结果（15:45）
+
+### 关键成果
+- Pipeline 可用率：**25% → 87.5%**（3.5x 提升）
+- 核心瓶颈确认：**语料库覆盖**而非 query 构造质量
+- Pipeline 成本仅为 Agent 的 7.1%，性价比极高
+
+### 剩余失败样本（2/16 = 12.5%）
+- E05: Ausbuild Pty Ltd 陶瓷砖询盘 → 命中 COSCO Logistics 陶瓷砖语料（跨客户误匹配）
+- E14: US Hotel Group 陶瓷砖订单 → 同样命中 COSCO 语料
+
+### 下一步
+1. 补充 Ausbuild 和 US Hotel Group 的陶瓷砖专用语料（修复跨客户误匹配）
+2. 或推进 MCP 服务封装（JD #8）
+
 **下次接续**：语料库扩充或 MCP 服务封装。
