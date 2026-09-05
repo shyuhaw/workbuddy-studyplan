@@ -525,3 +525,98 @@ result = client.call_tool("retrieve_history", {"query": "..."})
 
 > **关键点**：MCP Client 只是一个传输层，真正执行代码的还是本地的 `tools.py`。模型只出决策，本地出执行——这才是 Agent 的正确分工。
 
+---
+
+## 十四、部署方案（静态 + Docker + 云端）★ 命中 JD「部署」
+
+> **为什么要有这一节**：JD 要求候选人「能把 AI 应用部署上线」。这一节证明你不仅会写代码，还能把代码变成可访问的服务。
+
+### 方案一：静态 Demo 部署（推荐，零成本）
+
+**原理**：把 20 封邮件的全链路结果预跑出来，内嵌进纯静态 HTML，部署到任意静态托管。
+
+```bash
+# 构建静态 Demo
+python src/build_static_demo.py
+
+# 产出：dist_demo/index.html（63KB，可直接部署）
+```
+
+**部署方式**：
+| 平台 | 操作步骤 | 成本 |
+|---|---|---|
+| GitHub Pages | 推 `dist_demo/` 到 `gh-pages` 分支 | 免费 |
+| CloudStudio | 上传 `dist_demo/` 目录 | 免费 |
+| workbuddy.link | 使用内置发布功能 | 免费 |
+
+**已部署链接**：
+```
+https://82a0ad91d6d84c4e96fb01ca8938a105.app.workbuddy.link
+```
+
+> HR/面试官点开即可交互浏览 20 封真实邮件的全链路处理结果，无需本地运行。
+
+### 方案二：Docker 部署（生产环境）
+
+**前提**：已安装 Docker Desktop
+
+```bash
+# 构建镜像
+docker build -t mail-agent:latest .
+
+# 运行容器（需挂载配置文件）
+docker run -p 7860:7860 \
+  -e DEEPSEEK_API_KEY=sk-xxx \
+  -e ZHIPU_API_KEY=sk-xxx \
+  -v $(pwd)/config:/app/config \
+  mail-agent:latest
+
+# 健康检查
+curl http://localhost:7860/api/health
+
+# 查看指标
+curl http://localhost:7860/api/metrics
+```
+
+**Dockerfile 要点**：
+- 基础镜像：`python:3.11-slim`（轻量）
+- 依赖：仅 `requests`（零重依赖）
+- 端口：7860
+- 健康检查：内置 `HEALTHCHECK` 指令
+
+**注意事项**：
+- `config/llm_config.json` 已被 `.dockerignore` 排除，需运行时注入
+- 语料库 `data/customer_corpus.json` 已内嵌到镜像（COPY . .）
+
+### 方案三：云端 Serverless 部署
+
+**适用场景**：需要公网 API 调用
+
+```python
+# 最小化 API 服务（Flask/FastAPI 可选）
+from demo_server import run_pipeline
+
+@app.post("/api/classify")
+async def classify(email: str):
+    result = run_pipeline(email)
+    return result
+```
+
+**部署选项**：
+| 平台 | 特点 |
+|---|---|
+| Render | 免费层级，支持 Python |
+| Railway | 按量计费，自动扩缩 |
+| Vercel | Serverless 函数，适合轻量 API |
+
+### 部署验证清单
+
+| 检查项 | 命令 | 预期结果 |
+|---|---|---|
+| 静态 Demo 可访问 | 浏览器打开链接 | 20 封邮件可交互浏览 |
+| 健康检查通过 | `curl /api/health` | 200 OK |
+| 指标正常 | `curl /api/metrics` | 调用次数 / 错误率 |
+| MCP 工具可调用 | `python mcp_client.py --mode direct` | 7 工具正常返回 |
+
+---
+
