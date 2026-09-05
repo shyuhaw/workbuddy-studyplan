@@ -209,6 +209,30 @@
       "customer": "DHL Global",
       "product": "LED panel light PL-6060",
       "text": "DHL Global 2025-06 询盘 LED panel light PL-6060 仓库照明，数量 10000 pcs。我方报价 USD 10.50/pc，交期 35 天。2025-08 分三批发货完毕，最终成交价 USD 10.00/pc。"
+    },
+    {
+      "id": "C35",
+      "customer": "Ausbuild Pty Ltd",
+      "product": "Ceramic floor tile 600x600mm",
+      "text": "Ausbuild Pty Ltd 是澳大利亚建筑商，2026-05 首次询盘 Ceramic floor tile 600x600mm，数量 2500 sqm，我方报价 AUD 12.50/sqm。2026-06 返单 3000 sqm，成交价 AUD 11.80/sqm，交期 35 天，付款方式 LC at sight。客户要求 R10 防滑等级，包装为木箱加固。"
+    },
+    {
+      "id": "C36",
+      "customer": "Ausbuild Pty Ltd",
+      "product": "Wall hung toilet CW-880",
+      "text": "Ausbuild Pty Ltd 2026-07 询盘 Wall hung toilet CW-880 壁挂马桶，数量 120 sets，我方报价 AUD 285/set，含安装配件。MOQ 50 sets，交期 30 天。客户对釉面光滑度要求高，需通过 WaterMark 认证。"
+    },
+    {
+      "id": "C37",
+      "customer": "Ausbuild Pty Ltd",
+      "product": "Basin mixer tap",
+      "text": "Ausbuild Pty Ltd 2026-08 询盘 Basin mixer tap 浴室水龙头，数量 300 pcs，我方报价 AUD 45/pc，chrome 电镀表面处理。MOQ 100 pcs，交期 25 天。客户要求符合 AS/NZS 3718 标准，提供 5 年质保。"
+    },
+    {
+      "id": "C38",
+      "customer": "US Hotel Group LLC",
+      "product": "Ceramic floor tile 600x600mm",
+      "text": "US Hotel Group LLC 美国连锁酒店客户，2025-03 首次采购 Ceramic floor tile 600x600mm，数量 1680 cartons（约 5000 sqm），单价 USD 8.20/sqm FOB Shanghai。2025-08 第二批订单 PO-2026-0512，数量相同，因工厂排期延误，逾期 18 天交货，客户投诉并要求补偿 5% 货款，最终协商减免尾款 USD 350。"
     }
   ]
 }
