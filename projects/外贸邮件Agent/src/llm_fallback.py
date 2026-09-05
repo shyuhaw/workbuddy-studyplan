@@ -30,6 +30,34 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CONFIG_FILE = os.path.join(BASE_DIR, "config", "llm_config.json")
 LOG_FILE = os.path.join(BASE_DIR, "output", "llm_calls.jsonl")
 
+# ---------------------------------------------------------------------------
+# 全局 token 计数器（Day06 新增：为 A/B 成本对比提供统一口径）
+# ---------------------------------------------------------------------------
+# 为什么需要：对比「固定流水线」和「Agent 自主规划」的成本时，
+# 两边调用的模块完全不同（分类/提取/生成 vs 多轮 Function Calling），
+# 各自统计必然口径不一致。
+# 所有 LLM 调用最终都走 DeepSeekProvider.chat()（raw_call 内部也复用它），
+# 所以在这里累加 = 全链路真实开销，两边可比。
+TOKEN_TOTAL = {"prompt_tokens": 0, "completion_tokens": 0, "calls": 0}
+
+# DeepSeek 官方计价（2026-09）：输入 1 元/百万 token，输出 8 元/百万 token
+PRICE_IN_PER_TOKEN = 1.0 / 1_000_000
+PRICE_OUT_PER_TOKEN = 8.0 / 1_000_000
+
+
+def reset_token_total():
+    """重置全局计数（A/B 评测中每组开跑前调用）"""
+    TOKEN_TOTAL["prompt_tokens"] = 0
+    TOKEN_TOTAL["completion_tokens"] = 0
+    TOKEN_TOTAL["calls"] = 0
+
+
+def calc_cost(usage=None):
+    """按 DeepSeek 官价把 token 数折算成人民币"""
+    u = usage or TOKEN_TOTAL
+    return (u.get("prompt_tokens", 0) * PRICE_IN_PER_TOKEN
+            + u.get("completion_tokens", 0) * PRICE_OUT_PER_TOKEN)
+
 LABEL_CN = {
     "inquiry": "询盘",
     "order": "订单",
@@ -99,25 +127,95 @@ class DeepSeekProvider(BaseProvider):
         # timeout 可调：生成端（RAG）要求 5s 内返回否则降级，分类/提取沿用 30s
         self.timeout = timeout
 
-    def raw_call(self, system_prompt, user_prompt):
-        """调用 API 返回原始文本（不做业务解析）—— 供分类/提取等不同下游复用"""
+    def chat(self, system_prompt=None, messages=None, tools=None, temperature=0):
+        """通用对话入口 —— Function Calling 专用，返回 (message_dict, usage_dict)。
+
+        为什么要单独开一个方法而不是改 raw_call：
+            raw_call 的契约是「返回 content 字符串」，被分类/提取/生成/精排四处复用。
+            动它的返回值风险太大。Function Calling 需要的是**完整 message**
+            （含 tool_calls 字段），所以另开入口，raw_call 内部复用本方法，行为保持不变。
+
+        关键坑（DeepSeek）：
+            **tools 与 response_format 互斥** —— 同时下发会 400。
+            所以传了 tools 时不下发 response_format，反之亦然。
+
+        参数
+            system_prompt : 系统提示（与 messages 二选一，messages 优先）
+            messages      : 完整消息历史（含 tool 回填消息），用于多轮 Function Calling
+            tools         : JSON Schema 工具清单；None 时走普通 JSON 输出模式
+
+        返回
+            (message, usage)
+            message : {"role": "assistant", "content": ..., "tool_calls": [...]}
+            usage   : {"prompt_tokens": n, "completion_tokens": n, ...}
+        """
         headers = {
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json",
         }
+        if messages is None:
+            messages = [
+                {"role": "system", "content": system_prompt or ""},
+            ]
+
         payload = {
             "model": self.model,
-            "messages": [
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt},
-            ],
-            "temperature": 0,
-            "response_format": {"type": "json_object"},
+            "messages": messages,
+            "temperature": temperature,
         }
-        resp = requests.post(self.endpoint, headers=headers, json=payload, timeout=self.timeout)
-        resp.raise_for_status()
+        if tools:
+            payload["tools"] = tools
+            payload["tool_choice"] = "auto"
+        else:
+            # 无 tools 时才下发 JSON 模式 —— 两者互斥，不可同时下发
+            payload["response_format"] = {"type": "json_object"}
+
+        # —— Day06 H2 复跑补强：429/5xx 自动退避，避免限流把整条样本打废 ——
+        # 商家侧限流是「账户没问题、只是频率高」，重试即可恢复；
+        # 真失败（余额/鉴权）会直接抛错，由上层 is_invalid_sample 兜底剔除。
+        last_err = None
+        for attempt in range(3):
+            try:
+                resp = requests.post(self.endpoint, headers=headers, json=payload,
+                                     timeout=self.timeout)
+                if resp.status_code == 429:
+                    time.sleep(3 * (2 ** attempt))
+                    last_err = RuntimeError(f"429 限流，第 {attempt+1}/3 次重试")
+                    continue
+                if 500 <= resp.status_code < 600:
+                    time.sleep(2 * (2 ** attempt))
+                    last_err = RuntimeError(f"{resp.status_code} 服务端错误，第 {attempt+1}/3 次重试")
+                    continue
+                resp.raise_for_status()
+                break
+            except Exception as e:  # 连接异常等也走重试
+                last_err = e
+                time.sleep(2 * (2 ** attempt))
+        else:
+            # 三次均失败 → 抛给上层处理
+            raise last_err
         data = resp.json()
-        return data["choices"][0]["message"]["content"]
+
+        # 全链路 token 计数（A/B 成本对比的统一口径）
+        usage = data.get("usage", {}) or {}
+        TOKEN_TOTAL["prompt_tokens"] += usage.get("prompt_tokens", 0) or 0
+        TOKEN_TOTAL["completion_tokens"] += usage.get("completion_tokens", 0) or 0
+        TOKEN_TOTAL["calls"] += 1
+
+        return data["choices"][0]["message"], usage
+
+    def raw_call(self, system_prompt, user_prompt):
+        """调用 API 返回原始文本（不做业务解析）—— 供分类/提取等不同下游复用
+
+        行为与 Day01 起完全一致（temperature=0 + JSON 输出），内部改走 chat()，
+        但**返回值仍是 content 字符串**，所有既有调用方零改动。
+        """
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ]
+        message, _ = self.chat(messages=messages)
+        return message.get("content") or ""
 
     def call(self, system_prompt, user_prompt):
         return parse_llm_json(self.raw_call(system_prompt, user_prompt))

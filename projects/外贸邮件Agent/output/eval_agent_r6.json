@@ -1,0 +1,1333 @@
+{
+  "summary": {
+    "n_samples": 20,
+    "max_rounds": 6,
+    "ts": "2026-09-04 09:11:53",
+    "A_pipeline": {
+      "useful_rate": 0.55,
+      "citation_rate": 0.55,
+      "avg_answer_len": 89.4,
+      "avg_elapsed_sec": 2.6259,
+      "total_cost_yuan": 0.026114,
+      "avg_cost_yuan": 0.0013,
+      "total_llm_calls": 25,
+      "errors": 0
+    },
+    "B_agent": {
+      "useful_rate": 0.7,
+      "citation_rate": 0.55,
+      "avg_answer_len": 215.6,
+      "avg_elapsed_sec": 10.0499,
+      "total_cost_yuan": 0.321446,
+      "avg_cost_yuan": 0.0161,
+      "total_llm_calls": 103,
+      "avg_rounds": 3.55,
+      "avg_tool_calls": 3.95,
+      "finished_rate": 0.25,
+      "fallback_count": 15,
+      "tag_distribution": {
+        "extra_call": 7,
+        "fallback": 15,
+        "skipped_retrieve": 10
+      }
+    },
+    "worse_samples": [
+      {
+        "mail_id": "E01",
+        "subject": "Inquiry for LED Panel Light - 3000pcs",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.001497,
+        "B_cost": 0.032248,
+        "tags": [],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "rerank_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E02",
+        "subject": "Request quote - aluminum profile",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.001399,
+        "B_cost": 0.029791,
+        "tags": [],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "rerank_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E03",
+        "subject": "铝合金型材询价",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002793,
+        "B_cost": 0.029908,
+        "tags": [],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "rerank_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E04",
+        "subject": "Office furniture - container order",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002819,
+        "B_cost": 0.030853,
+        "tags": [
+          "extra_call",
+          "fallback"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": "达到 max_rounds=6 仍未 finish"
+      },
+      {
+        "mail_id": "E05",
+        "subject": "Mixed order - tiles and sanitary ware",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002527,
+        "B_cost": 0.03196,
+        "tags": [
+          "extra_call",
+          "fallback"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "retrieve_history"
+        ],
+        "fallback_reason": "达到 max_rounds=6 仍未 finish"
+      },
+      {
+        "mail_id": "E06",
+        "subject": "RE: Quotation Q-20260815",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.00289,
+        "B_cost": 0.032824,
+        "tags": [
+          "extra_call",
+          "fallback"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": "达到 max_rounds=6 仍未 finish"
+      },
+      {
+        "mail_id": "E07",
+        "subject": "Repeat order - same as PO-2026-0432",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002078,
+        "B_cost": 0.029161,
+        "tags": [
+          "extra_call",
+          "fallback"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": "达到 max_rounds=6 仍未 finish"
+      },
+      {
+        "mail_id": "E08",
+        "subject": "办公椅采购",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002099,
+        "B_cost": 0.029958,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E09",
+        "subject": "Complaint - defective LED panels, Order PO-2026-0398",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002911,
+        "B_cost": 0.033295,
+        "tags": [
+          "extra_call",
+          "fallback"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history"
+        ],
+        "fallback_reason": "达到 max_rounds=6 仍未 finish"
+      },
+      {
+        "mail_id": "E10",
+        "subject": "Shipping Advice - B/L No. COSU6123456789",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002227,
+        "B_cost": 0.011513,
+        "tags": [
+          "skipped_retrieve"
+        ],
+        "tool_seq": [
+          "classify_email"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E11",
+        "subject": "Demande de devis - eclairage industriel",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002874,
+        "B_cost": 0.029935,
+        "tags": [
+          "extra_call",
+          "fallback"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "rerank_history",
+          "build_context"
+        ],
+        "fallback_reason": "达到 max_rounds=6 仍未 finish"
+      }
+    ]
+  },
+  "results": [
+    {
+      "mail_id": "E01",
+      "subject": "Inquiry for LED Panel Light - 3000pcs",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "Global Import Ltd. 于 2025-11 首次询盘 LED Panel Light PL-6060 40W 600x600mm，数量 3000 pcs，报价 USD 12.80/pc，未成交 [1]；2026-03 返单 5000 pcs，成交价 USD 12.20/pc [2]。\n\n---\n[生成方式] LLM（引用 2 个历史片段：C01, C02）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [
+          "C01",
+          "C02"
+        ],
+        "gen_mode": "llm",
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 217,
+        "elapsed_sec": 2.101,
+        "cost_yuan": 0.001497,
+        "usage": {
+          "prompt_tokens": 673,
+          "completion_tokens": 103,
+          "calls": 1
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear Michael,\n\nThank you for your inquiry regarding our LED Panel Light (Model: PL-6060, 40W, 600×600mm).\n\nWe are pleased to confirm that we can supply this model. Based on our past dealings with Global Import Ltd., we previously quoted this item at USD 12.80/pc FOB Ningbo for a 3,000 pcs order [2]. Given your target price of USD 12.50/pc, we would like to propose a competitive quotation of USD 12.50/pc FOB Ningbo for this 3,000 pcs order, which aligns with the volume you have specified.\n\nPlease note that our most recent order for this model (5,000 pcs) was concluded at USD 12.20/pc [1]. Should you be able to increase your order quantity toward that level, we would be glad to offer a more favorable price.\n\nWe can confirm delivery within 30 days of order confirmation, with payment terms of T/T 30% deposit and 70% against copy of B/L [1]. As per your usual requirements, we will supply with neutral white box packaging and outer carton marking [3].\n\nWe look forward to your confirmation so we can issue the formal quotation before your requested date of 2026-09-15.\n\nBest regards,\n[Your Name]\n[Your Company]",
+        "cited_ids": [
+          "C01",
+          "C02",
+          "C03"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 1117,
+        "rounds": 6,
+        "tool_calls": 7,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "rerank_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [],
+        "elapsed_sec": 17.938,
+        "cost_yuan": 0.032248,
+        "usage": {
+          "prompt_tokens": 18888,
+          "completion_tokens": 1670,
+          "calls": 12
+        }
+      }
+    },
+    {
+      "mail_id": "E02",
+      "subject": "Request quote - aluminum profile",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "Bauhaus Material GmbH 是德国新客户，2026-06 首次询盘 Aluminum Profile AP-2024 工业铝型材，数量 2000 meters，我方报价 EUR 9.20/meter FOB Shanghai，样品确认中，目标价期望压到 EUR 8.50 左右 [1]。\n\n---\n[生成方式] LLM（引用 1 个历史片段：C19）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [
+          "C19"
+        ],
+        "gen_mode": "llm",
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 214,
+        "elapsed_sec": 2.335,
+        "cost_yuan": 0.001399,
+        "usage": {
+          "prompt_tokens": 671,
+          "completion_tokens": 91,
+          "calls": 1
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear Mr. Weber,\n\nThank you for your inquiry regarding Aluminum Profile AP-2024 (anodized silver) for your window system project.\n\nRegarding your request for 5,000 meters at a budget of EUR 8.90/meter, we would like to reference our previous quotation for this item. Based on our prior correspondence, our quoted price for Aluminum Profile AP-2024 was EUR 9.20/meter FOB Shanghai [1].\n\nWe would be pleased to discuss a competitive offer for your larger volume of 5,000 meters. Given the increased quantity, we may be able to offer a more favorable price, and we would welcome the opportunity to align on terms that work for both parties.\n\nCould you kindly confirm the delivery destination and whether you require FOB or CIF terms? We will prepare a formal quotation accordingly and ensure it reaches you before your requested deadline of 15th September 2026.\n\nWe look forward to your confirmation.\n\nBest regards,\n[Your Name]\n[Your Company]",
+        "cited_ids": [
+          "C19"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 938,
+        "rounds": 6,
+        "tool_calls": 7,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "rerank_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [],
+        "elapsed_sec": 16.741,
+        "cost_yuan": 0.029791,
+        "usage": {
+          "prompt_tokens": 18263,
+          "completion_tokens": 1441,
+          "calls": 12
+        }
+      }
+    },
+    {
+      "mail_id": "E03",
+      "subject": "铝合金型材询价",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 3.633,
+        "cost_yuan": 0.002793,
+        "usage": {
+          "prompt_tokens": 1897,
+          "completion_tokens": 112,
+          "calls": 3
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "王磊先生，您好：\n\n感谢贵司（杭州华筑装饰工程有限公司）对铝合金型材（6063-T5，表面氧化处理）的询价。\n\n关于贵司所需 500 支（每支 6 米）6063-T5 氧化铝型材的报价，依据我方现有历史记录，暂无法直接确认该型号在此数量下的历史成交价格，因此无法立即给出与贵司目标价 88 元/支 对应的确认报价。\n\n为尽快为您提供准确报价，烦请确认以下信息：\n1. 型材的具体截面规格/图纸（6063-T5 为合金牌号，需明确具体型材断面尺寸）；\n2. 表面氧化处理的具体要求（如膜厚、颜色等）；\n3. 交货地点及付款方式。\n\n收到上述信息后，我们将尽快核算并最迟于 2026 年 9 月 20 日前向贵司提交正式报价。\n\n顺祝商祺\n[我方公司名]",
+        "cited_ids": [],
+        "useful": true,
+        "has_citation": false,
+        "answer_len": 325,
+        "rounds": 6,
+        "tool_calls": 7,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "rerank_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [],
+        "elapsed_sec": 17.655,
+        "cost_yuan": 0.029908,
+        "usage": {
+          "prompt_tokens": 17620,
+          "completion_tokens": 1536,
+          "calls": 10
+        }
+      }
+    },
+    {
+      "mail_id": "E04",
+      "subject": "Office furniture - container order",
+      "category": "order",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 3.529,
+        "cost_yuan": 0.002819,
+        "usage": {
+          "prompt_tokens": 1899,
+          "completion_tokens": 115,
+          "calls": 3
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "pipeline_fallback",
+        "finished": false,
+        "stop_reason": "达到 max_rounds=6 仍未 finish",
+        "fallback_reason": "达到 max_rounds=6 仍未 finish",
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "rounds": 6,
+        "tool_calls": 8,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call",
+          "fallback"
+        ],
+        "elapsed_sec": 15.246,
+        "cost_yuan": 0.030853,
+        "usage": {
+          "prompt_tokens": 21125,
+          "completion_tokens": 1216,
+          "calls": 10
+        }
+      }
+    },
+    {
+      "mail_id": "E05",
+      "subject": "Mixed order - tiles and sanitary ware",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 2.308,
+        "cost_yuan": 0.002527,
+        "usage": {
+          "prompt_tokens": 1575,
+          "completion_tokens": 119,
+          "calls": 2
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "pipeline_fallback",
+        "finished": false,
+        "stop_reason": "达到 max_rounds=6 仍未 finish",
+        "fallback_reason": "达到 max_rounds=6 仍未 finish",
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "rounds": 6,
+        "tool_calls": 11,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "retrieve_history"
+        ],
+        "tags": [
+          "extra_call",
+          "fallback"
+        ],
+        "elapsed_sec": 16.944,
+        "cost_yuan": 0.03196,
+        "usage": {
+          "prompt_tokens": 21408,
+          "completion_tokens": 1319,
+          "calls": 8
+        }
+      }
+    },
+    {
+      "mail_id": "E06",
+      "subject": "RE: Quotation Q-20260815",
+      "category": "order",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 3.301,
+        "cost_yuan": 0.00289,
+        "usage": {
+          "prompt_tokens": 1978,
+          "completion_tokens": 114,
+          "calls": 3
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "pipeline_fallback",
+        "finished": false,
+        "stop_reason": "达到 max_rounds=6 仍未 finish",
+        "fallback_reason": "达到 max_rounds=6 仍未 finish",
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "rounds": 6,
+        "tool_calls": 7,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call",
+          "fallback"
+        ],
+        "elapsed_sec": 16.796,
+        "cost_yuan": 0.032824,
+        "usage": {
+          "prompt_tokens": 21200,
+          "completion_tokens": 1453,
+          "calls": 10
+        }
+      }
+    },
+    {
+      "mail_id": "E07",
+      "subject": "Repeat order - same as PO-2026-0432",
+      "category": "order",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 2.734,
+        "cost_yuan": 0.002078,
+        "usage": {
+          "prompt_tokens": 1518,
+          "completion_tokens": 70,
+          "calls": 2
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "pipeline_fallback",
+        "finished": false,
+        "stop_reason": "达到 max_rounds=6 仍未 finish",
+        "fallback_reason": "达到 max_rounds=6 仍未 finish",
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "rounds": 6,
+        "tool_calls": 7,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call",
+          "fallback"
+        ],
+        "elapsed_sec": 14.687,
+        "cost_yuan": 0.029161,
+        "usage": {
+          "prompt_tokens": 19697,
+          "completion_tokens": 1183,
+          "calls": 9
+        }
+      }
+    },
+    {
+      "mail_id": "E08",
+      "subject": "办公椅采购",
+      "category": "order",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 2.51,
+        "cost_yuan": 0.002099,
+        "usage": {
+          "prompt_tokens": 1443,
+          "completion_tokens": 82,
+          "calls": 2
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "陈静女士，您好：\n\n感谢您发来关于人体工学办公椅（型号 EC-360，网布面料）的采购需求。\n\n经核对，依据我方现有往来记录，暂无法确认与贵司（深圳市舒座家具有限公司）此前就 EC-360 型号办公椅的成交价格（含税 ¥580.00/张）、13% 增值税专用发票及 2026-11-10 交货期等条款的历史记录。为确保报价与交期准确无误，我方需先与内部生产及销售部门核实该型号的库存、产能与开票安排，再向您正式确认订单。\n\n烦请稍候，我们将在核实后尽快回复您订单可否接受及具体确认信息。\n\n顺祝商祺",
+        "cited_ids": [],
+        "useful": true,
+        "has_citation": false,
+        "answer_len": 249,
+        "rounds": 6,
+        "tool_calls": 7,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 15.647,
+        "cost_yuan": 0.029958,
+        "usage": {
+          "prompt_tokens": 18822,
+          "completion_tokens": 1392,
+          "calls": 7
+        }
+      }
+    },
+    {
+      "mail_id": "E09",
+      "subject": "Complaint - defective LED panels, Order PO-2026-0398",
+      "category": "complaint",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 3.712,
+        "cost_yuan": 0.002911,
+        "usage": {
+          "prompt_tokens": 2023,
+          "completion_tokens": 111,
+          "calls": 3
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "pipeline_fallback",
+        "finished": false,
+        "stop_reason": "达到 max_rounds=6 仍未 finish",
+        "fallback_reason": "达到 max_rounds=6 仍未 finish",
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "rounds": 6,
+        "tool_calls": 9,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history"
+        ],
+        "tags": [
+          "extra_call",
+          "fallback"
+        ],
+        "elapsed_sec": 17.666,
+        "cost_yuan": 0.033295,
+        "usage": {
+          "prompt_tokens": 22583,
+          "completion_tokens": 1339,
+          "calls": 9
+        }
+      }
+    },
+    {
+      "mail_id": "E10",
+      "subject": "Shipping Advice - B/L No. COSU6123456789",
+      "category": "notification",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 2.419,
+        "cost_yuan": 0.002227,
+        "usage": {
+          "prompt_tokens": 1603,
+          "completion_tokens": 78,
+          "calls": 2
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear COSCO Logistics Team,\n\nThank you for your shipping advice regarding B/L No. COSU6123456789.\n\nWe acknowledge receipt of the shipment details for Order ref: PO-2026-0512 (Ceramic floor tile 600x600mm, 1,680 cartons) on MV PACIFIC STAR / V.231E, with ETD Ningbo on 2026-08-28 and ETA Felixstowe on 2026-09-25.\n\nWe have received the attached draft bill of lading and will review it for confirmation. Should there be any discrepancies, we will notify you promptly.\n\nThank you for keeping us informed.\n\nBest regards,\n[Your Name]\n[Your Company]",
+        "cited_ids": [],
+        "useful": true,
+        "has_citation": false,
+        "answer_len": 542,
+        "rounds": 2,
+        "tool_calls": 2,
+        "tool_seq": [
+          "classify_email"
+        ],
+        "tags": [
+          "skipped_retrieve"
+        ],
+        "elapsed_sec": 7.911,
+        "cost_yuan": 0.011513,
+        "usage": {
+          "prompt_tokens": 4049,
+          "completion_tokens": 933,
+          "calls": 2
+        }
+      }
+    },
+    {
+      "mail_id": "E11",
+      "subject": "Demande de devis - eclairage industriel",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 4.391,
+        "cost_yuan": 0.002874,
+        "usage": {
+          "prompt_tokens": 1906,
+          "completion_tokens": 121,
+          "calls": 3
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "pipeline_fallback",
+        "finished": false,
+        "stop_reason": "达到 max_rounds=6 仍未 finish",
+        "fallback_reason": "达到 max_rounds=6 仍未 finish",
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "rounds": 6,
+        "tool_calls": 7,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "rerank_history",
+          "build_context"
+        ],
+        "tags": [
+          "extra_call",
+          "fallback"
+        ],
+        "elapsed_sec": 18.799,
+        "cost_yuan": 0.029935,
+        "usage": {
+          "prompt_tokens": 20303,
+          "completion_tokens": 1204,
+          "calls": 14
+        }
+      }
+    },
+    {
+      "mail_id": "E12",
+      "subject": "Pedido - varios modelos de LED",
+      "category": "order",
+      "A_pipeline": {
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Iluminacion Madrid LED panel light\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C20",
+          "C02",
+          "C01"
+        ],
+        "gen_mode": "template_fallback",
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 89,
+        "elapsed_sec": 2.286,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "pipeline_fallback",
+        "finished": false,
+        "stop_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "fallback_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Iluminacion Madrid LED panel light\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C20",
+          "C02",
+          "C01"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 89,
+        "rounds": 1,
+        "tool_calls": 0,
+        "tool_seq": [],
+        "tags": [
+          "skipped_retrieve",
+          "fallback"
+        ],
+        "elapsed_sec": 2.857,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        }
+      }
+    },
+    {
+      "mail_id": "E13",
+      "subject": "Request for product catalog and price list",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Bright Future Ltd\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C17",
+          "C06",
+          "C01"
+        ],
+        "gen_mode": "template_fallback",
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 72,
+        "elapsed_sec": 1.873,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "pipeline_fallback",
+        "finished": false,
+        "stop_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "fallback_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Bright Future Ltd\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C17",
+          "C06",
+          "C01"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 72,
+        "rounds": 1,
+        "tool_calls": 0,
+        "tool_seq": [],
+        "tags": [
+          "skipped_retrieve",
+          "fallback"
+        ],
+        "elapsed_sec": 2.327,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        }
+      }
+    },
+    {
+      "mail_id": "E14",
+      "subject": "Urgent - late shipment PO-2026-0512",
+      "category": "complaint",
+      "A_pipeline": {
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：US Hotel Group LLC ceramic floor tile\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C14",
+          "C13",
+          "C11"
+        ],
+        "gen_mode": "template_fallback",
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 92,
+        "elapsed_sec": 2.216,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "pipeline_fallback",
+        "finished": false,
+        "stop_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "fallback_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：US Hotel Group LLC ceramic floor tile\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C14",
+          "C13",
+          "C11"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 92,
+        "rounds": 1,
+        "tool_calls": 0,
+        "tool_seq": [],
+        "tags": [
+          "skipped_retrieve",
+          "fallback"
+        ],
+        "elapsed_sec": 3.769,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        }
+      }
+    },
+    {
+      "mail_id": "E15",
+      "subject": "Payment Advice - T/T for PO-2026-0398",
+      "category": "notification",
+      "A_pipeline": {
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Global Import Ltd\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C01",
+          "C17",
+          "C02"
+        ],
+        "gen_mode": "template_fallback",
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 72,
+        "elapsed_sec": 2.407,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "pipeline_fallback",
+        "finished": false,
+        "stop_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "fallback_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Global Import Ltd\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C01",
+          "C17",
+          "C02"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 72,
+        "rounds": 1,
+        "tool_calls": 0,
+        "tool_seq": [],
+        "tags": [
+          "skipped_retrieve",
+          "fallback"
+        ],
+        "elapsed_sec": 3.039,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        }
+      }
+    },
+    {
+      "mail_id": "E16",
+      "subject": "Inquiry for LED flood lights - Dubai",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Al Noor Trading LLC\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C09",
+          "C01",
+          "C14"
+        ],
+        "gen_mode": "template_fallback",
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 74,
+        "elapsed_sec": 2.527,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "pipeline_fallback",
+        "finished": false,
+        "stop_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "fallback_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Al Noor Trading LLC\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C09",
+          "C01",
+          "C14"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 74,
+        "rounds": 1,
+        "tool_calls": 0,
+        "tool_seq": [],
+        "tags": [
+          "skipped_retrieve",
+          "fallback"
+        ],
+        "elapsed_sec": 2.394,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        }
+      }
+    },
+    {
+      "mail_id": "E17",
+      "subject": "Repeat order follow-up PO-2026-0432",
+      "category": "order",
+      "A_pipeline": {
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Canada Decor Inc acoustic ceiling panel\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C20",
+          "C02",
+          "C01"
+        ],
+        "gen_mode": "template_fallback",
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 94,
+        "elapsed_sec": 1.934,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "pipeline_fallback",
+        "finished": false,
+        "stop_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "fallback_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Canada Decor Inc acoustic ceiling panel\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C20",
+          "C02",
+          "C01"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 94,
+        "rounds": 1,
+        "tool_calls": 0,
+        "tool_seq": [],
+        "tags": [
+          "skipped_retrieve",
+          "fallback"
+        ],
+        "elapsed_sec": 2.602,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        }
+      }
+    },
+    {
+      "mail_id": "E18",
+      "subject": "Sample request - LED strip light",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Design Works Ltd\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C01",
+          "C17",
+          "C14"
+        ],
+        "gen_mode": "template_fallback",
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 71,
+        "elapsed_sec": 2.136,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "pipeline_fallback",
+        "finished": false,
+        "stop_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "fallback_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Design Works Ltd\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C01",
+          "C17",
+          "C14"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 71,
+        "rounds": 1,
+        "tool_calls": 0,
+        "tool_seq": [],
+        "tags": [
+          "skipped_retrieve",
+          "fallback"
+        ],
+        "elapsed_sec": 3.03,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        }
+      }
+    },
+    {
+      "mail_id": "E19",
+      "subject": "Quotation request - LED bulb",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Italoluce\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C01",
+          "C06",
+          "C17"
+        ],
+        "gen_mode": "template_fallback",
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 64,
+        "elapsed_sec": 2.272,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "pipeline_fallback",
+        "finished": false,
+        "stop_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "fallback_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Italoluce\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C01",
+          "C06",
+          "C17"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 64,
+        "rounds": 1,
+        "tool_calls": 0,
+        "tool_seq": [],
+        "tags": [
+          "skipped_retrieve",
+          "fallback"
+        ],
+        "elapsed_sec": 2.477,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        }
+      }
+    },
+    {
+      "mail_id": "E20",
+      "subject": "Customs clearance update - Shipment COSU6987654321",
+      "category": "notification",
+      "A_pipeline": {
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Dhl Global LED panel light\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C02",
+          "C17",
+          "C01"
+        ],
+        "gen_mode": "template_fallback",
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 81,
+        "elapsed_sec": 1.893,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "pipeline_fallback",
+        "finished": false,
+        "stop_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "fallback_reason": "循环异常：HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
+        "answer": "【模板降级产出 · 未经 LLM 生成】\n问题：Dhl Global LED panel light\n相关历史片段：\n  （无相关历史记录）\n（请人工核对后回复）",
+        "cited_ids": [
+          "C02",
+          "C17",
+          "C01"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 81,
+        "rounds": 1,
+        "tool_calls": 0,
+        "tool_seq": [],
+        "tags": [
+          "skipped_retrieve",
+          "fallback"
+        ],
+        "elapsed_sec": 2.474,
+        "cost_yuan": 0.0,
+        "usage": {
+          "prompt_tokens": 0,
+          "completion_tokens": 0,
+          "calls": 0
+        }
+      }
+    }
+  ]
+}

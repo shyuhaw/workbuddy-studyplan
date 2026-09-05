@@ -1,0 +1,8 @@
+{
+  "version": "v1",
+  "content": "你是分类器。给定邮件返回 JSON {\"category\":\"...\"}。",
+  "author": "麦当",
+  "changed_at": "2026-09-04 15:58:40",
+  "note": "初始版",
+  "active": false
+}

@@ -1,32 +1,55 @@
-# Day5 完成报告 · 2026-09-03
+# Day6 完成报告 · 2026-09-04
 
 ## 完成情况
 
-✅ 任务① 上下文组装 + 任务② 接真生成 + 任务③ 忠实度+幻觉评测 + 任务④ 记忆落地
+✅ 任务① 工具注册器 + 任务② Function Calling 循环 + 任务③ A/B 评测 + 任务④ 记忆落地
+（原计划 2 项必做，实际 4 项全部完成）
 
-## 关键数字
+## 一句话结论
 
-| 指标 | 数值 |
-|---|---|
-| 引用准确率 | 100% |
-| 数字可溯源率 | 100% |
-| 实体可溯源率 | 59.8% |
-| 忠实度（LLM judge）| 85.7% |
-| 幻觉率 | 40.1% |
-| 总生成成本 | ¥0.015（20条）|
-| 单次耗时 | ~1.1s |
+**我预判错了**：原以为 Agent 打不过流水线。实测 Agent 可用率是流水线的 **2.5 倍**，
+但成本是 **12 倍**。而差距的真正来源不是模型更聪明，是 **Agent 自己会优化检索 query**。
 
-## RAG 链路首次闭合
+## A/B 关键数字（11 条有效样本）
 
-文档解析 → 切分 → Embedding → 混合检索 → 上下文组装 → DeepSeek生成(带引用) → 评测打分
+| 指标 | A 固定流水线 | B Agent 自主 | 倍数 |
+|---|---|---|---|
+| 答案可用率 | 18.2% | **45.5%** | **2.50x（B 优）** |
+| 平均耗时 | 3.0s | 16.0s | 5.34x（A 优） |
+| 单次成本 | ¥0.0024 | ¥0.0292 | **12.17x（A 优）** |
+| LLM 调用次数 | 25 次 | 103 次 | 4.12x |
+| finish 完成率 | — | 45.5% | — |
+| 降级次数 | 0 | 6/11 | — |
+
+## 三个发现
+
+1. **可用率差距 = 检索 query 自优化**：流水线固定 `f"{cust} {prod}"` 太短 → 9/11 条命中为空 → 只能答"无法确认"。
+   同一套检索器+生成器，只换 query 构造，可用率 18.2% → 45.5%
+2. **max_rounds=6 是我设错了**：标准路径最短 6 步，上限设 6 = 余量为 0，多调一次必然降级
+3. **降级不是免费的**：Agent 失败回退流水线 = 付双份钱
+
+## 取舍结论
+
+> 步骤确定的业务流用流水线（12 倍成本优势），但把 Agent 的 query 优化能力**反向移植回流水线**，
+> 而不是全面 Agent 化 —— 用流水线的成本，拿 Agent 的效果。
+
+## 🔴 阻塞
+
+**DeepSeek 余额耗尽**（跑到第 12 条时 402），评测样本从 20 缩到 11。需麦当充值。
 
 ## 产出文件
 
-- `projects/外贸邮件Agent/src/context_builder.py`
-- `projects/外贸邮件Agent/src/generator.py`
-- `projects/外贸邮件Agent/src/eval_generation.py`
-- `projects/外贸邮件Agent/output/eval_generation.json`
+- `projects/外贸邮件Agent/src/tools.py`（7 工具 JSON Schema + 幂等执行）
+- `projects/外贸邮件Agent/src/agent_loop.py`（Function Calling 循环）
+- `projects/外贸邮件Agent/src/eval_agent.py`（A/B 评测 + 余额预检 + 归因）
+- `projects/外贸邮件Agent/src/llm_fallback.py`（改：chat() 支持 tools + TOKEN_TOTAL）
+- `projects/外贸邮件Agent/output/eval_agent.json`
+- `Day06-执行报告-20260904.md`
 
-## 明天预告
+Git：`b34d095`
 
-按今天检出的幻觉归因走：实体可溯源率 59.8% 偏低 → 做 Rerank 精排（Day4 欠账）+ P@1/MRR 指标
+## 下一步
+
+1. 🔴 充值 DeepSeek
+2. 🔴 H1：流水线 query 优化（30min，最高性价比 —— 可能白捡 2.5 倍可用率，成本几乎不变）
+3. 🔴 H2：max_rounds=10 复测降级率（20min）

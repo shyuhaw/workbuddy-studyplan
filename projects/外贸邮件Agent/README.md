@@ -1,6 +1,8 @@
 # 跨境客户邮件智能处理 Agent
 
 > 用「规则层 + LLM 兜底」双层架构，把外贸邮件自动转成结构化的业务记录与行动建议。
+
+
 >
 > **不是**"接了个大模型 API 的 demo"，而是一个**算得过账**的系统：
 > 规则层吃掉大部分明确邮件（零成本、毫秒级），只把真正拿不准的交给 LLM。
@@ -221,7 +223,15 @@ python src/demo_server.py --port 7860
 │   ├── vector_retriever.py   混合检索（BM25+智谱向量 RRF 融合，零重依赖）
 │   ├── workflow.py            询盘响应工作流状态机（SLA/人工介入/审计）
 │   ├── eval_retrieval.py     RAG 检索评测（recall@k，钉 baseline）
-│   └── demo_workflow.py      工作流可运行 demo（3 分支）
+│   ├── demo_workflow.py      工作流可运行 demo（3 分支）
+│   ├── reranker.py           RAG 精排（DeepSeek 交叉编码，P@1 75%→95%）
+│   ├── eval_rerank.py        精排评测（P@1 / NDCG@K）
+│   ├── context_builder.py    上下文组装（去重/截断/引用编号 + id_map）
+│   ├── generator.py          RAG 生成端（强制引用标注 + 降级模板）
+│   ├── eval_generation.py    生成端评测（规则层 + LLM-as-judge）
+│   ├── tools.py              ★ Agent 工具注册器（7 工具 JSON Schema + 幂等执行）
+│   ├── agent_loop.py         ★ Function Calling 循环（max_rounds / 降级 / 轨迹留痕）
+│   └── eval_agent.py         ★ A/B 评测（流水线 vs Agent，统一 token 口径 + 余额预检）
 ├── data/
 │   ├── customer_corpus.json  客户历史档案语料（21 条，RAG 知识库）
 │   └── eval_queries.json     20 条检索评测 query（4 类难度）
@@ -230,6 +240,8 @@ python src/demo_server.py --port 7860
     ├── 提取结果.xlsx
     ├── Agent处理结果.xlsx      端到端结果（CRM 草稿格式）
     ├── 真实邮件处理结果.xlsx
+    ├── eval_agent.json        A/B 评测结果（有效样本汇总 + 逐条归因）
+    ├── eval_agent_r6.json     A/B 原始记录（含被剔除的 9 条无效样本，留档可查）
     └── llm_calls.jsonl         LLM 调用审计日志
 ```
 
@@ -416,162 +428,4 @@ ESCALATED ──(intervene, 经理)──> PENDING_REVIEW (重新打开)
 | 人工驳回 | PENDING_REVIEW→**REJECTED**→重做→resubmit→approve→SENT | 打回重做闭环 |
 
 真实运行输出见 `output/workflow_demo.json`（含完整审计轨迹）。
-
-> "我给邮件 Agent 加了一层状态机工作流——不止分类提取，还管'查历史→起草→审核→超时升级→发信'的全链路，每步可审计、可卡控。这跟我在飞书系统里搭的 5 状态项目机是同一套思想。"
-
----
-
-## 十三、RAG 历史报价检索（BM25 baseline）★ Day03 RAG 主线
-
-「查历史报价 / 客户往来」是询盘响应里最依赖经验的环节。这一节用 **BM25 检索**从客户档案语料中召回相关历史，给起草提供上下文，同时为「明天加向量检索」钉死 baseline 数字。
-
-### 检索链路
-
-```
-客户档案语料(自然语言陈述句) → 分词(保数字/中英) → 建倒排
-                                        ↓
-查询(客户+产品) → 分词 → Okapi BM25 打分 → top_k
-```
-
-### 实现选择（可解释 > 调包）
-
-| 项 | 选择 | 理由 |
-|---|---|---|
-| 算法 | **纯 Python 自写 Okapi BM25**（约 30 行） | 零依赖、可离线、可复现；k1/b 公式能当面讲清，比 `from rank_bm25 import BM25Okapi` 更有说服力 |
-| 分词 | 英文/数字小写成词 + 中文按字切 | 产品型号、价格、数量是关键信号，必须保留 |
-| 语料 | `data/customer_corpus.json` 21 条 chunk | 自然语言陈述句（非字段罗列），贴合真实客户档案 |
-
-### 评测（诚实钉 baseline + 真实向量对照）
-
-`src/eval_retrieval.py` 跑 20 条评测 query（4 类难度），指标 **recall@k**。`--mode bm25` 与 `--mode hybrid` 同口径对照：
-
-| 维度 | 模式 | recall@1 | recall@3 | recall@5 |
-|---|---|---|---|---|
-| 整体 20 条 | BM25 baseline | 85% | 90% | 90% |
-| 整体 20 条 | 混合（向量主导 w_vec=3.0，未自适应） | 75% | 95% | 95% |
-| 语义类 5 条 | BM25 baseline | 40% | 40% | 40% |
-| 语义类 5 条 | 混合（向量主导，未自适应） | 40% | 100% | 100% |
-| **整体 20 条** | **混合（意图自适应调权）** | 75% | **100%** | **100%** |
-| **语义类 5 条** | **混合（意图自适应调权）** | 40% | **100%** | **100%** |
-
-> **诚实结论（实测，不美化）**：向量检索先把**语义类召回从 40% 拉到 60%(@3)/80%(@5)**，但仍有 2 条硬语义题（Q11"在意发货准时"、Q13"怕不合规被查）抓不到。二轮优化三板斧——① **query rewriting**（口语→业务术语扩展）② **max-pooling 多向量**（每个扩展变体独立向量化，文档取与任一变体的最大余弦，抗稀释）③ **意图自适应调权**（数字类走 BM25 主导、语义类走向量主导）——最终把 **整体 + 语义类 recall@3 都钉到 100%**，且数字题 Q09 不被向量噪声带偏。唯一代价是整体 @1 从 85% 降到 75%（5 条语义/混合查询目标落在 rank2-3 而非 rank1，但 @3 全中）。这种"先钉 baseline → 上向量 → 暴露差距 → 针对硬骨头做 query rewriting + 自适应融合"的递进，才是能讲出故事的 RAG。
-
-> **对照表（证明每步都有效）**：关掉自适应 + w_vec=1.0 → Q11/Q13 仍崩（语义 60%）；关掉自适应 + w_vec=3.0 → Q09 崩（数字被向量带偏）；开自适应 → 三者全中（@3=100%）。说明"全局权重是钝刀，按意图分而治之才两全"。
-
-### 文件清单
-
-| 文件 | 作用 |
-|---|---|
-| `src/retriever.py` | 纯 Python Okapi BM25 检索器 + 语料加载 |
-| `data/customer_corpus.json` | 客户历史档案语料（21 条，演示用合成数据，结构同真实档案） |
-| `data/eval_queries.json` | 20 条评测 query（4 类难度，含 5 条 BM25 预计失败项） |
-| `src/eval_retrieval.py` | recall@k 评测脚本 → `output/eval_retrieval.json` |
-| `src/workflow.py` | 工作流状态机（RETRIEVING 步骤即调用 retriever） |
-| `src/demo_workflow.py` | 工作流可运行 demo（3 分支）→ `output/workflow_demo.json` |
-
-### 混合检索已接入（Day04）：BM25 + 智谱向量，RRF 融合，意图自适应
-
-Day03 钉死 baseline 后，Day04 把向量检索真正接进来，并补上二轮优化：
-
-- **新增 `src/vector_retriever.py`**：`ZhipuEmbedder` 调智谱 `embedding-3`（2048 维，0.5 元/百万 token）+ 纯 `math` 余弦相似度（无需 numpy）+ `HybridRetriever` 用 **加权 RRF（Reciprocal Rank Fusion）** 融合 BM25 与向量排名。
-- **复用同接口**：`HybridRetriever.search()` 与 `BM25Retriever.search()` 签名一致，工作流（`workflow.py`）只需把 `build_default()` 换成 `build_hybrid()`，调用点零改动。
-- **优雅降级（已实测）**：建库前用探针校验 key 与账户余额；若智谱返回 `HTTP 429 code=1113 余额不足`，自动降级 `MockEmbedder` 并明确告警——证明 RRF 融合逻辑正确、管道零报错。
-- **真实语义提升（已跑出）**：账户充值后跑 `python src/eval_retrieval.py --mode hybrid`，语义类召回 **40% → 60%(@3)/80%(@5)**；但 Q11/Q13 两条硬语义题仍抓不到。
-- **二轮优化（已交付）**：① `rewrite_query` 业务同义词扩展（"在意发货准时"→交期/逾期/履约/违约金）；② `expand_variants` + **max-pooling 多向量**（每个扩展变体独立向量化，文档取与任一变体的最大余弦，抗稀释）；③ `is_number_query` **意图自适应调权**——数字类（USD 12.80 / 单价）强制 BM25 主导、语义类向量主导（w_vec=3.0）。`--no-auto` / `--w-vec` 可复现对照。
-- **最终真实数字**：整体 + 语义类 **recall@3 = 100%**（from 90% / 60%），Q09/Q11/Q13 三条硬骨头全中，embedding 总花费可忽略。
-
-```bash
-# key 已配置（config/llm_config.json）：
-{ "zhipu": { "api_key": "b3e71...Xsw7" } }
-
-# 跑真实混合检索评测（意图自适应调权，向量走智谱，BM25 走本地，RRF 融合）
-python src/eval_retrieval.py --mode hybrid
-# 对照：关闭自适应、统一权重（演示全局权重的局限）
-python src/eval_retrieval.py --mode hybrid --no-auto --w-vec 3.0   # Q09 崩
-python src/eval_retrieval.py --mode hybrid --no-auto --w-vec 1.0   # Q11/Q13 崩
-```
-
-### 交叉编码精排（Day05 补做）：P@1 从 75% → 95%
-
-混合检索 recall@3=100% 后，P@1 仍只有 75%——正确 chunk 在 top-3 里但没排到第一位。
-精排的目标就是「把正确答案推到第一位」，这是实际生产中更关键的指标。
-
-**方案**：用 DeepSeek 做 pairwise 交叉编码——对每个 (query, chunk) 对独立打分，
-再按分数重排。成本约 ¥0.0003/对，20 条语料 × 10 候选 = 200 次调用，总成本 < ¥0.01。
-
-```bash
-# 跑精排评测（4 条 demo）
-python src/eval_rerank.py
-# 跑全部 20 条
-python src/eval_rerank.py --full
-```
-
-**结果**：
-
-| 指标 | 原始混合 | 精排后 | 提升 |
-|---|---|---|---|
-| P@1（整体） | 75% | **95%** | +20pp |
-| NDCG@3（整体） | 0.824 | **0.908** | +0.084 |
-| R@3（整体） | 91% | 91% | 持平 |
-| P@1（语义类） | 40% | **80%** | +40pp |
-
-4 条 query 的 P@1 真正提升（目标 chunk 从 rank2-3 推到 rank1）：
-- Q07「成交价 USD 12.20 的订单」→ C02 从 rank2 升到 rank1
-- Q09「单价 USD 3.50 的产品」→ C04 从 rank3 升到 rank1
-- Q11「在意发货准时」→ C12 从 rank3 升到 rank1
-- Q13「怕不合规被查」→ C14 从 rank3 升到 rank1
-
-**文件**：
-
-| 文件 | 作用 |
-|---|---|
-| `src/reranker.py` | `LLMReranker` 类——DeepSeek 交叉编码精排 |
-| `src/eval_rerank.py` | 精排评测脚本（P@1 / NDCG@K）→ `output/eval_rerank.json` |
-
----
-
-## 八补：RAG 生成端闭环（Day05）
-
-检索到位后，必须把「检索到的历史」真正变成「带引用的答案」。此前 `_step_draft()` 是纯模板拼接，现在是 LLM 生成。
-
-**链路**：检索 → 上下文组装（去重/截断/引用编号+id_map）→ DeepSeek 生成 → 忠实度评测
-
-**关键设计**：
-- `context_builder.py`：`build_context()` 返回 dict（context/id_map/kept/truncated/est_tokens），去重+截断+编号一体化
-- `generator.py`：`AnswerGenerator` 调用 DeepSeek，强制引用标注；失败自动降级模板；零引用时不打码、打 `no_citation` 标记
-- `eval_generation.py`：两层评测——规则层（数字/实体可溯源率、引用准确率，¥0）+ LLM-as-judge（忠实度）
-
-**20 条评测结果**：
-
-| 指标 | 数值 |
-|---|---|
-| 引用准确率 | **100%** |
-| 数字可溯源率 | **100%** |
-| 实体可溯源率 | **89.2%** |
-| 忠实度（LLM judge）| **90.4%** |
-| 幻觉率 | 35%（主因模板降级样本拉高）|
-| 单次成本 | ≈ ¥0.0009 |
-
-**关键改进**：
-- `generator.py` 增加 few-shot 示例，强制每句话带 `[n]` 引用编号
-- `eval_generation.py` 修复 `_CHUNK_CACHE` 填充、实体提取过滤、幻觉率合并断言片段逻辑
-- 修复后实体可溯源率从 14.8% → 89.2%，忠实度从 18.5% → 90.4%
-
-**文件**：
-
-| 文件 | 作用 |
-|---|---|
-| `src/context_builder.py` | 上下文组装：去重/截断/引用编号+id_map |
-| `src/generator.py` | DeepSeek 生成端：带引用标注，few-shot 示例，模板降级路径 |
-| `src/eval_generation.py` | 生成端评测：规则层 + LLM-as-judge → `output/eval_generation.json` |
-
----
-
-## 九补：这个项目现在体现的能力（更新）
-
-- **工作流编排**：状态机 + 守卫迁移 + SLA 超时升级 + 人工介入（审批/打回/重做），端到端可审计
-- **RAG 检索**：BM25 baseline 自建 + recall@k 评测 + 诚实报告语义类天花板（为向量检索留好接口）
-- 业务理解 / 架构设计 / 成本意识 / 工程诚实 / 真实交付（见第九、十节）
-
----
 

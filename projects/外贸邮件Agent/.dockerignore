@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+output/
+config/llm_config.json
+.cli_tmp/
+data/
+dist/
+dist_demo/
+*.log
+*.jsonl
+*.xlsx
+.DS_Store
+.git/
+.gitignore

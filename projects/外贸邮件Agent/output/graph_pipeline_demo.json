@@ -1,0 +1,57 @@
+[
+  {
+    "id": "E01",
+    "category": "inquiry",
+    "confidence": 0.833,
+    "path": "classify → extract → retrieve → rerank → build_context → generate → compose",
+    "retry_n": 0,
+    "cited_ids": [
+      "C01",
+      "C02"
+    ],
+    "needs_review": false,
+    "review_reason": null,
+    "cost_yuan": 0.00259,
+    "elapsed_sec": 8.02,
+    "steps": 7,
+    "queries_tried": [
+      "Global Import Ltd PL-6060"
+    ],
+    "draft": "Dear Mr. Chen,\n\nThank you for your inquiry regarding our LED Panel Light Model PL-6060 (40W, 600x600mm).\n\nWe note your target price of USD 12.50/pc FOB Ningbo for 3,000 pcs. Based on our previous transactions, we have supplied this model at USD 12.20/pc for an order of 5,000 pcs in March 2026. For the current quantity of 3,000 pcs, we will verify internally and revert to you shortly with our best offer.\n\nWe will ensure to provide our quotation before your requested deadline of 2026-09-15.\n\nShould you have any further questions, please do not hesitate to contact us.\n\nBest regards,\nExport Department"
+  },
+  {
+    "id": "E09",
+    "category": "complaint",
+    "confidence": 0.769,
+    "path": "classify → extract → retrieve → rerank → build_context → generate → retrieve → rerank → build_context → generate → compose",
+    "retry_n": 1,
+    "cited_ids": [
+      "C04"
+    ],
+    "needs_review": false,
+    "review_reason": null,
+    "cost_yuan": 0.003083,
+    "elapsed_sec": 14.16,
+    "steps": 11,
+    "queries_tried": [
+      "US Hotel Group LLC LED panel light",
+      "Complaint - defective LED panels, Order PO-2026-0398 Dear Si"
+    ],
+    "draft": "Dear Mr. Turner,\n\nThank you for your email and for bringing this matter to our attention. We have noted your complaint regarding the color temperature deviation on 180 pcs of LED panel light (PL-6060) under PO-2026-0398.\n\nWe are currently reviewing the details of your order and the issue you have reported. Please be assured that we take this matter seriously. We will verify internally and revert to you shortly with our proposed solution.\n\nWe appreciate your patience and will respond before your requested deadline of 2026-09-05.\n\nBest regards,\nExport Department"
+  },
+  {
+    "id": "E10",
+    "category": "notification",
+    "confidence": 0.867,
+    "path": "classify → compose",
+    "retry_n": 0,
+    "cited_ids": null,
+    "needs_review": false,
+    "review_reason": null,
+    "cost_yuan": 0.000761,
+    "elapsed_sec": 1.09,
+    "steps": 2,
+    "queries_tried": null,
+    "draft": "Dear Sir/Madam,\n\nThank you for your shipping advice. We have noted the details of the shipment under B/L No. COSU6123456789 and will review the attached draft bill of lading. We will revert with our confirmation shortly.\n\nBest regards,\n[Your Name]"
+  }
+]

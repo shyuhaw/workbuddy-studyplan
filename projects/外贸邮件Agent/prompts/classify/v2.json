@@ -1,0 +1,8 @@
+{
+  "version": "v2",
+  "content": "你是资深业务员。请判断邮件意图并给出分类与置信度，JSON {\"category\":\"...\",\"confidence\":0.XX}。",
+  "author": "麦当",
+  "changed_at": "2026-09-04 15:58:40",
+  "note": "加业务视角",
+  "active": true
+}

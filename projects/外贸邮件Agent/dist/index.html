@@ -118,13 +118,17 @@ footer{text-align:center;color:#484f58;font-size:13px;padding-top:40px;border-to
     <span class="tech-tag">DeepSeek API</span>
     <span class="tech-tag">智谱 Embedding</span>
     <span class="tech-tag">BM25</span>
+    <span class="tech-tag">Function Calling</span>
+    <span class="tech-tag">多智能体</span>
+    <span class="tech-tag">跨轮记忆</span>
+    <span class="tech-tag">状态图编排</span>
     <span class="tech-tag">Agent Mail</span>
     <span class="tech-tag">Playwright</span>
   </div>
   <div class="metrics">
     <div class="metric">
-      <div class="num ok">5,152</div>
-      <div class="lbl">代码总行数<br>（7 个 .py 核心模块）</div>
+      <div class="num ok">8,673</div>
+      <div class="lbl">代码总行数<br>（34 个 .py 模块）</div>
     </div>
     <div class="metric">
       <div class="num ok">83%</div>
@@ -211,42 +215,37 @@ footer{text-align:center;color:#484f58;font-size:13px;padding-top:40px;border-to
 
 <!-- RAG -->
 <section>
-  <h2>RAG 历史报价检索（BM25 → 混合检索 → 交叉编码精排）</h2>
-  <p class="lead">三轮递进：召回保 recall → 精排提 P@1。完整链路：检索 → 组装 → 生成 → 评测。</p>
+  <h2>RAG 历史报价检索（BM25 baseline → 意图自适应混合）</h2>
+  <p class="lead">语义类 query 字面不重叠，靠向量检索命中。下面展示从 BM25 基线到 recall@3=100% 的演进路径。</p>
 
   <div class="metrics">
     <div class="metric"><div class="num">21</div><div class="lbl">客户档案 chunk</div></div>
-    <div class="metric"><div class="num">100%</div><div class="lbl">混合检索 recall@3</div></div>
-    <div class="metric"><div class="num">95%</div><div class="lbl">精排后 P@1</div></div>
-    <div class="metric"><div class="num">90.4%</div><div class="lbl">忠实度（LLM judge）</div></div>
+    <div class="metric"><div class="num">90%</div><div class="lbl">BM25 baseline recall@3</div></div>
+    <div class="metric"><div class="num">100%</div><div class="lbl">意图自适应混合 recall@3</div></div>
+    <div class="metric"><div class="num">75%</div><div class="lbl">P@1（原始混合）</div></div>
+    <div class="metric"><div class="num ok">95%</div><div class="lbl">P@1（精排后）</div></div>
+    <div class="metric"><div class="num ok">90.4%</div><div class="lbl">忠实度（LLM judge）</div></div>
   </div>
 
   <div class="grid2" style="margin-top:16px">
     <div class="card">
-      <h3>检索三阶段</h3>
-      <p>
-        <b>阶段1</b> BM25 baseline（85%@1）→ <b>阶段2</b> 混合检索 RRF（recall@3=100%，P@1=75%）→ <b>阶段3</b> 交叉编码精排（P@1=95%，NDCG@3=0.908）<br>
-        精排用 DeepSeek pairwise scoring，成本 < ¥0.01/20条。
-      </p>
+      <h3>纯 Python 自写 Okapi BM25</h3>
+      <p>约 30 行、零依赖、可离线可复现。k1/b 公式能当面讲清。分词保留型号/价格/数量等关键数字信号。</p>
     </div>
     <div class="card">
-      <h3>生成与评测</h3>
-      <p>
-        检索后组装上下文（去重/截断/引用编号+id_map）→ DeepSeek 生成带标注答案 → 两层评测<br>
-        规则层（数字可溯源率 100%、引用准确率 100%、实体可溯源率 89.2%）+ LLM judge（忠实度 90.4%）
-      </p>
+      <h3>意图自适应调权</h3>
+      <p>数字类 query → BM25 主导；语义类 query → 向量主导（w_vec=3.0）。query rewriting（口语→业务术语）+ max-pooling 多向量（抗稀释）。</p>
     </div>
   </div>
 
   <div class="callout blue" style="margin-top:16px">
-    <div class="t">精排效果（4 条真实提升）</div>
-    <p style="font-size:13px;color:#c9d1d9;margin-top:8px">
-      Q07「成交价 USD 12.20 的订单」：C02 rank2 → rank1<br>
-      Q09「单价 USD 3.50 的产品」：C04 rank3 → rank1<br>
-      Q11「在意发货准时」：C12 rank3 → rank1<br>
-      Q13「怕不合规被查」：C14 rank3 → rank1<br>
-      <span style="color:#3fb950">R@3 保持 91%，精排不损害召回。</span>
+    <div class="t">Q11 真实召回轨迹（语义类 hard case）</div>
+    <p style="font-family:ui-monospace,font-size:13px;color:#8b949e;margin-top:8px">
+      <span style="color:#58a6ff">0.0637</span>　<b>C10</b> · Sunrise Wholesale — "月均采购 8000 pcs..."<br>
+      <span style="color:#58a6ff">0.0635</span>　<b>C15</b> · Amazon Seller Leo — "单价 USD 18.50/pc..."<br>
+      <span style="color:#3fb950">0.0632</span>　<b style="color:#3fb950">C12 ✓</b> · Sunrise Wholesale — "<b>对面板灯交期要求严格，超 35 天需提前书面说明...</b>"<br>
     </p>
+    <p style="margin-top:8px">同口径下 Q09 / Q13 也全部进入 top-3 —— 整体 + 语义类 <b style="color:#3fb950">recall@3 = 100%</b>。</p>
   </div>
 </section>
 
@@ -267,6 +266,112 @@ PENDING_REVIEW → (SLA超时) → ESCALATED → PENDING_REVIEW
     <div class="metric"><div class="num">守卫迁移</div><div class="lbl">每步不可乱跳 + 审计日志</div></div>
     <div class="metric"><div class="num">24h</div><div class="lbl">审核 SLA 超时自动升级</div></div>
     <div class="metric"><div class="num">3 类</div><div class="lbl">分支全跑通（通过/驳回/超时）</div></div>
+  </div>
+</section>
+
+<!-- ============ AGENT ENGINE (Day06) ============ -->
+<section>
+  <h2>Agent 引擎：Function Calling → 多智能体 → 跨轮记忆 → 状态图（Day06）</h2>
+  <p class="lead">JD 高频句是「理解大模型能力边界与工程取舍」。这一节不堆能力，而是用 A/B 数字回答
+     <b style="color:#c9d1d9">"该不该上 Agent"</b>——结论是：<b style="color:#3fb950">本场景不该上自主 Agent，该上状态图。</b></p>
+
+  <h3 style="font-size:16px;color:#8b949e;margin-bottom:12px;">Function Calling 循环（模型只出决策，代码永远本地跑）</h3>
+  <div class="flow">
+    <div class="node"><div class="step">①</div><div class="title">发消息</div><div class="tech">历史 + 工具清单</div></div>
+    <div class="arrow">→</div>
+    <div class="node hl"><div class="step">②</div><div class="title">模型决策</div><div class="tech">返回 tool_calls</div><p style="font-size:13px;color:#8b949e;margin-top:8px;">顺序与次数由模型定</p></div>
+    <div class="arrow">→</div>
+    <div class="node hl"><div class="step">③</div><div class="title">本地执行</div><div class="tech">Python 真跑</div><p style="font-size:13px;color:#8b949e;margin-top:8px;">模型不碰代码</p></div>
+    <div class="arrow">→</div>
+    <div class="node"><div class="step">④</div><div class="title">回填结果</div><div class="tech">role: tool</div><p style="font-size:13px;color:#8b949e;margin-top:8px;">错误也回填，可自纠</p></div>
+    <div class="arrow">↻</div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric"><div class="num">9</div><div class="lbl">可用工具<br>（7 业务 + 2 记忆）</div></div>
+    <div class="metric"><div class="num">幂等</div><div class="lbl">同参数二次调用走缓存<br>不重复烧钱</div></div>
+    <div class="metric"><div class="num ok">95%</div><div class="lbl">finish 完成率<br>（max_rounds=10）</div></div>
+    <div class="metric"><div class="num warn">1/20</div><div class="lbl">降级次数<br>（自动回退流水线）</div></div>
+  </div>
+
+  <h3 style="font-size:16px;color:#8b949e;margin:26px 0 12px;">A/B 实测：Agent 反而更贵，而且贵得没有理由</h3>
+  <table>
+    <tr><th>指标</th><th>A 固定流水线</th><th>B Agent 自主</th><th>倍数</th></tr>
+    <tr><td>答案可用率</td><td class="num-cell bad">20.0%</td><td class="num-cell good">95.0%</td><td class="num-cell good">4.75x（B 优）</td></tr>
+    <tr><td>单次成本</td><td class="num-cell good">¥0.0024</td><td class="num-cell bad">¥0.0332</td><td class="num-cell bad">13.83x（A 优）</td></tr>
+    <tr><td>单次耗时</td><td class="num-cell good">3.2 s</td><td class="num-cell bad">17.4 s</td><td class="num-cell bad">5.43x（A 优）</td></tr>
+  </table>
+
+  <div class="callout" style="margin-top:18px">
+    <div class="t">⚠️ 那个 4.75x 优势，是我自己推翻的</div>
+    <p>表面看 Agent 可用率高 4.75 倍。但我做了三版实验把归因钉死：<br>
+       <b>H1 证伪</b>——差距不在检索 query（3 种 query 构造命中率<b>均 100%</b>）；<br>
+       <b>H2 验证</b>——max_rounds 从 6 提到 10，降级率 54.5%→5%（余量系数 ≈1.7x，是我当初把上限设成了"余量为 0"）；<br>
+       <b>H3 决定性</b>——把两边<b style="color:#3fb950">统一成同一件事（都写客户回信、同工具、同生成器）</b>后，
+       4.75x 优势<b style="color:#f85149">彻底消失</b>：固定编排可用率 <b>100% ≥ Agent 95%</b>，且便宜 <b>6.4 倍</b>。<br><br>
+       <b>结论：Agent 的"优势"100% 来自任务定义不同这个混淆变量，自主规划在本场景零质量收益、6.4 倍成本。</b></p>
+  </div>
+
+  <h3 style="font-size:16px;color:#8b949e;margin:26px 0 12px;">多智能体：Supervisor 路由 + Specialist 执行</h3>
+  <p style="font-size:14px;color:#8b949e;margin-bottom:12px;">主管只分类与委派，不写回复；4 个专员各有领域提示。真实路由全部正确，且通知类专员<b style="color:#c9d1d9">自主判断"无需检索"只跑 3 轮</b>。</p>
+  <table>
+    <tr><th>邮件</th><th>主管委派</th><th>轮数</th><th>成本</th><th>说明</th></tr>
+    <tr><td>E01 询盘</td><td>inquiry_specialist</td><td class="num-cell">7</td><td class="num-cell">¥0.0329</td><td>正常检索 + 起草</td></tr>
+    <tr><td>E09 客诉</td><td>complaint_specialist</td><td class="num-cell">8</td><td class="num-cell">¥0.0416</td><td>共情 + 定性 + 补偿</td></tr>
+    <tr><td>E10 通知</td><td>notification_specialist</td><td class="num-cell good">3</td><td class="num-cell good">¥0.0113</td><td><b class="good">正确跳过检索</b></td></tr>
+  </table>
+  <div class="callout blue" style="margin-top:14px">
+    <div class="t">诚实代价</div>
+    <p>多智能体 = 主管 1 跳 + 专员 N 跳，<b>严格比单 Agent 更贵</b>；而主管本质是个分类器。
+       <b class="good">更省的等价方案：把"通知不检索"这类领域知识固化成状态图的条件边</b>——省掉主管那一跳（见下方 E10）。</p>
+  </div>
+
+  <h3 style="font-size:16px;color:#8b949e;margin:26px 0 12px;">跨轮记忆：解决"跑完一封就失忆"</h3>
+  <p style="font-size:14px;color:#8b949e;margin-bottom:12px;">场景：Canada Decor 先下续单 E07（1800 平 / 11-20），又发 E17 改口（2000 平 / 12-15）。同一 <code style="color:#79c0ff">MemoryStore</code> 跨两封邮件复用。</p>
+  <table>
+    <tr><th>处理</th><th>轮数</th><th>成本</th><th>关键现象</th></tr>
+    <tr><td>E07（写入记忆）</td><td class="num-cell">6</td><td class="num-cell">¥0.0344</td><td>存下 PO-2026-0432 合同规格</td></tr>
+    <tr><td>E17（带记忆）</td><td class="num-cell">8</td><td class="num-cell">¥0.0511</td><td class="good">召回合同记忆，直接确认规格<b>不重复追问</b></td></tr>
+    <tr><td>E17（空白记忆对照）</td><td class="num-cell">7</td><td class="num-cell">¥0.0387</td><td>无历史上下文，独立检索仍找不到 PO 价</td></tr>
+  </table>
+  <div class="callout" style="margin-top:14px">
+    <div class="t">两条边界（都写进 README 了）</div>
+    <p><b>① 记忆 ≠ 权威事实。</b>记忆是 Agent 的工作笔记，可能过时；价格/规格仍必须走检索。
+       三次运行都因语料无该 PO 合同价而回到"内部核实后回复"，证明边界守住了。<br>
+       <b>② Agent 不会可靠地自主记忆。</b>E07 跑完它<b style="color:#f85149">并没有调用 remember_fact</b>（靠演示兜底才写入）。
+       → <b>记忆持久化必须强制</b>：后置持久化步骤或强提示，不能依赖模型自觉。</p>
+  </div>
+
+  <h3 style="font-size:16px;color:#8b949e;margin:26px 0 12px;">状态图编排：把上面的取舍落到最优解</h3>
+  <p style="font-size:14px;color:#8b949e;margin-bottom:12px;">本机装不了 langgraph（重依赖红线），但 JD 考的是编排思想不是 <code style="color:#79c0ff">pip install</code>。
+     自研 <code style="color:#79c0ff">state_graph.py</code>：<b style="color:#c9d1d9">StateGraph / 条件边 / 循环 / Checkpointer</b>，API 对齐 langgraph，零依赖可直接迁移。</p>
+
+  <div class="code" style="font-family:ui-monospace,font-size:13px;color:#c9d1d9;background:#161b22;padding:16px 20px;border-radius:10px;margin-bottom:16px;line-height:1.9">
+E01 询盘　classify → extract → retrieve → rerank → build_context → generate → compose　　　¥0.00259<br>
+E09 客诉　… → generate → <b style="color:#3fb950">retrieve → rerank → build_context → generate</b> → compose　¥0.00308<br>
+<span style="color:#8b949e">　　　　　　↑ 首轮无引用 → <b style="color:#3fb950">条件边触发循环重试</b>，换宽 query 后救回 C04 引用</span><br>
+E10 通知　classify → <b style="color:#58a6ff">compose</b>（跳过整条检索链）　　　　　　　　　　　　¥0.00076
+  </div>
+
+  <div class="metrics">
+    <div class="metric"><div class="num ok">¥0.0026</div><div class="lbl">状态图单封成本<br>（最省）</div></div>
+    <div class="metric"><div class="num">¥0.0052</div><div class="lbl">A3 固定编排<br>（次省，但不会重试）</div></div>
+    <div class="metric"><div class="num bad">¥0.0332</div><div class="lbl">自主 Agent<br>（最贵，零质量收益）</div></div>
+    <div class="metric"><div class="num ok">15×</div><div class="lbl">E10 条件跳过<br>vs 多智能体专员</div></div>
+  </div>
+
+  <div class="callout blue" style="margin-top:16px">
+    <div class="t">工程取舍结论（面试可讲的那句）</div>
+    <p>图能表达、链表达不了三件事：<b>条件边</b>（通知类跳过检索）、<b>循环</b>（检索不到换 query 再试一次）、
+       <b>HITL + 检查点</b>（低置信度转人工、每步落盘可续跑）。<br>
+       成本贴着流水线（¥0.0026 vs ¥0.0052），却拥有自适应能力 →
+       <b class="good">确定型场景用状态图，自主 Agent 只留给真正开放式、无标准流程的任务。</b></p>
+  </div>
+
+  <div class="callout" style="margin-top:14px">
+    <div class="t">踩过的两个坑（真实，已修）</div>
+    <p><b>① 终点节点必须先执行再停止。</b>初版把"是否终点"放在执行前判断，<code style="color:#79c0ff">compose</code> 被当哨兵跳过、三封回信全空才暴露——langgraph 的 END 是<b>哨兵不是节点</b>。<br>
+       <b>② tools 与 response_format 互斥。</b>DeepSeek 传 tools 时不能下发 JSON 模式，反之亦然；compose 要英文回信时只能<b>要 JSON 回来再解析</b>。</p>
   </div>
 </section>
 
@@ -354,6 +459,10 @@ PENDING_REVIEW → (SLA超时) → ESCALATED → PENDING_REVIEW
     <div class="limit"><div class="idx">04</div><div class="txt"><b>LLM 调用会外发数据。</b>客户名/产品/价格会发往 DeepSeek；含底价与合同条款的邮件需先脱敏。</div></div>
     <div class="limit"><div class="idx">05</div><div class="txt"><b>样本量偏小。</b>10 封调优集 + 6 封独立集 + 3 封真实邮件，结论仍需更大规模验证。</div></div>
     <div class="limit"><div class="idx">06</div><div class="txt"><b>相对日期无法自动换算。</b>"end of next month" 保留原文，需结合收件日期才能算剩余天数。</div></div>
+    <div class="limit"><div class="idx">07</div><div class="txt"><b>自主 Agent 在本场景没有质量收益。</b>统一任务定义后，固定编排可用率 100% ≥ Agent 95% 且便宜 6.4 倍——已据此选择不上自主 Agent。</div></div>
+    <div class="limit"><div class="idx">08</div><div class="txt"><b>Agent 不会可靠地自主记忆。</b>跨轮记忆的写入必须靠强制策略（后置持久化或强提示），不能依赖模型自觉。</div></div>
+    <div class="limit"><div class="idx">09</div><div class="txt"><b>未使用 LangChain / LangGraph。</b>本机重依赖装不上，状态图为自研等价实现（API 对齐、可迁移），非框架原生。</div></div>
+    <div class="limit"><div class="idx">10</div><div class="txt"><b>检索语料仅 21 条 chunk。</b>Agent 的检索与重试结论在小语料下成立，规模化后需重新验证。</div></div>
   </div>
 </section>
 
@@ -474,9 +583,41 @@ PENDING_REVIEW → (SLA超时) → ESCALATED → PENDING_REVIEW
 </section>
 
 <footer>
-  AI Agent 作品集合集 &nbsp;·&nbsp; 2026<br>
+  AI Agent 作品集合集 &nbsp;|&nbsp; 2026<br>
   <span style="font-size:12px">Python · DeepSeek API · 智谱 Embedding · BM25 · Agent Mail &nbsp;|&nbsp; 规则层 + LLM 双层架构</span>
 </footer>
+
+<!-- JD 十项技能进度 -->
+<section>
+  <h2>JD 十项技能进度（AI 应用工程师）</h2>
+  <p class="lead">目标岗位：AI 应用工程师（15-25K），按《AI应用工程师转型路线.md》的 JD 十项技能排期。</p>
+
+  <table>
+    <thead><tr><th>JD</th><th>技能</th><th>状态</th><th>关键证据</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>RAG 全链路</td><td><span style="color:#3fb950">✅ 打穿</span></td><td>6 环节闭环 + 8 指标；recall@3=100%、P@1=95%、忠实度 90.4%；¥0.0166/20条</td></tr>
+      <tr><td>2</td><td>Agent 引擎</td><td><span style="color:#d29922">🟡 5/6</span></td><td>Function Calling ✅；状态追踪 ✅；HITL ✅；多智能体 ✅；跨轮记忆 ✅；自主规划 🟡（H3 证固定流水线更优）</td></tr>
+      <tr><td>3</td><td>LLM 服务层</td><td><span style="color:#d29922">🟡 4/5</span></td><td>降级/重试/成本统计 ✅；流式 ✅（兼容层）；多模型统一 ✅；Prompt 版本管理 ✅；剩：SSE 原生流</td></tr>
+      <tr><td>4</td><td>LangChain/LangGraph</td><td><span style="color:#d29922">🟡 自研等价</span></td><td><code>src/state_graph.py</code> 自研 StateGraph/条件边/循环/Checkpointer（零依赖，API 对齐 langgraph）</td></tr>
+      <tr><td>5</td><td>向量数据库</td><td><span style="color:#d29922">🟡 自研替代</span></td><td>21 条语料下自研更划算；切换阈值写死（chunk>10万 或 暴力余弦>100ms → FAISS/Chroma）</td></tr>
+      <tr><td>6</td><td>MCP / A2A</td><td><span style="color:#3fb950">✅</span></td><td>手写 JSON-RPC 2.0 stdio MCP Server（200行）+ Client 联调脚本；initialize/tools/list/tools/call 全链路验证通过</td></tr>
+      <tr><td>7</td><td>效果评测</td><td><span style="color:#3fb950">✅</span></td><td>检索端 + 生成端 + Agent A/B 三套</td></tr>
+      <tr><td>8</td><td>Docker/API</td><td><span style="color:#3fb950">✅</span></td><td><code>demo_server.py</code>（stdlib http.server，含 /api/health + /api/metrics + /api/logs）、Dockerfile（python:3.11-slim）</td></tr>
+      <tr><td>9/10</td><td>Python / ML</td><td><span style="color:#3fb950">✅</span></td><td>已具备</td></tr>
+    </tbody>
+  </table>
+
+  <div class="metrics" style="margin-top:24px">
+    <div class="metric"><div class="num ok">8/10</div><div class="lbl">已完成</div></div>
+    <div class="metric"><div class="num warn">2/10</div><div class="lbl">🟡 待补（SSE 原生流 + MCP resources/prompts）</div></div>
+    <div class="metric"><div class="num">34</div><div class="lbl">代码模块</div></div>
+    <div class="metric"><div class="num">8,673</div><div class="lbl">代码行数</div></div>
+  </div>
+
+  <p style="margin-top:16px;font-size:14px;color:#8b949e">
+    <b>技术红线</b>：不装 langchain/langgraph/openai sdk（手搓搞懂原理，且本机装重依赖必翻车）；零依赖哲学贯穿始终。
+  </p>
+</section>
 
 </div>
 </body>

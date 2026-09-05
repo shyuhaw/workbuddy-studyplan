@@ -1,0 +1,1513 @@
+{
+  "summary": {
+    "n_samples": 20,
+    "n_invalid_excluded": 0,
+    "abort_reason": null,
+    "max_rounds": 10,
+    "ts": "2026-09-04 09:46:14",
+    "A_pipeline": {
+      "useful_rate": 0.2,
+      "citation_rate": 0.2,
+      "avg_answer_len": 96.25,
+      "avg_elapsed_sec": 3.2163,
+      "total_cost_yuan": 0.04782,
+      "avg_cost_yuan": 0.0024,
+      "total_llm_calls": 46,
+      "errors": 0
+    },
+    "B_agent": {
+      "useful_rate": 0.95,
+      "citation_rate": 0.3,
+      "avg_answer_len": 783.95,
+      "avg_elapsed_sec": 17.4382,
+      "total_cost_yuan": 0.664083,
+      "avg_cost_yuan": 0.0332,
+      "total_llm_calls": 177,
+      "avg_rounds": 6.45,
+      "avg_tool_calls": 7.75,
+      "finished_rate": 0.95,
+      "fallback_count": 1,
+      "tag_distribution": {
+        "extra_call": 17,
+        "fallback": 1,
+        "skipped_retrieve": 1
+      }
+    },
+    "worse_samples": [
+      {
+        "mail_id": "E01",
+        "subject": "Inquiry for LED Panel Light - 3000pcs",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.001265,
+        "B_cost": 0.032307,
+        "tags": [],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "rerank_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E02",
+        "subject": "Request quote - aluminum profile",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.001399,
+        "B_cost": 0.029455,
+        "tags": [],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "rerank_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E03",
+        "subject": "铝合金型材询价",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002793,
+        "B_cost": 0.032769,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "rerank_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E04",
+        "subject": "Office furniture - container order",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002819,
+        "B_cost": 0.021596,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E05",
+        "subject": "Mixed order - tiles and sanitary ware",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002487,
+        "B_cost": 0.030458,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E06",
+        "subject": "RE: Quotation Q-20260815",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.00285,
+        "B_cost": 0.037949,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E07",
+        "subject": "Repeat order - same as PO-2026-0432",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002118,
+        "B_cost": 0.03337,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E08",
+        "subject": "办公椅采购",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002059,
+        "B_cost": 0.030343,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E09",
+        "subject": "Complaint - defective LED panels, Order PO-2026-0398",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002935,
+        "B_cost": 0.051404,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E10",
+        "subject": "Shipping Advice - B/L No. COSU6123456789",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002227,
+        "B_cost": 0.023839,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E11",
+        "subject": "Demande de devis - eclairage industriel",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002874,
+        "B_cost": 0.047095,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "rerank_history",
+          "build_context",
+          "generate_answer",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E12",
+        "subject": "Pedido - varios modelos de LED",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.003159,
+        "B_cost": 0.033458,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E13",
+        "subject": "Request for product catalog and price list",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.001911,
+        "B_cost": 0.025588,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E14",
+        "subject": "Urgent - late shipment PO-2026-0512",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002764,
+        "B_cost": 0.022795,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E15",
+        "subject": "Payment Advice - T/T for PO-2026-0398",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.003545,
+        "B_cost": 0.043766,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E16",
+        "subject": "Inquiry for LED flood lights - Dubai",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002069,
+        "B_cost": 0.033387,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E17",
+        "subject": "Repeat order follow-up PO-2026-0432",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002067,
+        "B_cost": 0.03398,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E18",
+        "subject": "Sample request - LED strip light",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002002,
+        "B_cost": 0.03791,
+        "tags": [
+          "extra_call"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "rerank_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "fallback_reason": null
+      },
+      {
+        "mail_id": "E19",
+        "subject": "Quotation request - LED bulb",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002138,
+        "B_cost": 0.055322,
+        "tags": [
+          "extra_call",
+          "fallback"
+        ],
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "rerank_history",
+          "retrieve_history",
+          "build_context",
+          "retrieve_history",
+          "build_context",
+          "build_context",
+          "build_context",
+          "build_context"
+        ],
+        "fallback_reason": "达到 max_rounds=10 仍未 finish"
+      },
+      {
+        "mail_id": "E20",
+        "subject": "Customs clearance update - Shipment COSU6987654321",
+        "reason": "成本超 2 倍",
+        "A_cost": 0.002339,
+        "B_cost": 0.007292,
+        "tags": [
+          "skipped_retrieve"
+        ],
+        "tool_seq": [
+          "classify_email"
+        ],
+        "fallback_reason": null
+      }
+    ]
+  },
+  "results": [
+    {
+      "mail_id": "E01",
+      "subject": "Inquiry for LED Panel Light - 3000pcs",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "Global Import Ltd. 于 2025-11 首次询盘 PL-6060，报价 USD 12.80/pc，未成交 [1]；2026-03 返单成交价 USD 12.20/pc [2]。\n\n---\n[生成方式] LLM（引用 2 个历史片段：C01, C02）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [
+          "C01",
+          "C02"
+        ],
+        "gen_mode": "llm",
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 165,
+        "elapsed_sec": 2.156,
+        "cost_yuan": 0.001265,
+        "usage": {
+          "prompt_tokens": 673,
+          "completion_tokens": 74,
+          "calls": 1
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear Michael,\n\nThank you for your inquiry regarding our LED Panel Light (Model: PL-6060, 40W, 600x600mm).\n\nBased on our past dealings, we previously quoted this model at USD 12.80/pc FOB Ningbo for a 3,000 pcs order [2], and our most recent order with your company was concluded at USD 12.20/pc for 5,000 pcs [1]. \n\nRegarding your target price of USD 12.50/pc FOB Ningbo for 3,000 pcs, we would like to confirm the final quotation with our team. Given our established relationship and your annual procurement volume, we believe we can offer a competitive price. We will send you our formal quotation before your requested deadline of 2026-09-15.\n\nCould you please confirm the delivery schedule and any specific packaging or luminous efficacy requirements (e.g., 100lm/W+) so we can prepare the most accurate quotation for you [3]?\n\nWe look forward to working with you again.\n\nBest regards,\n[Your Name]\n[Your Company]",
+        "cited_ids": [
+          "C01",
+          "C02",
+          "C03"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 916,
+        "rounds": 6,
+        "tool_calls": 7,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "rerank_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [],
+        "elapsed_sec": 18.441,
+        "cost_yuan": 0.032307,
+        "usage": {
+          "prompt_tokens": 19099,
+          "completion_tokens": 1651,
+          "calls": 12
+        }
+      }
+    },
+    {
+      "mail_id": "E02",
+      "subject": "Request quote - aluminum profile",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "Bauhaus Material GmbH 是德国新客户，2026-06 首次询盘 Aluminum Profile AP-2024 工业铝型材，数量 2000 meters，我方报价 EUR 9.20/meter FOB Shanghai，样品确认中，目标价期望压到 EUR 8.50 左右 [1]。\n\n---\n[生成方式] LLM（引用 1 个历史片段：C19）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [
+          "C19"
+        ],
+        "gen_mode": "llm",
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 214,
+        "elapsed_sec": 1.927,
+        "cost_yuan": 0.001399,
+        "usage": {
+          "prompt_tokens": 671,
+          "completion_tokens": 91,
+          "calls": 1
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear Mr. Weber,\n\nThank you for your inquiry regarding Aluminum Profile AP-2024 (anodized silver) for your window system project.\n\nBased on our previous correspondence, we had quoted this profile at EUR 9.20 per meter (FOB Shanghai) for your initial order of 2,000 meters [1]. We are pleased to note that your current requirement has increased to 5,000 meters, which allows us to consider a more favorable volume-based pricing.\n\nRegarding your budget of EUR 8.90 per meter, we would like to discuss this further. Given the larger quantity, we may be able to offer an improved price, though we would need to confirm final terms including delivery schedule and payment conditions.\n\nWe will provide our formal quotation well before your requested deadline of 15th September 2026.\n\nWe look forward to working with you on this project.\n\nBest regards,\n[Your Name]\n[Your Company]",
+        "cited_ids": [
+          "C19"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 871,
+        "rounds": 6,
+        "tool_calls": 7,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "rerank_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [],
+        "elapsed_sec": 17.96,
+        "cost_yuan": 0.029455,
+        "usage": {
+          "prompt_tokens": 18199,
+          "completion_tokens": 1407,
+          "calls": 12
+        }
+      }
+    },
+    {
+      "mail_id": "E03",
+      "subject": "铝合金型材询价",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 3.776,
+        "cost_yuan": 0.002793,
+        "usage": {
+          "prompt_tokens": 1897,
+          "completion_tokens": 112,
+          "calls": 3
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "王磊先生，您好：\n\n感谢贵司（杭州华筑装饰工程有限公司）对铝合金型材的询价。\n\n关于贵司所需铝合金型材（型号 6063-T5，表面氧化处理，500支×6米），我们已收到询价需求。需要说明的是，依据我方现有往来记录，贵司此前与我司的采购主要集中在 LED 灯具类产品（如 LED Panel Light 600x600mm）[2]，本次铝合金型材 6063-T5 属于新的产品询盘，因此针对该型号及目标价 88 元/支的历史成交价，依据现有记录无法直接确认。\n\n我们已将此询盘转交产品与报价部门，将尽快结合当前原材料行情、表面氧化处理工艺及贵司采购数量（500支×6米）为您核算正式报价，并确保在贵司要求的 2026 年 9 月 20 日前提交。\n\n如方便，烦请补充贵司对表面氧化处理的具体要求（如膜厚、颜色等）及交货地，以便我们提供更精准的报价。\n\n期待与贵司进一步合作。\n\n顺祝商祺\n[我方公司名]\n外贸部",
+        "cited_ids": [
+          "C20"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 404,
+        "rounds": 6,
+        "tool_calls": 8,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "rerank_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 19.233,
+        "cost_yuan": 0.032769,
+        "usage": {
+          "prompt_tokens": 19825,
+          "completion_tokens": 1618,
+          "calls": 12
+        }
+      }
+    },
+    {
+      "mail_id": "E04",
+      "subject": "Office furniture - container order",
+      "category": "order",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 3.766,
+        "cost_yuan": 0.002819,
+        "usage": {
+          "prompt_tokens": 1899,
+          "completion_tokens": 115,
+          "calls": 3
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear Sarah,\n\nThank you for your inquiry regarding a full 40HQ container of our office workstation furniture (Model OW-1200), CIF Felixstowe, with delivery by end of October 2026.\n\nWe appreciate your interest in our products. However, based on our existing records, we are unable to confirm the unit price per set or the total CIF price for this specific model at this time, as we do not have prior pricing history for Model OW-1200 or for your company in our system.\n\nWe would be happy to prepare a formal quotation for you. Could you please confirm the exact quantity of sets you require for the 40HQ container? Once we have this detail, our sales team will provide you with a detailed quotation including unit price and total CIF Felixstowe, along with the delivery schedule to meet your end-of-October 2026 deadline.\n\nWe look forward to working with you.\n\nBest regards,\n[Your Name]\nExport Department",
+        "cited_ids": [],
+        "useful": true,
+        "has_citation": false,
+        "answer_len": 902,
+        "rounds": 5,
+        "tool_calls": 6,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 12.915,
+        "cost_yuan": 0.021596,
+        "usage": {
+          "prompt_tokens": 13188,
+          "completion_tokens": 1051,
+          "calls": 5
+        }
+      }
+    },
+    {
+      "mail_id": "E05",
+      "subject": "Mixed order - tiles and sanitary ware",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 3.152,
+        "cost_yuan": 0.002487,
+        "usage": {
+          "prompt_tokens": 1575,
+          "completion_tokens": 114,
+          "calls": 2
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear David,\n\nThank you for your inquiry dated [date] regarding the mixed order for ceramic floor tile, wall hung toilet CW-880, and basin mixer tap.\n\nWe have received your request and noted the following:\n1) Ceramic floor tile 600x600mm – 2,500 sqm\n2) Wall hung toilet CW-880 – 120 sets\n3) Basin mixer tap – 300 pcs\n\nRegarding the delivery deadline of 2026-10-31, we will take this into account when preparing our quotation.\n\nPlease note that, based on our existing records, we do not have prior pricing history for these specific product lines from your company [1]. Our team is currently preparing competitive quotations for all three items and will revert to you with detailed pricing and specifications shortly.\n\nShould you have any additional requirements (e.g., certifications, packaging, or specific models), please do not hesitate to let us know so we can tailor the quotation accordingly.\n\nWe look forward to your continued business.\n\nBest regards,\n[Your Name]\n[Your Company]",
+        "cited_ids": [
+          "C21"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 984,
+        "rounds": 6,
+        "tool_calls": 9,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 15.905,
+        "cost_yuan": 0.030458,
+        "usage": {
+          "prompt_tokens": 19322,
+          "completion_tokens": 1392,
+          "calls": 7
+        }
+      }
+    },
+    {
+      "mail_id": "E06",
+      "subject": "RE: Quotation Q-20260815",
+      "category": "order",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 4.199,
+        "cost_yuan": 0.00285,
+        "usage": {
+          "prompt_tokens": 1978,
+          "completion_tokens": 109,
+          "calls": 3
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear James,\n\nThank you for your order confirmation for the LED downlight DL-9W.\n\nWe have noted your request to proceed with production at USD 15.20/pc for 1,200 pcs, with shipment by the end of next month.\n\nHowever, we would like to clarify one point before proceeding: the terms you have quoted (1,200 pcs at USD 15.20/pc) differ from the figures referenced in our earlier quotation (800 pcs at USD 16.00/pc). Based on our existing records, we are unable to confirm the USD 15.20/pc price for this quantity, as it does not match the terms we have on file.\n\nCould you please confirm the final agreed unit price and quantity so we can issue a revised order confirmation and begin production accordingly? We want to ensure accuracy before proceeding.\n\nWe look forward to your confirmation.\n\nBest regards,\n[Your Name]\nExport Department",
+        "cited_ids": [],
+        "useful": true,
+        "has_citation": false,
+        "answer_len": 832,
+        "rounds": 7,
+        "tool_calls": 8,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 18.127,
+        "cost_yuan": 0.037949,
+        "usage": {
+          "prompt_tokens": 23941,
+          "completion_tokens": 1751,
+          "calls": 8
+        }
+      }
+    },
+    {
+      "mail_id": "E07",
+      "subject": "Repeat order - same as PO-2026-0432",
+      "category": "order",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 2.402,
+        "cost_yuan": 0.002118,
+        "usage": {
+          "prompt_tokens": 1518,
+          "completion_tokens": 75,
+          "calls": 2
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear Lisa,\n\nThank you for your repeat order request for the acoustic ceiling panel 600x600 (1,800 sqm), referencing your previous order PO-2026-0432, with delivery required before November 20, 2026.\n\nWe have received your request. However, based on our existing records, we are unable to confirm the specific contract price and delivery terms for PO-2026-0432 at this time, as we do not have the corresponding historical order details on file for this reference.\n\nTo proceed accurately with production and pricing, could you please share a copy of the previous contract or PO-2026-0432 (including the agreed unit price and any relevant specifications)? Once we verify the details, we will confirm the order and arrange production to meet your November 20 deadline.\n\nWe apologize for any inconvenience and look forward to confirming this order with you promptly.\n\nBest regards,\n[Your Name]\nExport Department",
+        "cited_ids": [],
+        "useful": true,
+        "has_citation": false,
+        "answer_len": 906,
+        "rounds": 7,
+        "tool_calls": 8,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 15.287,
+        "cost_yuan": 0.03337,
+        "usage": {
+          "prompt_tokens": 21914,
+          "completion_tokens": 1432,
+          "calls": 8
+        }
+      }
+    },
+    {
+      "mail_id": "E08",
+      "subject": "办公椅采购",
+      "category": "order",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 2.378,
+        "cost_yuan": 0.002059,
+        "usage": {
+          "prompt_tokens": 1443,
+          "completion_tokens": 77,
+          "calls": 2
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "陈静女士，您好：\n\n感谢您发来的办公椅采购需求。\n\n关于您提出的采购订单（人体工学办公椅 EC-360 网布面料，数量 350 张，含税单价 ¥580.00/张，需开具 13% 增值税专用发票，交货期 2026 年 11 月 10 日前），我们已收到。\n\n需要向您说明的是：依据我方现有往来记录，暂未检索到贵司（深圳市舒座家具有限公司）此前关于 EC-360 型号办公椅的采购或报价记录，因此该型号的单价、规格及交期等细节我方暂时无法依据历史记录直接核对确认。\n\n为确保订单准确无误，烦请您确认以下信息，或由我方业务人员与您进一步对接核实：\n1. EC-360 型号的具体规格参数（网布面料颜色、扶手/气压棒/底盘等配置）是否符合贵司要求；\n2. 含税单价 ¥580.00/张 是否为贵司期望的成交价，我方需据此核算成本后确认是否可接受；\n3. 交货期 2026 年 11 月 10 日前的具体到货要求。\n\n收到您的确认后，我们将尽快为您安排报价与订单确认。期待与贵司合作！\n\n顺祝商祺",
+        "cited_ids": [],
+        "useful": true,
+        "has_citation": false,
+        "answer_len": 443,
+        "rounds": 6,
+        "tool_calls": 7,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 16.235,
+        "cost_yuan": 0.030343,
+        "usage": {
+          "prompt_tokens": 18567,
+          "completion_tokens": 1472,
+          "calls": 7
+        }
+      }
+    },
+    {
+      "mail_id": "E09",
+      "subject": "Complaint - defective LED panels, Order PO-2026-0398",
+      "category": "complaint",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 3.619,
+        "cost_yuan": 0.002935,
+        "usage": {
+          "prompt_tokens": 2023,
+          "completion_tokens": 114,
+          "calls": 3
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear Mr. Turner,\n\nThank you for bringing this quality issue to our attention. We have received your complaint regarding the color temperature deviation (6000K instead of 4000K) on 180 pcs of LED panel light (PL-6060) under PO-2026-0398.\n\nPlease note that based on our existing records, we are unable to immediately confirm the details of this specific order (PO-2026-0398) and the associated product specifications for your account. We take quality matters very seriously and would like to investigate this thoroughly.\n\nTo help us proceed efficiently, we kindly request the following:\n1. Your order confirmation or purchase order document for reference\n2. The attached photos of the defective units (please ensure they are clearly visible)\n3. Any relevant specification sheet or agreed-upon technical parameters\n\nWe will escalate this to our quality control and production teams for internal verification. Once we have confirmed the order details and reviewed the evidence, we will provide you with a proper resolution — whether that involves replacement of the defective units or appropriate compensation.\n\nWe appreciate your patience and will respond to you as soon as possible. Please rest assured that we are committed to resolving this matter fairly and promptly.\n\nBest regards,\n[Your Name]\nExport Department",
+        "cited_ids": [],
+        "useful": true,
+        "has_citation": false,
+        "answer_len": 1313,
+        "rounds": 8,
+        "tool_calls": 11,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 22.687,
+        "cost_yuan": 0.051404,
+        "usage": {
+          "prompt_tokens": 33172,
+          "completion_tokens": 2279,
+          "calls": 9
+        }
+      }
+    },
+    {
+      "mail_id": "E10",
+      "subject": "Shipping Advice - B/L No. COSU6123456789",
+      "category": "notification",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 2.597,
+        "cost_yuan": 0.002227,
+        "usage": {
+          "prompt_tokens": 1603,
+          "completion_tokens": 78,
+          "calls": 2
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear COSCO Logistics Team,\n\nThank you for your shipping advice regarding B/L No. COSU6123456789 for order PO-2026-0512 (Ceramic floor tile 600x600mm, 1,680 cartons).\n\nWe acknowledge receipt of the draft bill of lading and will review the details. We will revert to you with our confirmation or any required amendments shortly.\n\nShould you need anything further from our side in the meantime, please do not hesitate to contact us.\n\nBest regards,\n[Your Name]\n[Your Company]",
+        "cited_ids": [],
+        "useful": true,
+        "has_citation": false,
+        "answer_len": 471,
+        "rounds": 5,
+        "tool_calls": 5,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 13.971,
+        "cost_yuan": 0.023839,
+        "usage": {
+          "prompt_tokens": 12783,
+          "completion_tokens": 1382,
+          "calls": 5
+        }
+      }
+    },
+    {
+      "mail_id": "E11",
+      "subject": "Demande de devis - eclairage industriel",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 4.202,
+        "cost_yuan": 0.002874,
+        "usage": {
+          "prompt_tokens": 1906,
+          "completion_tokens": 121,
+          "calls": 3
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Bonjour Monsieur Martin,\n\nMerci pour votre demande de devis concernant notre LED High Bay Light 150W pour votre entrepôt.\n\nNous vous remercions de l'intérêt que vous portez à notre produit. Concernant votre budget de 24,50 EUR par pièce pour une quantité de 500 pièces, nous pouvons vous confirmer que ce niveau de prix est dans une fourchette raisonnable par rapport à nos références historiques pour ce modèle [1].\n\nAfin de vous établir un devis précis et définitif, nous vous prions de bien vouloir nous confirmer les éléments suivants :\n- Les spécifications techniques souhaitées (température de couleur, angle de faisceau, etc.)\n- Les conditions de livraison (Incoterm) et la destination\n- Les certifications requises (CE, RoHS, etc.)\n\nNous vous transmettrons notre meilleure offre dans les plus brefs délais, et nous nous engageons à vous répondre avant le 30 septembre 2026 comme demandé.\n\nDans l'attente de votre retour, nous restons à votre entière disposition.\n\nCordialement,\n[Votre nom]\nService Export",
+        "cited_ids": [
+          "C17"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 1012,
+        "rounds": 8,
+        "tool_calls": 10,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "rerank_history",
+          "build_context",
+          "generate_answer",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 26.839,
+        "cost_yuan": 0.047095,
+        "usage": {
+          "prompt_tokens": 29535,
+          "completion_tokens": 2195,
+          "calls": 15
+        }
+      }
+    },
+    {
+      "mail_id": "E12",
+      "subject": "Pedido - varios modelos de LED",
+      "category": "order",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 3.534,
+        "cost_yuan": 0.003159,
+        "usage": {
+          "prompt_tokens": 1983,
+          "completion_tokens": 147,
+          "calls": 3
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Estimado Luis,\n\nGracias por su consulta y por su interés en nuestros productos LED.\n\nHemos recibido su solicitud de pedido para los siguientes modelos:\n1) LED Tube T8 120cm - 2.000 pcs\n2) LED Panel Light 60x60 - 800 pcs\n\nLe informamos que, según nuestros registros existentes, no disponemos de un historial de transacciones previas con Iluminacion Madrid SL, por lo que no podemos confirmar los precios indicados en su correo (EUR 3,20/pc y EUR 11,90/pc) contra nuestros registros históricos.\n\nPara poder emitir la factura proforma antes del 15 de noviembre de 2026, nuestro equipo comercial verificará los precios vigentes y las condiciones actuales, y le enviará la cotización/proforma correspondiente a la mayor brevedad.\n\nQuedamos a su disposición para cualquier consulta adicional.\n\nSaludos cordiales,\n[Su nombre]\nDepartamento de Ventas",
+        "cited_ids": [],
+        "useful": true,
+        "has_citation": false,
+        "answer_len": 841,
+        "rounds": 7,
+        "tool_calls": 8,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 16.439,
+        "cost_yuan": 0.033458,
+        "usage": {
+          "prompt_tokens": 21762,
+          "completion_tokens": 1462,
+          "calls": 8
+        }
+      }
+    },
+    {
+      "mail_id": "E13",
+      "subject": "Request for product catalog and price list",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 2.808,
+        "cost_yuan": 0.001911,
+        "usage": {
+          "prompt_tokens": 1455,
+          "completion_tokens": 57,
+          "calls": 2
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear Bright Future Ltd,\n\nThank you for your inquiry and your interest in our LED street lights and LED flood lights. We are glad to hear that you are considering us as a supplier for your upcoming projects in Nairobi.\n\nTo provide you with the most accurate FOB price list and product recommendations, could you please share a few more details with us?\n\n1. Target wattages and specifications for the LED street lights and LED flood lights (e.g., 50W/100W/150W/200W, lumen output, color temperature, IP rating, etc.)\n2. Estimated order quantities for each product\n3. Any specific certifications or standards required for the Kenyan market\n\nOnce we have these details, we will promptly send you our full product catalog along with a tailored FOB quotation for your review.\n\nWe look forward to building a long-term partnership with you and supporting your projects next quarter.\n\nBest regards,\n[Your Name]\n[Your Company]",
+        "cited_ids": [],
+        "useful": true,
+        "has_citation": false,
+        "answer_len": 916,
+        "rounds": 6,
+        "tool_calls": 7,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 12.272,
+        "cost_yuan": 0.025588,
+        "usage": {
+          "prompt_tokens": 16524,
+          "completion_tokens": 1133,
+          "calls": 7
+        }
+      }
+    },
+    {
+      "mail_id": "E14",
+      "subject": "Urgent - late shipment PO-2026-0512",
+      "category": "complaint",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 3.942,
+        "cost_yuan": 0.002764,
+        "usage": {
+          "prompt_tokens": 1900,
+          "completion_tokens": 108,
+          "calls": 3
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear Mr. Turner,\n\nThank you for your email regarding PO-2026-0512 for 1,680 cartons of ceramic floor tiles and the delay you have experienced.\n\nWe have carefully reviewed your request for compensation of USD 2,000. However, based on our existing records, we are unable to confirm the specific details of this order, including the agreed delivery date of 2026-09-25, the current shipment status, or any applicable compensation terms for this account. \n\nWe take delivery commitments seriously and want to resolve this matter properly. To allow us to investigate and verify the order and shipment status accurately, could you please provide the relevant order confirmation or shipping documents? Once we have the necessary details, we will look into the delay and respond to your compensation request promptly.\n\nWe apologize for any inconvenience this delay has caused to your renovation project and appreciate your patience while we look into this.\n\nBest regards,\n[Your Name]\nExport Department",
+        "cited_ids": [],
+        "useful": true,
+        "has_citation": false,
+        "answer_len": 991,
+        "rounds": 5,
+        "tool_calls": 6,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 12.478,
+        "cost_yuan": 0.022795,
+        "usage": {
+          "prompt_tokens": 13435,
+          "completion_tokens": 1170,
+          "calls": 5
+        }
+      }
+    },
+    {
+      "mail_id": "E15",
+      "subject": "Payment Advice - T/T for PO-2026-0398",
+      "category": "notification",
+      "A_pipeline": {
+        "answer": "Global Import Ltd. 于 2025-11 首次询盘 LED Panel Light PL-6060，报价 USD 12.80/pc，未成交 [1]；2026-03 返单 5000 pcs，成交价 USD 12.20/pc [3]；2026-05 试单 LED High Bay Light 150W，数量 200 pcs，报价 USD 22.00/pc [2]。\n\n---\n[生成方式] LLM（引用 3 个历史片段：C01, C02, C17）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [
+          "C01",
+          "C02",
+          "C17"
+        ],
+        "gen_mode": "llm",
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 262,
+        "elapsed_sec": 6.067,
+        "cost_yuan": 0.003545,
+        "usage": {
+          "prompt_tokens": 1905,
+          "completion_tokens": 205,
+          "calls": 3
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear Global Import Ltd.,\n\nThank you for your payment advice regarding PO-2026-0398.\n\nWe acknowledge receipt of your notification that the balance payment of USD 28,560.00 has been remitted via T/T with value date 2026-09-10. We will verify fund clearance with our bank and proceed to arrange shipment accordingly once the funds are confirmed received.\n\nWe will keep you updated on the shipment schedule. Should you have any questions in the meantime, please do not hesitate to contact us.\n\nBest regards,\n[Your Name]\n[Your Company]",
+        "cited_ids": [],
+        "useful": true,
+        "has_citation": false,
+        "answer_len": 530,
+        "rounds": 8,
+        "tool_calls": 9,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 22.016,
+        "cost_yuan": 0.043766,
+        "usage": {
+          "prompt_tokens": 26774,
+          "completion_tokens": 2124,
+          "calls": 9
+        }
+      }
+    },
+    {
+      "mail_id": "E16",
+      "subject": "Inquiry for LED flood lights - Dubai",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 2.618,
+        "cost_yuan": 0.002069,
+        "usage": {
+          "prompt_tokens": 1469,
+          "completion_tokens": 75,
+          "calls": 2
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear Mr. Al Sayed,\n\nThank you for your inquiry regarding LED Flood Light 200W, 1,500 pcs, CFR Jebel Ali.\n\nWe have received your request and noted your target price of USD 9.50/pc and your deadline of 20 October 2026 for the quotation.\n\nPlease note that based on our existing records, we do not have any prior transaction history with Al Noor Trading LLC for this product, so we are unable to confirm any historical pricing reference at this time. We will prepare a fresh, competitive quotation for your specific requirement and send it to you before your requested deadline.\n\nTo ensure the quotation is accurate and complete, could you kindly confirm the following details:\n- Required specifications (wattage confirmation, lumen output, color temperature, IP rating, housing material, etc.)\n- Any required certifications (CE, ROHS, etc.)\n- Payment terms preference\n\nWe look forward to providing you with a quotation shortly.\n\nBest regards,\n[Your Name]\n[Your Company]",
+        "cited_ids": [],
+        "useful": true,
+        "has_citation": false,
+        "answer_len": 966,
+        "rounds": 7,
+        "tool_calls": 9,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 16.946,
+        "cost_yuan": 0.033387,
+        "usage": {
+          "prompt_tokens": 21259,
+          "completion_tokens": 1516,
+          "calls": 8
+        }
+      }
+    },
+    {
+      "mail_id": "E17",
+      "subject": "Repeat order follow-up PO-2026-0432",
+      "category": "order",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 2.684,
+        "cost_yuan": 0.002067,
+        "usage": {
+          "prompt_tokens": 1507,
+          "completion_tokens": 70,
+          "calls": 2
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear Lisa,\n\nThank you for your repeat order request for PO-2026-0432 (Acoustic ceiling panel 600x600, 2,000 sqm).\n\nHowever, based on our existing records, we are unable to confirm the details of the referenced PO-2026-0432 or the contract terms you mentioned. Our system does not currently show any prior order history from Canada Decor Inc. for this product.\n\nCould you please provide us with a copy of the original PO-2026-0432 or the contract reference so we can verify the agreed price and specifications? Once we have the relevant documentation, we will be able to confirm the order and provide you with a delivery schedule.\n\nWe apologize for any inconvenience and look forward to resolving this promptly.\n\nBest regards,\n[Your Name]\n[Your Company]",
+        "cited_ids": [],
+        "useful": true,
+        "has_citation": false,
+        "answer_len": 752,
+        "rounds": 7,
+        "tool_calls": 8,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 16.17,
+        "cost_yuan": 0.03398,
+        "usage": {
+          "prompt_tokens": 22676,
+          "completion_tokens": 1413,
+          "calls": 8
+        }
+      }
+    },
+    {
+      "mail_id": "E18",
+      "subject": "Sample request - LED strip light",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 2.75,
+        "cost_yuan": 0.002002,
+        "usage": {
+          "prompt_tokens": 1474,
+          "completion_tokens": 66,
+          "calls": 2
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear Karen,\n\nThank you for your inquiry regarding 5m samples of our LED Strip Light 2835 (neutral white).\n\nRegarding your request, we would like to note the following based on our records:\n\n- For the LED Strip Light 2835 (120LED/m, neutral white), our reference pricing is USD 2.10/m with a standard lead time of approximately 25 days for bulk orders [1]. However, please note this reference is from a comparable prior quotation and does not specifically reflect sample pricing.\n\nRegarding the specific sample cost and sample lead time for your 5m request, we are unable to confirm these figures from our existing records, as we do not have prior transaction history with Design Works Ltd on file. We would be happy to prepare a formal sample quotation for you.\n\nCould you please confirm the following details so we can provide an accurate sample quote:\n1. LED density (e.g., 120LED/m or other)\n2. Whether you require 3M adhesive backing\n3. Desired length/cut specifications\n\nWe look forward to supporting your evaluation and the expected first order after testing.\n\nBest regards,\n[Your Name]\nExport Sales Team",
+        "cited_ids": [
+          "C05"
+        ],
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 1110,
+        "rounds": 7,
+        "tool_calls": 9,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "retrieve_history",
+          "retrieve_history",
+          "rerank_history",
+          "build_context",
+          "generate_answer"
+        ],
+        "tags": [
+          "extra_call"
+        ],
+        "elapsed_sec": 22.785,
+        "cost_yuan": 0.03791,
+        "usage": {
+          "prompt_tokens": 23846,
+          "completion_tokens": 1758,
+          "calls": 13
+        }
+      }
+    },
+    {
+      "mail_id": "E19",
+      "subject": "Quotation request - LED bulb",
+      "category": "inquiry",
+      "A_pipeline": {
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "gen_mode": "llm",
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "elapsed_sec": 2.771,
+        "cost_yuan": 0.002138,
+        "usage": {
+          "prompt_tokens": 1474,
+          "completion_tokens": 83,
+          "calls": 2
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "pipeline_fallback",
+        "finished": false,
+        "stop_reason": "达到 max_rounds=10 仍未 finish",
+        "fallback_reason": "达到 max_rounds=10 仍未 finish",
+        "answer": "依据现有记录无法确认。\n\n---\n[生成方式] LLM（引用 0 个历史片段：无）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [],
+        "useful": false,
+        "has_citation": false,
+        "answer_len": 72,
+        "rounds": 10,
+        "tool_calls": 11,
+        "tool_seq": [
+          "classify_email",
+          "extract_fields",
+          "retrieve_history",
+          "rerank_history",
+          "retrieve_history",
+          "build_context",
+          "retrieve_history",
+          "build_context",
+          "build_context",
+          "build_context",
+          "build_context"
+        ],
+        "tags": [
+          "extra_call",
+          "fallback"
+        ],
+        "elapsed_sec": 28.273,
+        "cost_yuan": 0.055322,
+        "usage": {
+          "prompt_tokens": 37498,
+          "completion_tokens": 2228,
+          "calls": 17
+        }
+      }
+    },
+    {
+      "mail_id": "E20",
+      "subject": "Customs clearance update - Shipment COSU6987654321",
+      "category": "notification",
+      "A_pipeline": {
+        "answer": "依据现有记录，Global Import Ltd. 曾询盘和返单 LED Panel Light PL-6060 [1][2]。\n\n---\n[生成方式] LLM（引用 2 个历史片段：C02, C01）\n[待人工确认] 单价 / 交期 / 付款方式 / 报价有效期",
+        "cited_ids": [
+          "C02",
+          "C01"
+        ],
+        "gen_mode": "llm",
+        "useful": true,
+        "has_citation": true,
+        "answer_len": 132,
+        "elapsed_sec": 2.977,
+        "cost_yuan": 0.002339,
+        "usage": {
+          "prompt_tokens": 1547,
+          "completion_tokens": 99,
+          "calls": 2
+        },
+        "error": null
+      },
+      "B_agent": {
+        "mode": "agent",
+        "finished": true,
+        "stop_reason": "finish",
+        "fallback_reason": null,
+        "answer": "Dear DHL Global Team,\n\nThank you for the customs clearance update regarding shipment COSU6987654321 (LED panel light PL-6060, 3,000 cartons).\n\nWe acknowledge that the shipment cleared customs at Felixstowe on 2026-09-22, with an ETA to the destination warehouse of 2026-09-28. We understand no action is required from our side at this time.\n\nWe will monitor the shipment's progress and appreciate your continued updates.\n\nBest regards,\n[Your Name]",
+        "cited_ids": [],
+        "useful": true,
+        "has_citation": false,
+        "answer_len": 447,
+        "rounds": 2,
+        "tool_calls": 2,
+        "tool_seq": [
+          "classify_email"
+        ],
+        "tags": [
+          "skipped_retrieve"
+        ],
+        "elapsed_sec": 3.784,
+        "cost_yuan": 0.007292,
+        "usage": {
+          "prompt_tokens": 3916,
+          "completion_tokens": 422,
+          "calls": 2
+        }
+      }
+    }
+  ]
+}

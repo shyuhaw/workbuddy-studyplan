@@ -1,0 +1,35 @@
+{
+  "customer": "Canada Decor Inc.",
+  "memories_after_e07": [
+    {
+      "id": "M0001",
+      "customer": "Canada Decor Inc.",
+      "fact_type": "contract_spec",
+      "fact": "PO-2026-0432 = Acoustic ceiling panel 600x600（吸音吊顶板）；联系人 Lisa；E07 续单 1800 平、2026-11-20 前、按前约合同价。",
+      "mail_id": "E07",
+      "ts": "2026-09-04 10:25:48"
+    }
+  ],
+  "e07": {
+    "mode": "agent",
+    "finished": true,
+    "rounds": 6,
+    "cost_yuan": 0.034352
+  },
+  "e17_with_memory": {
+    "mode": "agent",
+    "finished": true,
+    "rounds": 8,
+    "tool_calls": 10,
+    "cost_yuan": 0.05106,
+    "answer": "Dear Lisa,\n\nThank you for your repeat order request for PO-2026-0432.\n\nWe confirm receipt of your order for the Acoustic Ceiling Panel 600x600, quantity 2,000 sqm, with delivery required before December 15, 2026.\n\nRegarding pricing, you have referenced the price as agreed in the contract for PO-2026-0432. Please note that based on our available records we are unable to independently confirm the exact contract unit price for this specific PO at this time. To ensure accuracy and avoid any discrepancy, we will verify the contract terms for PO-2026-0432 and revert to you with a formal order confirmation (including the agreed unit price and total amount) shortly.\n\nCould you also kindly confirm the shipping terms and destination port so we can prepare the quotation and delivery schedule accordingly?\n\nWe will come back to you with the confirmed details as soon as possible.\n\nBest regards,\n[Your Name]\nExport Department"
+  },
+  "e17_without_memory": {
+    "mode": "agent",
+    "finished": true,
+    "rounds": 7,
+    "tool_calls": 9,
+    "cost_yuan": 0.038678,
+    "answer": "Dear Lisa,\n\nThank you for your repeat order request for PO-2026-0432 (Acoustic ceiling panel 600x600, 2,000 sqm, delivery before December 15, 2026).\n\nWe have received your request. However, based on our existing records, we are unable to confirm the agreed price and the specific terms of the referenced contract at this time. To ensure accuracy and avoid any error, we will verify the contract details for PO-2026-0432 internally and revert to you with the confirmed pricing and delivery schedule shortly.\n\nWe appreciate your continued business and will get back to you as soon as possible.\n\nBest regards,\n[Your Name]\nExport Department"
+  }
+}

@@ -1,0 +1,828 @@
+{
+  "summary": {
+    "n_samples": 20,
+    "top_k": 3,
+    "ts": "2026-09-04 09:24:17",
+    "A_current": {
+      "bm25_hit_rate": 1.0,
+      "non_empty_ctx_rate": 1.0,
+      "avg_kept": 3.0,
+      "avg_chars": 424.05
+    },
+    "B_subject": {
+      "bm25_hit_rate": 1.0,
+      "non_empty_ctx_rate": 1.0,
+      "avg_kept": 3.0,
+      "avg_chars": 430.6
+    },
+    "C_rich": {
+      "bm25_hit_rate": 1.0,
+      "non_empty_ctx_rate": 1.0,
+      "avg_kept": 3.0,
+      "avg_chars": 435.65
+    },
+    "gained_by_optimization": []
+  },
+  "results": [
+    {
+      "mail_id": "E01",
+      "subject": "Inquiry for LED Panel Light - 3000pcs",
+      "A_current": {
+        "query": "Global Import Ltd PL-6060",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C01",
+          "C02",
+          "C03"
+        ],
+        "chars": 449
+      },
+      "B_subject": {
+        "query": "Global Import Ltd PL-6060 Inquiry for LED Panel Light - 3000pcs",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C02",
+          "C01",
+          "C17"
+        ],
+        "chars": 474
+      },
+      "C_rich": {
+        "query": "Global Import Ltd PL-6060 Inquiry for LED Panel Light - 3000pcs quotation price model",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C02",
+          "C01",
+          "C17"
+        ],
+        "chars": 474
+      }
+    },
+    {
+      "mail_id": "E02",
+      "subject": "Request quote - aluminum profile",
+      "A_current": {
+        "query": "Bauhaus Material GmbH Aluminum Profile AP-2024",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C19",
+          "C05",
+          "C20"
+        ],
+        "chars": 439
+      },
+      "B_subject": {
+        "query": "Bauhaus Material GmbH Aluminum Profile AP-2024 Request quote - aluminum profile",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C19",
+          "C11",
+          "C05"
+        ],
+        "chars": 428
+      },
+      "C_rich": {
+        "query": "Bauhaus Material GmbH Aluminum Profile AP-2024 Request quote - aluminum profile",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C19",
+          "C11",
+          "C05"
+        ],
+        "chars": 428
+      }
+    },
+    {
+      "mail_id": "E03",
+      "subject": "铝合金型材询价",
+      "A_current": {
+        "query": "杭州华筑装饰工程有限公司 铝合金型材",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C20",
+          "C19",
+          "C21"
+        ],
+        "chars": 450
+      },
+      "B_subject": {
+        "query": "杭州华筑装饰工程有限公司 铝合金型材 铝合金型材询价",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C20",
+          "C19",
+          "C11"
+        ],
+        "chars": 432
+      },
+      "C_rich": {
+        "query": "杭州华筑装饰工程有限公司 铝合金型材 铝合金型材询价 报价 价格 型号",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C20",
+          "C19",
+          "C11"
+        ],
+        "chars": 432
+      }
+    },
+    {
+      "mail_id": "E04",
+      "subject": "Office furniture - container order",
+      "A_current": {
+        "query": "UK Interiors Limited office workstation / office furniture",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C03",
+          "C02",
+          "C01"
+        ],
+        "chars": 449
+      },
+      "B_subject": {
+        "query": "UK Interiors Limited office workstation / office furniture Office furniture - container order",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C03",
+          "C02",
+          "C01"
+        ],
+        "chars": 449
+      },
+      "C_rich": {
+        "query": "UK Interiors Limited office workstation / office furniture Office furniture - container order price unit price model",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C03",
+          "C02",
+          "C01"
+        ],
+        "chars": 449
+      }
+    },
+    {
+      "mail_id": "E05",
+      "subject": "Mixed order - tiles and sanitary ware",
+      "A_current": {
+        "query": "Ausbuild Pty Ltd ceramic floor tile / wall hung toilet / basin mixer tap / sanitary ware",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C21",
+          "C11",
+          "C02"
+        ],
+        "chars": 419
+      },
+      "B_subject": {
+        "query": "Ausbuild Pty Ltd ceramic floor tile / wall hung toilet / basin mixer tap / sanitary ware Mixed order - tiles and sanitary ware",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C21",
+          "C11",
+          "C02"
+        ],
+        "chars": 419
+      },
+      "C_rich": {
+        "query": "Ausbuild Pty Ltd ceramic floor tile / wall hung toilet / basin mixer tap / sanitary ware Mixed order - tiles and sanitary ware delivery order",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C21",
+          "C02",
+          "C11"
+        ],
+        "chars": 419
+      }
+    },
+    {
+      "mail_id": "E06",
+      "subject": "RE: Quotation Q-20260815",
+      "A_current": {
+        "query": "Nordic Lighting AB LED downlight",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C09",
+          "C04",
+          "C17"
+        ],
+        "chars": 381
+      },
+      "B_subject": {
+        "query": "Nordic Lighting AB LED downlight RE: Quotation Q-20260815",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C07",
+          "C04",
+          "C17"
+        ],
+        "chars": 436
+      },
+      "C_rich": {
+        "query": "Nordic Lighting AB LED downlight RE: Quotation Q-20260815 quotation price delivery",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C07",
+          "C04",
+          "C17"
+        ],
+        "chars": 436
+      }
+    },
+    {
+      "mail_id": "E07",
+      "subject": "Repeat order - same as PO-2026-0432",
+      "A_current": {
+        "query": "Canada Decor Inc acoustic ceiling panel",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C20",
+          "C02",
+          "C01"
+        ],
+        "chars": 464
+      },
+      "B_subject": {
+        "query": "Canada Decor Inc acoustic ceiling panel Repeat order - same as PO-2026-0432",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C20",
+          "C02",
+          "C18"
+        ],
+        "chars": 420
+      },
+      "C_rich": {
+        "query": "Canada Decor Inc acoustic ceiling panel Repeat order - same as PO-2026-0432 price order",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C20",
+          "C02",
+          "C18"
+        ],
+        "chars": 420
+      }
+    },
+    {
+      "mail_id": "E08",
+      "subject": "办公椅采购",
+      "A_current": {
+        "query": "深圳市舒座家具有限公司 办公椅",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C20",
+          "C14",
+          "C06"
+        ],
+        "chars": 332
+      },
+      "B_subject": {
+        "query": "深圳市舒座家具有限公司 办公椅 办公椅采购",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C20",
+          "C11",
+          "C10"
+        ],
+        "chars": 382
+      },
+      "C_rich": {
+        "query": "深圳市舒座家具有限公司 办公椅 办公椅采购 型号 数量",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C20",
+          "C11",
+          "C10"
+        ],
+        "chars": 382
+      }
+    },
+    {
+      "mail_id": "E09",
+      "subject": "Complaint - defective LED panels, Order PO-2026-03",
+      "A_current": {
+        "query": "US Hotel Group LLC LED panel light",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C02",
+          "C20",
+          "C13"
+        ],
+        "chars": 419
+      },
+      "B_subject": {
+        "query": "US Hotel Group LLC LED panel light Complaint - defective LED panels, Order PO-2026-0398",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C02",
+          "C20",
+          "C17"
+        ],
+        "chars": 433
+      },
+      "C_rich": {
+        "query": "US Hotel Group LLC LED panel light Complaint - defective LED panels, Order PO-2026-0398 order",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C02",
+          "C17",
+          "C20"
+        ],
+        "chars": 433
+      }
+    },
+    {
+      "mail_id": "E10",
+      "subject": "Shipping Advice - B/L No. COSU6123456789",
+      "A_current": {
+        "query": "COSCO Logistics Co., Ltd Ceramic floor tile 600x600mm",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C03",
+          "C20",
+          "C02"
+        ],
+        "chars": 408
+      },
+      "B_subject": {
+        "query": "COSCO Logistics Co., Ltd Ceramic floor tile 600x600mm Shipping Advice - B/L No. COSU6123456789",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C03",
+          "C20",
+          "C01"
+        ],
+        "chars": 418
+      },
+      "C_rich": {
+        "query": "COSCO Logistics Co., Ltd Ceramic floor tile 600x600mm Shipping Advice - B/L No. COSU6123456789 shipment order quantity",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C03",
+          "C20",
+          "C01"
+        ],
+        "chars": 418
+      }
+    },
+    {
+      "mail_id": "E11",
+      "subject": "Demande de devis - eclairage industriel",
+      "A_current": {
+        "query": "Pierre Martin Lumiere Paris SA",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C01",
+          "C14",
+          "C02"
+        ],
+        "chars": 437
+      },
+      "B_subject": {
+        "query": "Pierre Martin Lumiere Paris SA  Demande de devis - eclairage industriel",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C01",
+          "C02",
+          "C17"
+        ],
+        "chars": 474
+      },
+      "C_rich": {
+        "query": "Pierre Martin Lumiere Paris SA  Demande de devis - eclairage industriel",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C01",
+          "C02",
+          "C17"
+        ],
+        "chars": 474
+      }
+    },
+    {
+      "mail_id": "E12",
+      "subject": "Pedido - varios modelos de LED",
+      "A_current": {
+        "query": "Iluminacion Madrid LED panel light",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C20",
+          "C02",
+          "C01"
+        ],
+        "chars": 464
+      },
+      "B_subject": {
+        "query": "Iluminacion Madrid LED panel light Pedido - varios modelos de LED",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C02",
+          "C20",
+          "C01"
+        ],
+        "chars": 464
+      },
+      "C_rich": {
+        "query": "Iluminacion Madrid LED panel light Pedido - varios modelos de LED model",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C02",
+          "C20",
+          "C01"
+        ],
+        "chars": 464
+      }
+    },
+    {
+      "mail_id": "E13",
+      "subject": "Request for product catalog and price list",
+      "A_current": {
+        "query": "Bright Future Ltd",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C17",
+          "C06",
+          "C01"
+        ],
+        "chars": 410
+      },
+      "B_subject": {
+        "query": "Bright Future Ltd  Request for product catalog and price list",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C18",
+          "C01",
+          "C17"
+        ],
+        "chars": 440
+      },
+      "C_rich": {
+        "query": "Bright Future Ltd  Request for product catalog and price list price order",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C18",
+          "C01",
+          "C17"
+        ],
+        "chars": 440
+      }
+    },
+    {
+      "mail_id": "E14",
+      "subject": "Urgent - late shipment PO-2026-0512",
+      "A_current": {
+        "query": "US Hotel Group LLC ceramic floor tile",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C14",
+          "C13",
+          "C11"
+        ],
+        "chars": 350
+      },
+      "B_subject": {
+        "query": "US Hotel Group LLC ceramic floor tile Urgent - late shipment PO-2026-0512",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C02",
+          "C14",
+          "C13"
+        ],
+        "chars": 392
+      },
+      "C_rich": {
+        "query": "US Hotel Group LLC ceramic floor tile Urgent - late shipment PO-2026-0512 shipment order",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C02",
+          "C14",
+          "C20"
+        ],
+        "chars": 396
+      }
+    },
+    {
+      "mail_id": "E15",
+      "subject": "Payment Advice - T/T for PO-2026-0398",
+      "A_current": {
+        "query": "Global Import Ltd",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C01",
+          "C17",
+          "C02"
+        ],
+        "chars": 474
+      },
+      "B_subject": {
+        "query": "Global Import Ltd  Payment Advice - T/T for PO-2026-0398",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C02",
+          "C01",
+          "C17"
+        ],
+        "chars": 474
+      },
+      "C_rich": {
+        "query": "Global Import Ltd  Payment Advice - T/T for PO-2026-0398 shipment payment",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C02",
+          "C01",
+          "C17"
+        ],
+        "chars": 474
+      }
+    },
+    {
+      "mail_id": "E16",
+      "subject": "Inquiry for LED flood lights - Dubai",
+      "A_current": {
+        "query": "Al Noor Trading LLC",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C09",
+          "C01",
+          "C14"
+        ],
+        "chars": 372
+      },
+      "B_subject": {
+        "query": "Al Noor Trading LLC  Inquiry for LED flood lights - Dubai",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C11",
+          "C17",
+          "C21"
+        ],
+        "chars": 398
+      },
+      "C_rich": {
+        "query": "Al Noor Trading LLC  Inquiry for LED flood lights - Dubai price",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C11",
+          "C17",
+          "C07"
+        ],
+        "chars": 412
+      }
+    },
+    {
+      "mail_id": "E17",
+      "subject": "Repeat order follow-up PO-2026-0432",
+      "A_current": {
+        "query": "Canada Decor Inc acoustic ceiling panel",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C20",
+          "C02",
+          "C01"
+        ],
+        "chars": 464
+      },
+      "B_subject": {
+        "query": "Canada Decor Inc acoustic ceiling panel Repeat order follow-up PO-2026-0432",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C02",
+          "C20",
+          "C18"
+        ],
+        "chars": 420
+      },
+      "C_rich": {
+        "query": "Canada Decor Inc acoustic ceiling panel Repeat order follow-up PO-2026-0432 price order",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C02",
+          "C20",
+          "C18"
+        ],
+        "chars": 420
+      }
+    },
+    {
+      "mail_id": "E18",
+      "subject": "Sample request - LED strip light",
+      "A_current": {
+        "query": "Design Works Ltd",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C01",
+          "C17",
+          "C14"
+        ],
+        "chars": 416
+      },
+      "B_subject": {
+        "query": "Design Works Ltd  Sample request - LED strip light",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C05",
+          "C17",
+          "C20"
+        ],
+        "chars": 398
+      },
+      "C_rich": {
+        "query": "Design Works Ltd  Sample request - LED strip light cost lead time order",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C05",
+          "C02",
+          "C17"
+        ],
+        "chars": 429
+      }
+    },
+    {
+      "mail_id": "E19",
+      "subject": "Quotation request - LED bulb",
+      "A_current": {
+        "query": "Italoluce",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C01",
+          "C06",
+          "C17"
+        ],
+        "chars": 410
+      },
+      "B_subject": {
+        "query": "Italoluce  Quotation request - LED bulb",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C13",
+          "C17",
+          "C11"
+        ],
+        "chars": 387
+      },
+      "C_rich": {
+        "query": "Italoluce  Quotation request - LED bulb quotation price delivery",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C13",
+          "C01",
+          "C17"
+        ],
+        "chars": 439
+      }
+    },
+    {
+      "mail_id": "E20",
+      "subject": "Customs clearance update - Shipment COSU6987654321",
+      "A_current": {
+        "query": "Dhl Global LED panel light",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C02",
+          "C17",
+          "C01"
+        ],
+        "chars": 474
+      },
+      "B_subject": {
+        "query": "Dhl Global LED panel light Customs clearance update - Shipment COSU6987654321",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C02",
+          "C01",
+          "C17"
+        ],
+        "chars": 474
+      },
+      "C_rich": {
+        "query": "Dhl Global LED panel light Customs clearance update - Shipment COSU6987654321 shipment",
+        "bm25_hit": true,
+        "non_empty_ctx": true,
+        "n_kept": 3,
+        "top_ids": [
+          "C02",
+          "C17",
+          "C01"
+        ],
+        "chars": 474
+      }
+    }
+  ]
+}

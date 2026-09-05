@@ -14,6 +14,9 @@
 接口：  GET  /                → 前端页面
         GET  /api/samples     → 返回真实 e2e 测试邮件（可一键载入）
         POST /api/run         → {"email": "<原始邮件文本>"} 跑全链路，返回 JSON
+        GET  /api/health      → 健康检查（docker healthcheck / k8s readiness probe）
+        GET  /api/metrics     → 运行时指标（调用次数 / token / 成本 / 错误率 / 最近请求列表）
+        GET  /api/logs        → 最近 50 条 LLM 调用日志（jsonl 文件尾部）
 
 作者：麦当
 日期：2026-09-01
@@ -33,6 +36,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from agent import MailAgent, LABEL_CN
 from vector_retriever import build_hybrid
 from workflow import WorkflowCase
+from llm_fallback import TOKEN_TOTAL, reset_token_total, LOG_FILE
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 E2E_PATH = os.path.join(BASE_DIR, "data", "e2e_emails.json")
@@ -40,6 +44,8 @@ E2E_PATH = os.path.join(BASE_DIR, "data", "e2e_emails.json")
 print("[Demo] 正在加载 Agent 与混合检索器（含真实智谱向量，首次建库约数秒）...")
 _AGENT = MailAgent()
 _RETRIEVER, _CORPUS = build_hybrid()
+_START_TIME = time.time()
+_REQUEST_LOG = []  # 最近请求记录
 print(f"[Demo] 就绪：检索器={_RETRIEVER.emb_name}  语料={len(_CORPUS)} 条")
 
 
@@ -73,49 +79,66 @@ def parse_email(text):
 def run_pipeline(email_text):
     t0 = time.time()
     mail = parse_email(email_text)
-    res = _AGENT.process_one(mail)
+    result = {"subject": mail["subject"]}
+    try:
+        res = _AGENT.process_one(mail)
+        case = WorkflowCase(res, retriever=_RETRIEVER)
+        case.run_pipeline()
+        elapsed = round(time.time() - t0, 2)
 
-    case = WorkflowCase(res, retriever=_RETRIEVER)
-    case.run_pipeline()
-    elapsed = round(time.time() - t0, 2)
-
-    f = res["fields"]
-    out = {
-        "elapsed": elapsed,
-        "llm_calls": _AGENT.fm.call_count + _AGENT.em.call_count,
-        "input": {"subject": mail["subject"], "from": mail["from"]},
-        "classification": {
-            "category": res["category"],
-            "category_cn": LABEL_CN.get(res["category"], res["category"]),
-            "source": res["cat_source"],
-            "need_llm": res["need_cls"],
-            "confidence": res["rule_conf"],
-            "rule_category": res["rule_cat"],
-            "rule_category_cn": LABEL_CN.get(res["rule_cat"], res["rule_cat"]),
-        },
-        "extraction": {
-            "fields": {k: {"value": v, "conf": (res["fields"].get(k) or "")}
-                       for k, v in f.items()},
-            "rule_fields": res["rule_fields"],
-        },
-        "decision": {
-            "priority": res["priority"],
-            "reasons": res["reasons"],
-            "actions": res["actions"],
-            "risks": res["risks"],
-        },
-        "rag": {
-            "query": f"{f.get('customer') or ''} {f.get('product') or ''}".strip()
-                     or mail["subject"],
-            "hits": [
-                {"id": h.get("id"), "customer": h.get("customer"),
-                 "text": (h.get("text") or "")[:160], "score": h.get("score")}
-                for h in case.retrieved
-            ],
-        },
-        "draft": case.draft,
-    }
-    return out
+        f = res["fields"]
+        data = {
+            "elapsed": elapsed,
+            "llm_calls": _AGENT.fm.call_count + _AGENT.em.call_count,
+            "input": {"subject": mail["subject"], "from": mail["from"]},
+            "classification": {
+                "category": res["category"],
+                "category_cn": LABEL_CN.get(res["category"], res["category"]),
+                "source": res["cat_source"],
+                "need_llm": res["need_cls"],
+                "confidence": res["rule_conf"],
+                "rule_category": res["rule_cat"],
+                "rule_category_cn": LABEL_CN.get(res["rule_cat"], res["rule_cat"]),
+            },
+            "extraction": {
+                "fields": {k: {"value": v, "conf": (res["fields"].get(k) or "")}
+                           for k, v in f.items()},
+                "rule_fields": res["rule_fields"],
+            },
+            "decision": {
+                "priority": res["priority"],
+                "reasons": res["reasons"],
+                "actions": res["actions"],
+                "risks": res["risks"],
+            },
+            "rag": {
+                "query": f"{f.get('customer') or ''} {f.get('product') or ''}".strip()
+                         or mail["subject"],
+                "hits": [
+                    {"id": h.get("id"), "customer": h.get("customer"),
+                     "text": (h.get("text") or "")[:160], "score": h.get("score")}
+                    for h in case.retrieved
+                ],
+            },
+            "draft": case.draft,
+        }
+        _REQUEST_LOG.append({
+            "ts": time.strftime("%H:%M:%S"),
+            "subject": mail["subject"],
+            "elapsed": elapsed,
+            "status": "ok"
+        })
+        return data
+    except Exception as e:
+        elapsed = round(time.time() - t0, 2)
+        _REQUEST_LOG.append({
+            "ts": time.strftime("%H:%M:%S"),
+            "subject": mail["subject"],
+            "elapsed": elapsed,
+            "status": "error",
+            "error": str(e)[:200]
+        })
+        raise
 
 
 # ---------------------------------------------------------------------------
@@ -152,6 +175,38 @@ class Handler(BaseHTTPRequestHandler):
                             "note": e.get("note", "")}
                            for e in data]
                 self._send(200, json.dumps({"samples": samples}, ensure_ascii=False))
+            except Exception as e:
+                self._send(500, json.dumps({"error": str(e)}))
+        elif path == "/api/health":
+            self._send(200, json.dumps({"status": "ok",
+                "corpus": len(_CORPUS),
+                "retriever": _RETRIEVER.emb_name,
+                "uptime_sec": round(time.time() - _START_TIME, 1)}, ensure_ascii=False))
+        elif path == "/api/metrics":
+            try:
+                t = TOKEN_TOTAL or {}
+                self._send(200, json.dumps({
+                    "total_calls": t.get("calls", 0),
+                    "prompt_tokens": t.get("prompt_tokens", 0),
+                    "completion_tokens": t.get("completion_tokens", 0),
+                    "total_cost_yuan": round((t.get("prompt_tokens", 0) * 1e-6
+                                             + t.get("completion_tokens", 0) * 8e-6), 6),
+                    "request_count": len(_REQUEST_LOG),
+                    "recent": _REQUEST_LOG[-20:],
+                }, ensure_ascii=False))
+            except Exception as e:
+                self._send(500, json.dumps({"error": str(e)}))
+        elif path == "/api/logs":
+            try:
+                lines = []
+                if os.path.exists(LOG_FILE):
+                    with open(LOG_FILE, "r", encoding="utf-8") as fh:
+                        for ln in fh.readlines()[-50:]:
+                            try:
+                                lines.append(json.loads(ln))
+                            except Exception:
+                                pass
+                self._send(200, json.dumps({"logs": lines, "count": len(lines)}, ensure_ascii=False))
             except Exception as e:
                 self._send(500, json.dumps({"error": str(e)}))
         else:

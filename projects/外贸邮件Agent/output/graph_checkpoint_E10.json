@@ -1,0 +1,32 @@
+[
+  {
+    "step": 1,
+    "node": "classify",
+    "ts": "14:04:14",
+    "state": {
+      "mail": "<dict keys=['id', 'from', 'subject', 'body', 'category', 'expected']>",
+      "cost": 0.0,
+      "retry_n": 0,
+      "retriever": null,
+      "category": "notification",
+      "confidence": 0.867,
+      "cls_scores": "<dict keys=['inquiry', 'order', 'complaint', 'notification']>"
+    }
+  },
+  {
+    "step": 2,
+    "node": "compose",
+    "ts": "14:04:15",
+    "state": {
+      "mail": "<dict keys=['id', 'from', 'subject', 'body', 'category', 'expected']>",
+      "cost": 0.000761,
+      "retry_n": 0,
+      "retriever": null,
+      "category": "notification",
+      "confidence": 0.867,
+      "cls_scores": "<dict keys=['inquiry', 'order', 'complaint', 'notification']>",
+      "_provider": "<DeepSeekProvider>",
+      "draft": "Dear Sir/Madam,\n\nThank you for your shipping advice. We have noted the details of the shipment under B/L No. COSU6123456789 and will review the attached draft bill of lading. We will revert with our confirmation shortly.\n\nBest regards,\n[Your Name]"
+    }
+  }
+]
