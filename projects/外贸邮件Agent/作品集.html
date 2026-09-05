@@ -468,9 +468,95 @@ PENDING_REVIEW → (SLA超时) → ESCALATED → PENDING_REVIEW
   </p>
 </section>
 
+<!-- ============ MCP SECTION ============ -->
+<section>
+  <h2>项目四：MCP 服务封装（JD #6）</h2>
+  <p class="lead">从零手写 MCP Server/Client，证明你不仅会用 MCP，还能实现 MCP 协议——这正是面试官想听的。</p>
+
+  <div class="code" style="font-family:ui-monospace;font-size:13px;color:#c9d1d9;background:#161b22;padding:16px 20px;border-radius:10px;margin-bottom:16px">
+┌─────────────────────────────────────┐
+│  MCP Layer        tools/list, tools/call          │
+├─────────────────────────────────────┤
+│  JSON-RPC 2.0   {jsonrpc, id, method, params}   │
+├─────────────────────────────────────┤
+│  Transport     stdout/stderr (stdio)            │
+└─────────────────────────────────────┘
+  </div>
+
+  <div class="metrics">
+    <div class="metric"><div class="num">7</div><div class="lbl">暴露工具<br>（分类/提取/检索/生成等）</div></div>
+    <div class="metric"><div class="num">3</div><div class="lbl">联调模式<br>（direct/subprocess/integration）</div></div>
+    <div class="metric"><div class="num">0</div><div class="lbl">重依赖<br>（纯 stdlib 实现）</div></div>
+    <div class="metric"><div class="num">2024-11-05</div><div class="lbl">协议版本<br>（MCP 1.0 稳定版）</div></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>可用工具清单</h3>
+    <table style="font-size:13px;margin-top:8px">
+      <tr><th>工具名</th><th>功能</th><th>对应模块</th></tr>
+      <tr><td>classify_email</td><td>邮件分类（询盘/订单/投诉/通知）</td><td>classifier.py</td></tr>
+      <tr><td>extract_fields</td><td>字段提取（客户/产品/数量/价格）</td><td>extractor.py</td></tr>
+      <tr><td>retrieve_history</td><td>RAG 检索历史往来</td><td>vector_retriever.py</td></tr>
+      <tr><td>build_context</td><td>上下文组装</td><td>context_builder.py</td></tr>
+      <tr><td>generate_answer</td><td>回复生成</td><td>generator.py</td></tr>
+      <tr><td>finish</td><td>结束对话</td><td>—</td></tr>
+      <tr><td>simulate_slow</td><td>延迟测试（模拟慢响应）</td><td>—</td></tr>
+    </table>
+  </div>
+
+  <div class="callout blue" style="margin-top:16px">
+    <div class="t">核心设计决策</div>
+    <p>为什么不用官方 <code>mcp</code> Python SDK？本机红线：venv 创建失败、pip 装 mcp 会拉 torch/numpy 链。<br>
+    自己实现 MCP 子集：协议核心就是 <b style="color:#58a6ff">JSON-RPC 2.0 over stdio</b>，几十行代码就能跑通。<br>
+    只实现 <code>tools</code> 能力：项目只需暴露函数调用，不需要 resources/prompts。</p>
+  </div>
+</section>
+
+<!-- ============ DEPLOYMENT SECTION ============ -->
+<section>
+  <h2>项目五：部署方案（静态 + Docker + 云端）</h2>
+  <p class="lead">把 AI 应用变成可访问的服务——这是 JD 明确要求的工程能力。</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>方案一：静态 Demo 部署（推荐）</h3>
+      <p style="font-size:14px;color:#8b949e;margin-top:8px">
+        把 20 封邮件的全链路结果预跑出来，内嵌进纯静态 HTML。<br>
+        <b style="color:#3fb950">已部署：</b>
+        <a href="https://82a0ad91d6d84c4e96fb01ca8938a105.app.workbuddy.link" target="_blank" style="color:#58a6ff">公网链接</a>
+      </p>
+      <div style="font-family:ui-monospace;font-size:12px;color:#6e7681;margin-top:12px">
+        python src/build_static_demo.py<br>
+        → dist_demo/index.html (64KB)
+      </div>
+    </div>
+    <div class="card">
+      <h3>方案二：Docker 部署</h3>
+      <p style="font-size:14px;color:#8b949e;margin-top:8px">
+        生产环境部署，镜像仅含 <code>requests</code> 依赖。<br>
+        <b style="color:#d29922">注：</b>本机未安装 Docker，文档已完善待验证。
+      </p>
+      <div style="font-family:ui-monospace;font-size:12px;color:#6e7681;margin-top:12px">
+        docker build -t mail-agent:latest .<br>
+        docker run -p 7860:7860 mail-agent:latest
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:16px">
+    <div class="t">部署验证清单</div>
+    <ul style="padding-left:18px;margin-top:8px;font-size:14px;color:#8b949e">
+      <li>静态 Demo 可访问 → 浏览器打开链接</li>
+      <li>健康检查通过 → <code>curl /api/health</code> 返回 200</li>
+      <li>指标正常 → <code>curl /api/metrics</code> 显示调用次数/错误率</li>
+      <li>MCP 工具可调用 → <code>python mcp_client.py --mode direct</code></li>
+    </ul>
+  </div>
+</section>
+
 <footer>
-  AI Agent 作品集合集 &nbsp;|&nbsp; 麦当 &nbsp;·&nbsp; 2026-09-03<br>
-  <span style="font-size:12px">Python · DeepSeek API · 智谱 Embedding · BM25 · Agent Mail &nbsp;|&nbsp; 规则层 + LLM 双层架构</span>
+  AI Agent 作品集合集 &nbsp;|&nbsp; 麦当 &nbsp;·&nbsp; 2026-09-05<br>
+  <span style="font-size:12px">Python · DeepSeek API · 智谱 Embedding · BM25 · MCP · Agent Mail &nbsp;|&nbsp; 规则层 + LLM 双层架构</span>
 </footer>
 
 </div>
