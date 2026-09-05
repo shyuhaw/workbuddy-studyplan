@@ -53,7 +53,7 @@ class MCPClient:
             "method": method,
             "params": params or {},
         }
-        self._proc.stdin.write(json.dumps(msg) + "\n")
+        self._proc.stdin.write(json.dumps(msg, ensure_ascii=False) + "\n")
         self._proc.stdin.flush()
 
         # 读取响应（MCP 协议：每行一个 JSON）
@@ -113,6 +113,8 @@ class MCPClient:
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
+            encoding='utf-8',
+            errors='replace',
             bufsize=1,  # line buffered
         )
         # 等待 server 初始化通知
@@ -133,10 +135,13 @@ class MCPClient:
 
     def stop(self):
         """停止 MCP server。"""
-        if self._proc:
-            self._proc.terminate()
-            self._proc.wait(timeout=5)
-            self._proc = None
+        if self._proc and self._proc.poll() is None:
+            try:
+                self._proc.terminate()
+                self._proc.wait(timeout=5)
+            except Exception:
+                pass
+        self._proc = None
 
     def __enter__(self):
         self.start()

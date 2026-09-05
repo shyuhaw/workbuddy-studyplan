@@ -1,10 +1,10 @@
 {
   "summary": {
     "n_samples": 16,
-    "n_invalid_excluded": 1,
-    "abort_reason": "HTTPError: 402 Client Error: Payment Required for url: https://api.deepseek.com/chat/completions",
-    "max_rounds": 10,
-    "ts": "2026-09-05 15:38:18",
+    "n_invalid_excluded": 0,
+    "abort_reason": null,
+    "max_rounds": 6,
+    "ts": "2026-09-05 16:53:53",
     "A_pipeline": {
       "useful_rate": 0.875,
       "citation_rate": 0.875,

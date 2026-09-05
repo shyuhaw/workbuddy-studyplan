@@ -231,9 +231,11 @@ python src/demo_server.py --port 7860
 │   ├── eval_generation.py    生成端评测（规则层 + LLM-as-judge）
 │   ├── tools.py              ★ Agent 工具注册器（7 工具 JSON Schema + 幂等执行）
 │   ├── agent_loop.py         ★ Function Calling 循环（max_rounds / 降级 / 轨迹留痕）
-│   └── eval_agent.py         ★ A/B 评测（流水线 vs Agent，统一 token 口径 + 余额预检）
+│   ├── eval_agent.py         ★ A/B 评测（流水线 vs Agent，统一 token 口径 + 余额预检）
+│   ├── mcp_server.py         ★ MCP Server（最小可用子集，JSON-RPC 2.0 over stdio）
+│   └── mcp_client.py         ★ MCP Client（三种联调模式：direct/subprocess/integration）
 ├── data/
-│   ├── customer_corpus.json  客户历史档案语料（21 条，RAG 知识库）
+│   ├── customer_corpus.json  客户历史档案语料（38 条，RAG 知识库）
 │   └── eval_queries.json     20 条检索评测 query（4 类难度）
 └── output/
     ├── 分类结果.xlsx
@@ -428,4 +430,98 @@ ESCALATED ──(intervene, 经理)──> PENDING_REVIEW (重新打开)
 | 人工驳回 | PENDING_REVIEW→**REJECTED**→重做→resubmit→approve→SENT | 打回重做闭环 |
 
 真实运行输出见 `output/workflow_demo.json`（含完整审计轨迹）。
+
+---
+
+## 十三、MCP 服务封装（JD #6：Model Context Protocol）★ 命中 JD「MCP」
+
+> **为什么要有这一节**：JD 明确要求候选人「能用 MCP 暴露工具」。这一节证明你不仅会用 MCP，还能从零手写最小可用实现——这正是面试官想听的。
+
+### 核心设计决策：为什么不用官方 SDK
+
+| 选择 | 原因 |
+|---|---|
+| 不用 `mcp` Python SDK | 本机红线：venv 创建失败、pip 装 mcp 会拉 torch/numpy 链 |
+| 自己实现 MCP 子集 | MCP 协议核心就是 **JSON-RPC 2.0 over stdio**，几十行代码就能跑通 |
+| 只实现 `tools` 能力 | 够用原则：项目只需暴露函数调用，不需要 resources/prompts |
+
+### MCP 协议层次（面试要讲清）
+
+```
+┌─────────────────────────────────────┐
+│  MCP Layer        tools/list, tools/call          │
+├─────────────────────────────────────┤
+│  JSON-RPC 2.0   {jsonrpc, id, method, params}   │
+├─────────────────────────────────────┤
+│  Transport     stdout/stderr (stdio)            │
+└─────────────────────────────────────┘
+```
+
+### 代码结构
+
+| 文件 | 职责 | 行数 |
+|---|---|---|
+| `src/mcp_server.py` | MCP Server 核心：协议处理 + 工具注册 | ~200 行 |
+| `src/mcp_client.py` | MCP Client：子进程通信 + 三种测试模式 | ~300 行 |
+
+### 可用工具（7 个）
+
+| 工具名 | 功能 | 对应底层模块 |
+|---|---|---|
+| `classify_email` | 邮件分类 | classifier.py |
+| `extract_fields` | 字段提取 | extractor.py |
+| `retrieve_history` | RAG 检索历史 | vector_retriever.py |
+| `build_context` | 上下文组装 | context_builder.py |
+| `generate_answer` | 回复生成 | generator.py |
+| `finish` | 结束对话 | — |
+| `simulate_slow` | 延迟测试（模拟慢响应） | — |
+
+### 联调验证（三种模式）
+
+```bash
+# 模式1：直接调用（不依赖子进程，快速验证）
+python src/mcp_client.py --mode direct
+
+# 模式2：子进程模式（模拟真实 MCP 客户端）
+python src/mcp_client.py --mode subprocess
+
+# 模式3：集成测试（MCP 工具 → Agent 调用链）
+python src/mcp_client.py --mode integration
+```
+
+### Demo 输出示例
+
+```
+[1] initialize 响应:
+{
+  "protocolVersion": "2024-11-05",
+  "serverInfo": {"name": "外贸邮件-agent-tools", "version": "0.1.0"},
+  "capabilities": {"tools": {}}
+}
+
+[2] 可用工具数量: 7
+   - classify_email, extract_fields, retrieve_history, ...
+
+[3] retrieve_history 调用结果:
+   文本长度: 500 字符
+   前100字符: {"query": "Global Import Ltd LED panel light", "count": 3, ...}
+```
+
+### 与 Agent 的集成方式
+
+```python
+# 1. Agent 启动时创建 MCP Client
+client = MCPClient([sys.executable, "src/mcp_server.py"])
+client.start()
+
+# 2. 获取工具清单（写入 messages 的 tools 字段）
+tools = client.list_tools()
+
+# 3. 模型返回 tool_calls 后，通过 MCP 调用
+result = client.call_tool("retrieve_history", {"query": "..."})
+
+# 4. 把结果写回 messages，继续循环
+```
+
+> **关键点**：MCP Client 只是一个传输层，真正执行代码的还是本地的 `tools.py`。模型只出决策，本地出执行——这才是 Agent 的正确分工。
 
